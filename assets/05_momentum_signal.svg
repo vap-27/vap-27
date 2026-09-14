@@ -51,7 +51,7 @@
 
   <!-- Col 3 -->
   <g transform="translate(446, 130)">
-    <text class="hud-title" x="0" y="32" font-size="36" font-weight="800" fill="#ffffff">59</text>
+    <text class="hud-title" x="0" y="32" font-size="36" font-weight="800" fill="#ffffff">61</text>
     <text class="hud-title" x="0" y="56" font-size="10" font-weight="700" fill="#64748b" letter-spacing="1.5">CONTRIBUTIONS</text>
     <circle class="signal-node" cx="8" cy="90" r="6" fill="#1e3a8a" stroke="#38bdf8" stroke-width="2" style="animation-delay: 1.2s;" />
     <line class="wave-line" x1="24" y1="90" x2="160" y2="90" stroke="#2563eb" stroke-width="1.8" stroke-dasharray="6 8" opacity="0.75" />

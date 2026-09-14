@@ -375,6 +375,6 @@
     <line x1="-40" y1="0" x2="40" y2="0" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" filter="url(#glow-star)" />
   </g>
 
-  <text class="hud-title" x="34" y="278" font-size="11" font-weight="500" fill="#64748b">59 contributions · brighter stars mark busier days</text>
+  <text class="hud-title" x="34" y="278" font-size="11" font-weight="500" fill="#64748b">61 contributions · brighter stars mark busier days</text>
   <text class="hud-title" x="806" y="278" font-size="8.5" fill="#2d4263" text-anchor="end" letter-spacing="0.8">ENERGY // VAP-27</text>
 </svg>

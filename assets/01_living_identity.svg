@@ -1419,7 +1419,7 @@
 
   <text class="hud-title" x="420" y="362" font-size="9.5" font-weight="600" fill="#64748b" letter-spacing="1.5">CONTRIBUTIONS</text>
   <circle class="beacon" cx="555" cy="358" r="3.5" fill="#38bdf8" style="animation-delay: 1.2s;" />
-  <text class="hud-title" x="420" y="392" font-size="22" font-weight="700" fill="#ffffff">59</text>
+  <text class="hud-title" x="420" y="392" font-size="22" font-weight="700" fill="#ffffff">61</text>
 
   <text class="hud-title" x="625" y="362" font-size="9.5" font-weight="600" fill="#64748b" letter-spacing="1.5">FOLLOWERS</text>
   <circle class="beacon" cx="745" cy="358" r="3.5" fill="#38bdf8" style="animation-delay: 1.8s;" />
