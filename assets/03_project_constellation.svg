@@ -51,16 +51,16 @@
 
   <path class="travel-line" d="M 200 220 Q 315 180 430 220 T 660 220" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="6 8" opacity="0.75" />
 
-  <!-- Node 1: libris-note -->
+  <!-- Node 1 -->
   <g>
     <circle class="orbit-cw-1" cx="200" cy="220" r="38" fill="none" stroke="#38bdf8" stroke-width="1" stroke-dasharray="6 14" opacity="0.6" />
     <circle cx="200" cy="220" r="26" fill="#0c182c" stroke="#1d4ed8" stroke-width="1.5" />
-    <text class="hud-title" x="200" y="224" font-size="12" font-weight="700" fill="#38bdf8" text-anchor="middle">TS</text>
-    <text class="hud-title" x="200" y="280" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">libris-note</text>
-    <text class="hud-title" x="200" y="298" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle">TypeScript · 0 stars</text>
+    <text class="hud-title" x="200" y="224" font-size="12" font-weight="700" fill="#38bdf8" text-anchor="middle">PY</text>
+    <text class="hud-title" x="200" y="280" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">vap-27</text>
+    <text class="hud-title" x="200" y="298" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle">Python · 0 stars</text>
   </g>
 
-  <!-- Node 2: x-rendr -->
+  <!-- Node 2 (Center planet) -->
   <g>
     <circle cx="430" cy="220" r="70" fill="url(#center-planet-glow)" />
     <circle class="pulse-ring" cx="430" cy="220" r="52" fill="none" stroke="#38bdf8" stroke-width="1" stroke-dasharray="4 8" />
@@ -72,14 +72,12 @@
     <text class="hud-title" x="430" y="315" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle">Python · 0 stars</text>
   </g>
 
-  <!-- Node 3: vap-27 -->
+  <!-- Node 3 -->
   <g>
     <circle class="orbit-ccw-3" cx="660" cy="220" r="38" fill="none" stroke="#818cf8" stroke-width="1" stroke-dasharray="6 14" opacity="0.6" />
     <circle cx="660" cy="220" r="26" fill="#111833" stroke="#4f46e5" stroke-width="1.5" />
-    <text class="hud-title" x="660" y="224" font-size="12" font-weight="700" fill="#a5b4fc" text-anchor="middle">OP</text>
-    <text class="hud-title" x="660" y="280" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">vap-27</text>
-    <text class="hud-title" x="660" y="298" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle">Open source · 0 stars</text>
+    <text class="hud-title" x="660" y="224" font-size="12" font-weight="700" fill="#a5b4fc" text-anchor="middle">TS</text>
+    <text class="hud-title" x="660" y="280" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">libris-note</text>
+    <text class="hud-title" x="660" y="298" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle">TypeScript · 0 stars</text>
   </g>
-
-  <text class="hud-title" x="806" y="362" font-size="8.5" fill="#2d4263" text-anchor="end" letter-spacing="0.8">CONSTELLATION // VAP-27</text>
 </svg>
