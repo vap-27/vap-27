@@ -1,0 +1,18 @@
+# Local preview
+preview.html
+*.html
+
+# Test & unused avatar artifacts
+assets/pixel_avatar.png
+assets/test_pin_avatar_64.png
+assets/test_*.png
+assets/pin_*.png
+!assets/pin_70.png
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*.class
+*.log
+.DS_Store
+
