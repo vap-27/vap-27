@@ -80,7 +80,7 @@
     <rect x="0" y="0" width="180" height="142" rx="12" fill="#0a1322" stroke="#1c3356" stroke-width="1.2" />
     <text class="hud-title" x="18" y="32" font-size="9.5" font-weight="700" fill="#64748b" letter-spacing="1.5">CONTRIBUTIONS</text>
     <circle class="signal-beacon" cx="158" cy="28" r="4.5" fill="#38bdf8" style="animation-delay: 1.2s;" />
-    <text class="hud-title" x="18" y="72" font-size="34" font-weight="800" fill="#ffffff">62</text>
+    <text class="hud-title" x="18" y="72" font-size="34" font-weight="800" fill="#ffffff">63</text>
 
     <g transform="translate(18, 86)">
       <rect class="eq-bar-3" x="0" y="4" width="4" height="36" rx="2" fill="#38bdf8" />

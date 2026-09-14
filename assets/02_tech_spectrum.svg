@@ -38,7 +38,7 @@
     <rect x="0" y="0" width="30" height="30" rx="6" fill="#0f1a2e" stroke="#1e3458" stroke-width="1" />
     <text class="hud-title" x="15" y="19" font-size="11" font-weight="700" fill="#3178c6" text-anchor="middle">TS</text>
     <text class="hud-title" x="40" y="20" font-size="14" font-weight="700" fill="#ffffff">TypeScript</text>
-    <text class="hud-title" x="0" y="48" font-size="11" font-weight="500" fill="#64748b">52.3% of public code</text>
+    <text class="hud-title" x="0" y="48" font-size="11" font-weight="500" fill="#64748b">52.4% of public code</text>
     <rect x="0" y="58" width="224" height="4" rx="2" fill="#0f1a2e" />
     <rect class="meter-bar" x="0" y="58" width="117" height="4" rx="2" fill="#3178c6" />
     <circle cx="117" cy="60" r="2.5" fill="#ffffff" filter="url(#glow-soft)" />
@@ -48,7 +48,7 @@
     <rect x="0" y="0" width="30" height="30" rx="6" fill="#0f1a2e" stroke="#1e3458" stroke-width="1" />
     <text class="hud-title" x="15" y="19" font-size="11" font-weight="700" fill="#38bdf8" text-anchor="middle">PY</text>
     <text class="hud-title" x="40" y="20" font-size="14" font-weight="700" fill="#ffffff">Python</text>
-    <text class="hud-title" x="0" y="48" font-size="11" font-weight="500" fill="#64748b">32.4% of public code</text>
+    <text class="hud-title" x="0" y="48" font-size="11" font-weight="500" fill="#64748b">32.5% of public code</text>
     <rect x="0" y="58" width="224" height="4" rx="2" fill="#0f1a2e" />
     <rect class="meter-bar" x="0" y="58" width="72" height="4" rx="2" fill="#38bdf8" />
     <circle cx="72" cy="60" r="2.5" fill="#ffffff" filter="url(#glow-soft)" />
@@ -58,7 +58,7 @@
     <rect x="0" y="0" width="30" height="30" rx="6" fill="#0f1a2e" stroke="#1e3458" stroke-width="1" />
     <text class="hud-title" x="15" y="19" font-size="11" font-weight="700" fill="#a855f7" text-anchor="middle">CSS</text>
     <text class="hud-title" x="40" y="20" font-size="14" font-weight="700" fill="#ffffff">CSS</text>
-    <text class="hud-title" x="0" y="48" font-size="11" font-weight="500" fill="#64748b">9.5% of public code</text>
+    <text class="hud-title" x="0" y="48" font-size="11" font-weight="500" fill="#64748b">9.6% of public code</text>
     <rect x="0" y="58" width="224" height="4" rx="2" fill="#0f1a2e" />
     <rect class="meter-bar" x="0" y="58" width="21" height="4" rx="2" fill="#a855f7" />
     <circle cx="21" cy="60" r="2.5" fill="#ffffff" filter="url(#glow-soft)" />
@@ -78,7 +78,7 @@
     <rect x="0" y="0" width="30" height="30" rx="6" fill="#0f1a2e" stroke="#1e3458" stroke-width="1" />
     <text class="hud-title" x="15" y="19" font-size="11" font-weight="700" fill="#e34c26" text-anchor="middle">HT</text>
     <text class="hud-title" x="40" y="20" font-size="14" font-weight="700" fill="#ffffff">HTML</text>
-    <text class="hud-title" x="0" y="48" font-size="11" font-weight="500" fill="#64748b">1.0% of public code</text>
+    <text class="hud-title" x="0" y="48" font-size="11" font-weight="500" fill="#64748b">0.7% of public code</text>
     <rect x="0" y="58" width="224" height="4" rx="2" fill="#0f1a2e" />
     <rect class="meter-bar" x="0" y="58" width="5" height="4" rx="2" fill="#e34c26" />
     <circle cx="5" cy="60" r="2.5" fill="#ffffff" filter="url(#glow-soft)" />
