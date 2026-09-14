@@ -42,7 +42,7 @@
   <!-- Milestone 1 -->
   <g transform="translate(180, 0)">
     <text class="hud-title" x="0" y="125" font-size="11" font-weight="600" fill="#94a3b8">01 / Sep 2026</text>
-    <text class="hud-title" x="0" y="148" font-size="16" font-weight="700" fill="#ffffff">vap-27</text>
+    <text class="hud-title" x="0" y="148" font-size="16" font-weight="700" fill="#ffffff">x-rendr</text>
     <text class="hud-title" x="0" y="168" font-size="11" font-weight="500" fill="#64748b">Public work in motion.</text>
     <text class="hud-title" x="0" y="184" font-size="10.5" font-weight="500" fill="#38bdf8">Python · 0 stars</text>
 
@@ -57,7 +57,7 @@
     <rect x="5" y="210" width="20" height="20" rx="4" fill="#0c182c" stroke="#3b82f6" stroke-width="1.5" />
     <text class="hud-title" x="15" y="224" font-size="9" font-weight="700" fill="#38bdf8" text-anchor="middle">PY</text>
 
-    <text class="hud-title" x="15" y="260" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">x-rendr</text>
+    <text class="hud-title" x="15" y="260" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">vap-27</text>
     <text class="hud-title" x="15" y="278" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle">Public work in motion.</text>
     <text class="hud-title" x="15" y="294" font-size="10.5" font-weight="500" fill="#60a5fa" text-anchor="middle">Python · 0 stars</text>
     <text class="hud-title" x="15" y="308" font-size="9.5" font-weight="500" fill="#475569" text-anchor="middle">02 / Sep 2026</text>
