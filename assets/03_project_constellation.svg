@@ -1,0 +1,85 @@
+<svg width="840" height="380" viewBox="0 0 840 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow-const" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <radialGradient id="center-planet-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.35" />
+      <stop offset="70%" stop-color="#1e3a8a" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#080d1a" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid-const" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#101c30" stroke-width="0.8" />
+    </pattern>
+  </defs>
+
+  <style>
+    @keyframes orbit-rotate-cw {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes orbit-rotate-ccw {
+      0% { transform: rotate(360deg); }
+      100% { transform: rotate(0deg); }
+    }
+    @keyframes planet-pulse {
+      0%, 100% { r: 52; opacity: 0.8; }
+      50% { r: 58; opacity: 0.4; }
+    }
+    @keyframes signal-travel {
+      0% { stroke-dashoffset: 200; }
+      100% { stroke-dashoffset: 0; }
+    }
+    .orbit-cw-1 { transform-origin: 200px 220px; animation: orbit-rotate-cw 18s linear infinite; }
+    .orbit-cw-2 { transform-origin: 430px 220px; animation: orbit-rotate-cw 25s linear infinite; }
+    .orbit-ccw-3 { transform-origin: 660px 220px; animation: orbit-rotate-ccw 20s linear infinite; }
+    .pulse-ring { animation: planet-pulse 3.5s ease-in-out infinite; }
+    .travel-line { animation: signal-travel 10s linear infinite; }
+    .hud-title { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+  </style>
+
+  <rect x="1" y="1" width="838" height="378" rx="18" fill="#080d1a" stroke="#162744" stroke-width="1.5" />
+  <rect x="2" y="2" width="836" height="376" rx="17" fill="url(#grid-const)" opacity="0.85" />
+
+  <text class="hud-title" x="34" y="44" font-size="10.5" font-weight="700" fill="#60a5fa" letter-spacing="2.5">PROJECT CONSTELLATION</text>
+  <text class="hud-title" x="34" y="78" font-size="21" font-weight="700" fill="#ffffff" letter-spacing="0.5">A universe of work</text>
+  <line x1="34" y1="104" x2="806" y2="104" stroke="#162744" stroke-width="1.2" stroke-dasharray="4 8" />
+
+  <path class="travel-line" d="M 200 220 Q 315 180 430 220 T 660 220" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="6 8" opacity="0.75" />
+
+  <!-- Node 1: libris-note -->
+  <g>
+    <circle class="orbit-cw-1" cx="200" cy="220" r="38" fill="none" stroke="#38bdf8" stroke-width="1" stroke-dasharray="6 14" opacity="0.6" />
+    <circle cx="200" cy="220" r="26" fill="#0c182c" stroke="#1d4ed8" stroke-width="1.5" />
+    <text class="hud-title" x="200" y="224" font-size="12" font-weight="700" fill="#38bdf8" text-anchor="middle">TS</text>
+    <text class="hud-title" x="200" y="280" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">libris-note</text>
+    <text class="hud-title" x="200" y="298" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle">TypeScript · 0 stars</text>
+  </g>
+
+  <!-- Node 2: x-rendr -->
+  <g>
+    <circle cx="430" cy="220" r="70" fill="url(#center-planet-glow)" />
+    <circle class="pulse-ring" cx="430" cy="220" r="52" fill="none" stroke="#38bdf8" stroke-width="1" stroke-dasharray="4 8" />
+    <circle class="orbit-cw-2" cx="430" cy="220" r="44" fill="none" stroke="#60a5fa" stroke-width="1.2" stroke-dasharray="8 16" opacity="0.8" />
+    <circle cx="430" cy="220" r="32" fill="#0e2342" stroke="#38bdf8" stroke-width="1.8" filter="url(#glow-const)" />
+    <circle cx="430" cy="220" r="30" fill="#0a1a32" />
+    <text class="hud-title" x="430" y="225" font-size="13" font-weight="700" fill="#bae6fd" text-anchor="middle">PY</text>
+    <text class="hud-title" x="430" y="295" font-size="17" font-weight="700" fill="#ffffff" text-anchor="middle">x-rendr</text>
+    <text class="hud-title" x="430" y="315" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle">Python · 0 stars</text>
+  </g>
+
+  <!-- Node 3: vap-27 -->
+  <g>
+    <circle class="orbit-ccw-3" cx="660" cy="220" r="38" fill="none" stroke="#818cf8" stroke-width="1" stroke-dasharray="6 14" opacity="0.6" />
+    <circle cx="660" cy="220" r="26" fill="#111833" stroke="#4f46e5" stroke-width="1.5" />
+    <text class="hud-title" x="660" y="224" font-size="12" font-weight="700" fill="#a5b4fc" text-anchor="middle">OP</text>
+    <text class="hud-title" x="660" y="280" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">vap-27</text>
+    <text class="hud-title" x="660" y="298" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle">Open source · 0 stars</text>
+  </g>
+
+  <text class="hud-title" x="806" y="362" font-size="8.5" fill="#2d4263" text-anchor="end" letter-spacing="0.8">CONSTELLATION // VAP-27</text>
+</svg>

@@ -1,0 +1,85 @@
+<svg width="840" height="340" viewBox="0 0 840 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow-soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <pattern id="grid-spectrum" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#101c30" stroke-width="0.8" />
+    </pattern>
+  </defs>
+
+  <style>
+    @keyframes meter-shimmer {
+      0%, 100% { opacity: 0.9; }
+      50% { opacity: 0.6; filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.8)); }
+    }
+    .meter-bar {
+      animation: meter-shimmer 3s ease-in-out infinite;
+    }
+    .hud-title { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+  </style>
+
+  <rect x="1" y="1" width="838" height="338" rx="18" fill="#080d1a" stroke="#162744" stroke-width="1.5" />
+  <rect x="2" y="2" width="836" height="336" rx="17" fill="url(#grid-spectrum)" opacity="0.85" />
+
+  <text class="hud-title" x="34" y="44" font-size="10.5" font-weight="700" fill="#60a5fa" letter-spacing="2.5">TECHNOLOGY SPECTRUM</text>
+  <text class="hud-title" x="34" y="78" font-size="21" font-weight="700" fill="#ffffff" letter-spacing="0.5">The tools behind the work</text>
+  <line x1="34" y1="104" x2="806" y2="104" stroke="#162744" stroke-width="1.2" stroke-dasharray="4 8" />
+
+  
+  <g transform="translate(34, 140)">
+    <rect x="0" y="0" width="30" height="30" rx="6" fill="#0f1a2e" stroke="#1e3458" stroke-width="1" />
+    <text class="hud-title" x="15" y="19" font-size="11" font-weight="700" fill="#3178c6" text-anchor="middle">TS</text>
+    <text class="hud-title" x="0" y="48" font-size="14" font-weight="700" fill="#ffffff">TypeScript</text>
+    <text class="hud-title" x="0" y="66" font-size="11" font-weight="500" fill="#64748b">58% of public code</text>
+    <rect x="0" y="78" width="220" height="4" rx="2" fill="#0f1a2e" />
+    <rect class="meter-bar" x="0" y="78" width="127" height="4" rx="2" fill="#3178c6" />
+    <circle cx="127" cy="80" r="2.5" fill="#ffffff" filter="url(#glow-soft)" />
+  </g>
+
+  <g transform="translate(294, 140)">
+    <rect x="0" y="0" width="30" height="30" rx="6" fill="#0f1a2e" stroke="#1e3458" stroke-width="1" />
+    <text class="hud-title" x="15" y="19" font-size="11" font-weight="700" fill="#38bdf8" text-anchor="middle">PY</text>
+    <text class="hud-title" x="0" y="48" font-size="14" font-weight="700" fill="#ffffff">Python</text>
+    <text class="hud-title" x="0" y="66" font-size="11" font-weight="500" fill="#64748b">27% of public code</text>
+    <rect x="0" y="78" width="220" height="4" rx="2" fill="#0f1a2e" />
+    <rect class="meter-bar" x="0" y="78" width="59" height="4" rx="2" fill="#38bdf8" />
+    <circle cx="59" cy="80" r="2.5" fill="#ffffff" filter="url(#glow-soft)" />
+  </g>
+
+  <g transform="translate(554, 140)">
+    <rect x="0" y="0" width="30" height="30" rx="6" fill="#0f1a2e" stroke="#1e3458" stroke-width="1" />
+    <text class="hud-title" x="15" y="19" font-size="11" font-weight="700" fill="#a855f7" text-anchor="middle">CSS</text>
+    <text class="hud-title" x="0" y="48" font-size="14" font-weight="700" fill="#ffffff">CSS</text>
+    <text class="hud-title" x="0" y="66" font-size="11" font-weight="500" fill="#64748b">10% of public code</text>
+    <rect x="0" y="78" width="220" height="4" rx="2" fill="#0f1a2e" />
+    <rect class="meter-bar" x="0" y="78" width="22" height="4" rx="2" fill="#a855f7" />
+    <circle cx="22" cy="80" r="2.5" fill="#ffffff" filter="url(#glow-soft)" />
+  </g>
+
+  <g transform="translate(34, 230)">
+    <rect x="0" y="0" width="30" height="30" rx="6" fill="#0f1a2e" stroke="#1e3458" stroke-width="1" />
+    <text class="hud-title" x="15" y="19" font-size="11" font-weight="700" fill="#eab308" text-anchor="middle">JS</text>
+    <text class="hud-title" x="0" y="48" font-size="14" font-weight="700" fill="#ffffff">JavaScript</text>
+    <text class="hud-title" x="0" y="66" font-size="11" font-weight="500" fill="#64748b">3% of public code</text>
+    <rect x="0" y="78" width="220" height="4" rx="2" fill="#0f1a2e" />
+    <rect class="meter-bar" x="0" y="78" width="6" height="4" rx="2" fill="#eab308" />
+    <circle cx="6" cy="80" r="2.5" fill="#ffffff" filter="url(#glow-soft)" />
+  </g>
+
+  <g transform="translate(294, 230)">
+    <rect x="0" y="0" width="30" height="30" rx="6" fill="#0f1a2e" stroke="#1e3458" stroke-width="1" />
+    <text class="hud-title" x="15" y="19" font-size="11" font-weight="700" fill="#0284c7" text-anchor="middle">PS</text>
+    <text class="hud-title" x="0" y="48" font-size="14" font-weight="700" fill="#ffffff">PowerShell</text>
+    <text class="hud-title" x="0" y="66" font-size="11" font-weight="500" fill="#64748b">1% of public code</text>
+    <rect x="0" y="78" width="220" height="4" rx="2" fill="#0f1a2e" />
+    <rect class="meter-bar" x="0" y="78" width="4" height="4" rx="2" fill="#0284c7" />
+    <circle cx="4" cy="80" r="2.5" fill="#ffffff" filter="url(#glow-soft)" />
+  </g>
+
+  <text class="hud-title" x="806" y="324" font-size="8.5" fill="#2d4263" text-anchor="end" letter-spacing="0.8">SPECTRUM // VAP-27</text>
+</svg>

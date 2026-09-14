@@ -1,0 +1,380 @@
+<svg width="840" height="300" viewBox="0 0 840 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow-star" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="3.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <pattern id="grid-energy" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#101c30" stroke-width="0.8" />
+    </pattern>
+  </defs>
+
+  <style>
+    @keyframes star-twinkle-anim {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.6; }
+    }
+    .star-twinkle {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: star-twinkle-anim 2.5s ease-in-out infinite;
+    }
+    .hud-title { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+  </style>
+
+  <rect x="1" y="1" width="838" height="298" rx="18" fill="#080d1a" stroke="#162744" stroke-width="1.5" />
+  <rect x="2" y="2" width="836" height="296" rx="17" fill="url(#grid-energy)" opacity="0.85" />
+
+  <text class="hud-title" x="34" y="44" font-size="10.5" font-weight="700" fill="#60a5fa" letter-spacing="2.5">CONTRIBUTION ENERGY</text>
+  <text class="hud-title" x="34" y="78" font-size="21" font-weight="700" fill="#ffffff" letter-spacing="0.5">Every day leaves a trace</text>
+  <line x1="34" y1="104" x2="806" y2="104" stroke="#162744" stroke-width="1.2" stroke-dasharray="4 8" />
+
+  <g>
+    <circle cx="34" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="34" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="34" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="34" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="34" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="34" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="34" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="50" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="50" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="50" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="50" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="50" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="50" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="50" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="66" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="66" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="66" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="66" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="66" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="66" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="66" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="82" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="82" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="82" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="82" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="82" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="82" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="82" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="98" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="98" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="98" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="98" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="98" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="98" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="98" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="114" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="114" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="114" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="114" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="114" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="114" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="114" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="130" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="130" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="130" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="130" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="130" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="130" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="130" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="146" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="146" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="146" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="146" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="146" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="146" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="146" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="162" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="162" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="162" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="162" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="162" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="162" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="162" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="178" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="178" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="178" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="178" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="178" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="178" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="178" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="194" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="194" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="194" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="194" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="194" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="194" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="194" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="210" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="210" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="210" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="210" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="210" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="210" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="210" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="226" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="226" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="226" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="226" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="226" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="226" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="226" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="242" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="242" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="242" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="242" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="242" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="242" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="242" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="258" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="258" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="258" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="258" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="258" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="258" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="258" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="274" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="274" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="274" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="274" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="274" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="274" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="274" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="290" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="290" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="290" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="290" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="290" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="290" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="290" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="306" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="306" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="306" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="306" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="306" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="306" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="306" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="322" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="322" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="322" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="322" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="322" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="322" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="322" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="338" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="338" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="338" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="338" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="338" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="338" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="338" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="354" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="354" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="354" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="354" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="354" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="354" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="354" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="370" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="370" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="370" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="370" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="370" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="370" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="370" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="386" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="386" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="386" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="386" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="386" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="386" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="386" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="402" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="402" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="402" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="402" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="402" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="402" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="402" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="418" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="418" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="418" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="418" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="418" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="418" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="418" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="434" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="434" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="434" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="434" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="434" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="434" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="434" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="450" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="450" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="450" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="450" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="450" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="450" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="450" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="466" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="466" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="466" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="466" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="466" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="466" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="466" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="482" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="482" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="482" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="482" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle class="star-twinkle" cx="482" cy="176" r="2.5" fill="#60a5fa" style="animation-delay: 1.5s;" filter="url(#glow-star)" />
+    <circle cx="482" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="482" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle class="star-twinkle" cx="498" cy="120" r="2.8" fill="#38bdf8" style="animation-delay: 0.9s;" filter="url(#glow-star)" />
+    <circle cx="498" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="498" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="498" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="498" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="498" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="498" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="514" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="514" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="514" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="514" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="514" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="514" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="514" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="530" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="530" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="530" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="530" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="530" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="530" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="530" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="546" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="546" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="546" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="546" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="546" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="546" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="546" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="562" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="562" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="562" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="562" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="562" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="562" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="562" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="578" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="578" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="578" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="578" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="578" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="578" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="578" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="594" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="594" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="594" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="594" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle class="star-twinkle" cx="594" cy="176" r="2.8" fill="#38bdf8" style="animation-delay: 1.3s;" filter="url(#glow-star)" />
+    <circle cx="594" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="594" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle class="star-twinkle" cx="610" cy="120" r="2.6" fill="#60a5fa" style="animation-delay: 1.2s;" filter="url(#glow-star)" />
+    <circle cx="610" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="610" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="610" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="610" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="610" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="610" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="626" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="626" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="626" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="626" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle class="star-twinkle" cx="626" cy="176" r="3.0" fill="#60a5fa" style="animation-delay: 1.0s;" filter="url(#glow-star)" />
+    <circle cx="626" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="626" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="642" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="642" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="642" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="642" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="642" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="642" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="642" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="658" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="658" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="658" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="658" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="658" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="658" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="658" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="674" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="674" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="674" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="674" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="674" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="674" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="674" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="690" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="690" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle class="star-twinkle" cx="690" cy="148" r="3.2" fill="#60a5fa" style="animation-delay: 0.3s;" filter="url(#glow-star)" />
+    <circle cx="690" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="690" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="690" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="690" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="706" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="706" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="706" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="706" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="706" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="706" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="706" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="722" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="722" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="722" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="722" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="722" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="722" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="722" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="738" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="738" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="738" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="738" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="738" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="738" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="738" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="754" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="754" cy="134" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="754" cy="148" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="754" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="754" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle class="star-twinkle" cx="754" cy="190" r="3.0" fill="#60a5fa" style="animation-delay: 0.7s;" filter="url(#glow-star)" />
+    <circle class="star-twinkle" cx="754" cy="204" r="7.5" fill="#ffffff" style="animation-delay: 0.0s;" filter="url(#glow-star)" />
+    <circle cx="770" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle class="star-twinkle" cx="770" cy="134" r="4.0" fill="#38bdf8" style="animation-delay: 0.2s;" filter="url(#glow-star)" />
+    <circle class="star-twinkle" cx="770" cy="148" r="4.0" fill="#38bdf8" style="animation-delay: 0.8s;" filter="url(#glow-star)" />
+    <circle cx="770" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="770" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="770" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle class="star-twinkle" cx="770" cy="204" r="3.8" fill="#38bdf8" style="animation-delay: 0.4s;" filter="url(#glow-star)" />
+    <circle cx="786" cy="120" r="1.3" fill="#182740" opacity="0.45" />
+    <circle class="star-twinkle" cx="786" cy="134" r="4.5" fill="#bae6fd" style="animation-delay: 0.5s;" filter="url(#glow-star)" />
+    <circle class="star-twinkle" cx="786" cy="148" r="4.2" fill="#38bdf8" style="animation-delay: 1.1s;" filter="url(#glow-star)" />
+    <circle cx="786" cy="162" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="786" cy="176" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="786" cy="190" r="1.3" fill="#182740" opacity="0.45" />
+    <circle cx="786" cy="204" r="1.3" fill="#182740" opacity="0.45" />
+  </g>
+
+  <g transform="translate(420, 240)">
+    <line x1="-40" y1="0" x2="40" y2="0" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" filter="url(#glow-star)" />
+  </g>
+
+  <text class="hud-title" x="34" y="278" font-size="11" font-weight="500" fill="#64748b">59 contributions · brighter stars mark busier days</text>
+  <text class="hud-title" x="806" y="278" font-size="8.5" fill="#2d4263" text-anchor="end" letter-spacing="0.8">ENERGY // VAP-27</text>
+</svg>

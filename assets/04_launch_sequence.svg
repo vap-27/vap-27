@@ -1,0 +1,80 @@
+<svg width="840" height="340" viewBox="0 0 840 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow-seq" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <pattern id="grid-seq" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#101c30" stroke-width="0.8" />
+    </pattern>
+  </defs>
+
+  <style>
+    @keyframes beam-travel {
+      0% { stroke-dashoffset: 120; }
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes waypoint-pulse {
+      0%, 100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.15); opacity: 0.5; }
+    }
+    .beam-motion { animation: beam-travel 6s linear infinite; }
+    .target-ring {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: waypoint-pulse 2.8s ease-in-out infinite;
+    }
+    .hud-title { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+  </style>
+
+  <rect x="1" y="1" width="838" height="338" rx="18" fill="#080d1a" stroke="#162744" stroke-width="1.5" />
+  <rect x="2" y="2" width="836" height="336" rx="17" fill="url(#grid-seq)" opacity="0.85" />
+
+  <text class="hud-title" x="34" y="44" font-size="10.5" font-weight="700" fill="#60a5fa" letter-spacing="2.5">PROJECT LAUNCH SEQUENCE</text>
+  <text class="hud-title" x="34" y="78" font-size="21" font-weight="700" fill="#ffffff" letter-spacing="0.5">Where the work went next</text>
+
+  <line x1="34" y1="220" x2="806" y2="220" stroke="#15243b" stroke-width="1" />
+  <line class="beam-motion" x1="120" y1="220" x2="720" y2="220" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 12" opacity="0.7" />
+
+  <!-- Milestone 1 -->
+  <g transform="translate(180, 0)">
+    <text class="hud-title" x="0" y="125" font-size="11" font-weight="600" fill="#94a3b8">01 / Sep 2026</text>
+    <text class="hud-title" x="0" y="148" font-size="16" font-weight="700" fill="#ffffff">x-rendr</text>
+    <text class="hud-title" x="0" y="168" font-size="11" font-weight="500" fill="#64748b">Public work in motion.</text>
+    <text class="hud-title" x="0" y="184" font-size="10.5" font-weight="500" fill="#38bdf8">Python · 0 stars</text>
+
+    <circle class="target-ring" cx="15" cy="220" r="18" fill="none" stroke="#38bdf8" stroke-width="1" stroke-dasharray="4 4" />
+    <circle cx="15" cy="220" r="12" fill="#0e2342" stroke="#38bdf8" stroke-width="1.5" />
+    <circle cx="15" cy="220" r="4" fill="#ffffff" filter="url(#glow-seq)" />
+  </g>
+
+  <!-- Milestone 2 -->
+  <g transform="translate(420, 0)">
+    <circle class="target-ring" cx="15" cy="220" r="18" fill="none" stroke="#60a5fa" stroke-width="1" stroke-dasharray="4 4" style="animation-delay: 0.9s;" />
+    <rect x="5" y="210" width="20" height="20" rx="4" fill="#0c182c" stroke="#3b82f6" stroke-width="1.5" />
+    <text class="hud-title" x="15" y="224" font-size="9" font-weight="700" fill="#38bdf8" text-anchor="middle">TS</text>
+
+    <text class="hud-title" x="15" y="260" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">libris-note</text>
+    <text class="hud-title" x="15" y="278" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle">Public work in motion.</text>
+    <text class="hud-title" x="15" y="294" font-size="10.5" font-weight="500" fill="#60a5fa" text-anchor="middle">TypeScript · 0 stars</text>
+    <text class="hud-title" x="15" y="308" font-size="9.5" font-weight="500" fill="#475569" text-anchor="middle">02 / Sep 2026</text>
+  </g>
+
+  <!-- Milestone 3 -->
+  <g transform="translate(660, 0)">
+    <text class="hud-title" x="0" y="125" font-size="11" font-weight="600" fill="#94a3b8">03 / May 2026</text>
+    <text class="hud-title" x="0" y="148" font-size="16" font-weight="700" fill="#ffffff">vap-27</text>
+    <text class="hud-title" x="0" y="168" font-size="11" font-weight="500" fill="#64748b">Public work in motion.</text>
+    <text class="hud-title" x="0" y="184" font-size="10.5" font-weight="500" fill="#818cf8">Open source · 0 stars</text>
+
+    <circle class="target-ring" cx="15" cy="220" r="18" fill="none" stroke="#818cf8" stroke-width="1" stroke-dasharray="4 4" style="animation-delay: 1.8s;" />
+    <circle cx="15" cy="220" r="12" fill="#141933" stroke="#6366f1" stroke-width="1.5" />
+    <circle cx="15" cy="220" r="4" fill="#ffffff" filter="url(#glow-seq)" />
+  </g>
+
+  <text class="hud-title" x="34" y="324" font-size="10.5" font-weight="500" fill="#64748b">3 featured repositories · follow the line from first signal to latest motion</text>
+  <text class="hud-title" x="806" y="324" font-size="8.5" fill="#2d4263" text-anchor="end" letter-spacing="0.8">SEQUENCE // VAP-27</text>
+</svg>

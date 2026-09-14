@@ -1,0 +1,1429 @@
+<svg width="840" height="420" viewBox="0 0 840 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow-hud" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="glow-soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <radialGradient id="radar-sweep-grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.4" />
+      <stop offset="60%" stop-color="#3b82f6" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#0284c7" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="hud-vignette" cx="50%" cy="50%" r="50%">
+      <stop offset="70%" stop-color="#080d1a" stop-opacity="0" />
+      <stop offset="100%" stop-color="#080d1a" stop-opacity="0.85" />
+    </radialGradient>
+    <pattern id="grid-pattern" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#101c30" stroke-width="0.8" />
+    </pattern>
+    <clipPath id="radar-clip">
+      <circle cx="640" cy="190" r="105" />
+    </clipPath>
+  </defs>
+
+  <style>
+    @keyframes radar-spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes radar-spin-rev {
+      0% { transform: rotate(360deg); }
+      100% { transform: rotate(0deg); }
+    }
+    @keyframes beacon-pulse {
+      0%, 100% { r: 3.5; opacity: 1; filter: drop-shadow(0 0 4px #38bdf8); }
+      50% { r: 5; opacity: 0.6; filter: drop-shadow(0 0 8px #38bdf8); }
+    }
+    @keyframes scanline-sweep {
+      0% { transform: translateY(-110px); opacity: 0; }
+      15% { opacity: 0.9; }
+      85% { opacity: 0.9; }
+      100% { transform: translateY(110px); opacity: 0; }
+    }
+    @keyframes avatar-breathe {
+      0%, 100% { opacity: 0.9; }
+      50% { opacity: 1; filter: drop-shadow(0 0 4px #38bdf8); }
+    }
+    .spin-element {
+      transform-origin: 640px 190px;
+      animation: radar-spin 12s linear infinite;
+    }
+    .spin-element-rev {
+      transform-origin: 640px 190px;
+      animation: radar-spin-rev 24s linear infinite;
+    }
+    .beacon {
+      animation: beacon-pulse 2.2s ease-in-out infinite;
+    }
+    .scanline {
+      animation: scanline-sweep 4s ease-in-out infinite;
+    }
+    .avatar-matrix {
+      animation: avatar-breathe 4s ease-in-out infinite;
+    }
+    .hud-title { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+  </style>
+
+  <!-- Background Card -->
+  <rect x="1" y="1" width="838" height="418" rx="18" fill="#080d1a" stroke="#162744" stroke-width="1.5" />
+  <rect x="2" y="2" width="836" height="416" rx="17" fill="url(#grid-pattern)" opacity="0.85" />
+
+  <!-- Top Status Row -->
+  <text class="hud-title" x="34" y="44" font-size="11" font-weight="700" fill="#60a5fa" letter-spacing="2.5">GITSKINS / LIVING IDENTITY</text>
+  <text class="hud-title" x="806" y="44" font-size="11" font-weight="600" fill="#64748b" text-anchor="end" letter-spacing="1">@vap-27</text>
+
+  <!-- Left Header Content -->
+  <text class="hud-title" x="34" y="112" font-size="11" font-weight="700" fill="#38bdf8" letter-spacing="2.8">HELLO, WORLD. I'M</text>
+
+  <!-- Dot Matrix Name: VAP_27 -->
+  <g>
+    <circle cx="75" cy="150" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="82" cy="150" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="89" cy="150" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="96" cy="150" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="103" cy="150" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="75" cy="157" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="82" cy="157" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="89" cy="157" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="96" cy="157" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="103" cy="157" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="75" cy="164" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="82" cy="164" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="89" cy="164" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="96" cy="164" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="103" cy="164" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="75" cy="171" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="82" cy="171" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="89" cy="171" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="96" cy="171" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="103" cy="171" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="75" cy="178" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="82" cy="178" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="89" cy="178" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="96" cy="178" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="103" cy="178" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="75" cy="185" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="82" cy="185" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="89" cy="185" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="96" cy="185" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="103" cy="185" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="75" cy="192" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="82" cy="192" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="89" cy="192" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="96" cy="192" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="103" cy="192" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="117" cy="150" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="124" cy="150" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="131" cy="150" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="138" cy="150" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="145" cy="150" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="117" cy="157" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="124" cy="157" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="131" cy="157" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="138" cy="157" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="145" cy="157" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="117" cy="164" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="124" cy="164" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="131" cy="164" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="138" cy="164" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="145" cy="164" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="117" cy="171" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="124" cy="171" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="131" cy="171" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="138" cy="171" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="145" cy="171" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="117" cy="178" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="124" cy="178" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="131" cy="178" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="138" cy="178" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="145" cy="178" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="117" cy="185" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="124" cy="185" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="131" cy="185" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="138" cy="185" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="145" cy="185" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="117" cy="192" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="124" cy="192" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="131" cy="192" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="138" cy="192" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="145" cy="192" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="159" cy="150" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="166" cy="150" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="173" cy="150" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="180" cy="150" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="187" cy="150" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="159" cy="157" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="166" cy="157" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="173" cy="157" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="180" cy="157" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="187" cy="157" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="159" cy="164" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="166" cy="164" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="173" cy="164" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="180" cy="164" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="187" cy="164" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="159" cy="171" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="166" cy="171" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="173" cy="171" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="180" cy="171" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="187" cy="171" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="159" cy="178" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="166" cy="178" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="173" cy="178" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="180" cy="178" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="187" cy="178" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="159" cy="185" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="166" cy="185" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="173" cy="185" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="180" cy="185" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="187" cy="185" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="159" cy="192" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="166" cy="192" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="173" cy="192" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="180" cy="192" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="187" cy="192" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="201" cy="150" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="208" cy="150" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="215" cy="150" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="222" cy="150" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="229" cy="150" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="201" cy="157" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="208" cy="157" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="215" cy="157" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="222" cy="157" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="229" cy="157" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="201" cy="164" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="208" cy="164" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="215" cy="164" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="222" cy="164" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="229" cy="164" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="201" cy="171" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="208" cy="171" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="215" cy="171" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="222" cy="171" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="229" cy="171" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="201" cy="178" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="208" cy="178" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="215" cy="178" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="222" cy="178" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="229" cy="178" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="201" cy="185" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="208" cy="185" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="215" cy="185" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="222" cy="185" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="229" cy="185" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="201" cy="192" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="208" cy="192" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="215" cy="192" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="222" cy="192" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="229" cy="192" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="243" cy="150" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="250" cy="150" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="257" cy="150" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="264" cy="150" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="271" cy="150" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="243" cy="157" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="250" cy="157" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="257" cy="157" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="264" cy="157" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="271" cy="157" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="243" cy="164" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="250" cy="164" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="257" cy="164" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="264" cy="164" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="271" cy="164" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="243" cy="171" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="250" cy="171" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="257" cy="171" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="264" cy="171" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="271" cy="171" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="243" cy="178" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="250" cy="178" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="257" cy="178" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="264" cy="178" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="271" cy="178" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="243" cy="185" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="250" cy="185" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="257" cy="185" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="264" cy="185" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="271" cy="185" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="243" cy="192" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="250" cy="192" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="257" cy="192" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="264" cy="192" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="271" cy="192" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="285" cy="150" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="292" cy="150" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="299" cy="150" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="306" cy="150" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="313" cy="150" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="285" cy="157" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="292" cy="157" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="299" cy="157" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="306" cy="157" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="313" cy="157" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="285" cy="164" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="292" cy="164" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="299" cy="164" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="306" cy="164" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="313" cy="164" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="285" cy="171" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="292" cy="171" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="299" cy="171" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="306" cy="171" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="313" cy="171" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="285" cy="178" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="292" cy="178" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="299" cy="178" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="306" cy="178" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="313" cy="178" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="285" cy="185" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="292" cy="185" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="299" cy="185" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="306" cy="185" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="313" cy="185" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="285" cy="192" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="292" cy="192" r="2.8" fill="#e2e8f0" opacity="0.95" filter="url(#glow-soft)" />
+    <circle cx="299" cy="192" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="306" cy="192" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="313" cy="192" r="1.0" fill="#1e293b" opacity="0.35" />
+    <circle cx="158" cy="208" r="2.2" fill="#94a3b8" opacity="0.9" />
+    <circle cx="165" cy="208" r="2.2" fill="#94a3b8" opacity="0.9" />
+    <circle cx="172" cy="208" r="2.2" fill="#94a3b8" opacity="0.9" />
+    <circle cx="179" cy="208" r="2.2" fill="#94a3b8" opacity="0.9" />
+    <circle cx="186" cy="208" r="2.2" fill="#94a3b8" opacity="0.9" />
+    <circle cx="193" cy="208" r="2.2" fill="#94a3b8" opacity="0.9" />
+    <circle cx="200" cy="208" r="2.2" fill="#94a3b8" opacity="0.9" />
+    <circle cx="207" cy="208" r="2.2" fill="#94a3b8" opacity="0.9" />
+    <circle cx="214" cy="208" r="2.2" fill="#94a3b8" opacity="0.9" />
+    <circle cx="221" cy="208" r="2.2" fill="#94a3b8" opacity="0.9" />
+    <circle cx="228" cy="208" r="2.2" fill="#94a3b8" opacity="0.9" />
+    <circle cx="235" cy="208" r="2.2" fill="#94a3b8" opacity="0.9" />
+  </g>
+
+  <!-- Stack & Position -->
+  <text class="hud-title" x="34" y="280" font-size="16" font-weight="700" fill="#ffffff" letter-spacing="0.8">TypeScript  /  Python  /  CSS</text>
+  <text class="hud-title" x="34" y="304" font-size="12" font-weight="500" fill="#64748b" letter-spacing="0.5">On the public internet</text>
+
+  <!-- ================= RIGHT RADAR HUD & AVATAR ================= -->
+  <!-- Outer Static HUD Rings -->
+  <circle cx="640" cy="190" r="130" fill="none" stroke="#14243b" stroke-width="1" />
+  <circle cx="640" cy="190" r="118" fill="none" stroke="#1b3354" stroke-width="1" stroke-dasharray="3 6" />
+  <circle cx="640" cy="190" r="105" fill="#0b1424" stroke="#1d4ed8" stroke-width="1.2" opacity="0.6" />
+
+  <!-- Rotating Dashed Orbit Ticks -->
+  <circle class="spin-element" cx="640" cy="190" r="124" fill="none" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="8 28 14 36" opacity="0.8" />
+  <circle class="spin-element-rev" cx="640" cy="190" r="112" fill="none" stroke="#60a5fa" stroke-width="1" stroke-dasharray="4 16 8 24" opacity="0.6" />
+
+  <!-- Radar Crosshairs -->
+  <line x1="640" y1="60" x2="640" y2="320" stroke="#162c4a" stroke-width="0.8" stroke-dasharray="2 4" />
+  <line x1="510" y1="190" x2="770" y2="190" stroke="#162c4a" stroke-width="0.8" stroke-dasharray="2 4" />
+
+  <!-- CLIPPED AVATAR & SCANNER REGION -->
+  <g clip-path="url(#radar-clip)">
+    <!-- Avatar Dot Matrix Group -->
+    <g class="avatar-matrix">
+      <circle cx="610.6" cy="97.6" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="623.2" cy="97.6" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="635.8" cy="97.6" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="648.4" cy="97.6" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="661.0" cy="97.6" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="673.6" cy="97.6" r="0.7" fill="#162945" opacity="0.35" />
+    <circle class="avatar-dot" cx="648.4" cy="106.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="652.6" cy="106.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="656.8" cy="106.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle cx="585.4" cy="110.2" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="598.0" cy="110.2" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="610.6" cy="110.2" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="623.2" cy="110.2" r="0.7" fill="#162945" opacity="0.35" />
+    <circle class="avatar-dot" cx="627.4" cy="110.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="631.6" cy="110.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="635.8" cy="110.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="640.0" cy="110.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="644.2" cy="110.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="648.4" cy="110.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="652.6" cy="110.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="656.8" cy="110.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="661.0" cy="110.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle cx="673.6" cy="110.2" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="686.2" cy="110.2" r="0.7" fill="#162945" opacity="0.35" />
+    <circle class="avatar-dot" cx="619.0" cy="114.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="623.2" cy="114.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="627.4" cy="114.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="631.6" cy="114.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="635.8" cy="114.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="640.0" cy="114.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="644.2" cy="114.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="648.4" cy="114.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="652.6" cy="114.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="656.8" cy="114.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="661.0" cy="114.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="665.2" cy="114.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="669.4" cy="114.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="673.6" cy="114.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="610.6" cy="118.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="614.8" cy="118.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="619.0" cy="118.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="623.2" cy="118.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="627.4" cy="118.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="631.6" cy="118.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="635.8" cy="118.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="640.0" cy="118.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="644.2" cy="118.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="648.4" cy="118.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="652.6" cy="118.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="656.8" cy="118.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="661.0" cy="118.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="665.2" cy="118.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="669.4" cy="118.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="673.6" cy="118.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="677.8" cy="118.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="682.0" cy="118.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle cx="572.8" cy="122.8" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="585.4" cy="122.8" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="598.0" cy="122.8" r="0.7" fill="#162945" opacity="0.35" />
+    <circle class="avatar-dot" cx="606.4" cy="122.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="610.6" cy="122.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="614.8" cy="122.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="619.0" cy="122.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="623.2" cy="122.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="627.4" cy="122.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="631.6" cy="122.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="635.8" cy="122.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="640.0" cy="122.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="644.2" cy="122.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="648.4" cy="122.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="652.6" cy="122.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="656.8" cy="122.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="661.0" cy="122.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="665.2" cy="122.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="669.4" cy="122.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="673.6" cy="122.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="677.8" cy="122.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="682.0" cy="122.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="686.2" cy="122.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle cx="698.8" cy="122.8" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="711.4" cy="122.8" r="0.7" fill="#162945" opacity="0.35" />
+    <circle class="avatar-dot" cx="602.2" cy="127.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="606.4" cy="127.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="610.6" cy="127.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="614.8" cy="127.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="619.0" cy="127.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="623.2" cy="127.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="627.4" cy="127.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="631.6" cy="127.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="635.8" cy="127.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="640.0" cy="127.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="644.2" cy="127.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="648.4" cy="127.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="652.6" cy="127.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="656.8" cy="127.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="661.0" cy="127.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="665.2" cy="127.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="669.4" cy="127.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="673.6" cy="127.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="677.8" cy="127.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="686.2" cy="127.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="690.4" cy="127.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="598.0" cy="131.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="602.2" cy="131.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="606.4" cy="131.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="610.6" cy="131.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="614.8" cy="131.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="619.0" cy="131.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="623.2" cy="131.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="627.4" cy="131.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="631.6" cy="131.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="635.8" cy="131.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="640.0" cy="131.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="644.2" cy="131.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="648.4" cy="131.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="652.6" cy="131.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="656.8" cy="131.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="661.0" cy="131.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="665.2" cy="131.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="669.4" cy="131.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="673.6" cy="131.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="677.8" cy="131.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="682.0" cy="131.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="690.4" cy="131.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="694.6" cy="131.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle cx="560.2" cy="135.4" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="572.8" cy="135.4" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="585.4" cy="135.4" r="0.7" fill="#162945" opacity="0.35" />
+    <circle class="avatar-dot" cx="593.8" cy="135.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="598.0" cy="135.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="602.2" cy="135.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="606.4" cy="135.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="610.6" cy="135.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="614.8" cy="135.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="619.0" cy="135.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="623.2" cy="135.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="627.4" cy="135.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="631.6" cy="135.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="635.8" cy="135.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="640.0" cy="135.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="644.2" cy="135.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="648.4" cy="135.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="652.6" cy="135.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="656.8" cy="135.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="661.0" cy="135.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="665.2" cy="135.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="669.4" cy="135.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="673.6" cy="135.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="677.8" cy="135.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="682.0" cy="135.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="686.2" cy="135.4" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="694.6" cy="135.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="698.8" cy="135.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle cx="711.4" cy="135.4" r="0.7" fill="#162945" opacity="0.35" />
+    <circle class="avatar-dot" cx="589.6" cy="139.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="593.8" cy="139.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="598.0" cy="139.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="602.2" cy="139.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="606.4" cy="139.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="610.6" cy="139.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="614.8" cy="139.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="619.0" cy="139.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="623.2" cy="139.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="627.4" cy="139.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="631.6" cy="139.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="635.8" cy="139.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="640.0" cy="139.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="644.2" cy="139.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="648.4" cy="139.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="652.6" cy="139.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="656.8" cy="139.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="661.0" cy="139.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="665.2" cy="139.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="669.4" cy="139.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="673.6" cy="139.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="677.8" cy="139.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="682.0" cy="139.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="686.2" cy="139.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="690.4" cy="139.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="694.6" cy="139.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="698.8" cy="139.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="589.6" cy="143.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="593.8" cy="143.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="598.0" cy="143.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="602.2" cy="143.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="606.4" cy="143.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="610.6" cy="143.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="614.8" cy="143.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="619.0" cy="143.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="623.2" cy="143.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="627.4" cy="143.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="631.6" cy="143.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="635.8" cy="143.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="640.0" cy="143.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="644.2" cy="143.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="648.4" cy="143.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="652.6" cy="143.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="656.8" cy="143.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="661.0" cy="143.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="665.2" cy="143.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="669.4" cy="143.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="673.6" cy="143.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="677.8" cy="143.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="682.0" cy="143.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="686.2" cy="143.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="690.4" cy="143.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="694.6" cy="143.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="698.8" cy="143.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle cx="560.2" cy="148.0" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="572.8" cy="148.0" r="0.7" fill="#162945" opacity="0.35" />
+    <circle class="avatar-dot" cx="585.4" cy="148.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="589.6" cy="148.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="593.8" cy="148.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="598.0" cy="148.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="602.2" cy="148.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="606.4" cy="148.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="610.6" cy="148.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="614.8" cy="148.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="619.0" cy="148.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="623.2" cy="148.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="627.4" cy="148.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="631.6" cy="148.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="635.8" cy="148.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="640.0" cy="148.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="644.2" cy="148.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="648.4" cy="148.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="652.6" cy="148.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="656.8" cy="148.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="661.0" cy="148.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="665.2" cy="148.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="669.4" cy="148.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="673.6" cy="148.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="677.8" cy="148.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="682.0" cy="148.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="686.2" cy="148.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="690.4" cy="148.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="694.6" cy="148.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="698.8" cy="148.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="703.0" cy="148.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle cx="711.4" cy="148.0" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="724.0" cy="148.0" r="0.7" fill="#162945" opacity="0.35" />
+    <circle class="avatar-dot" cx="581.2" cy="152.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="585.4" cy="152.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="593.8" cy="152.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="598.0" cy="152.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="602.2" cy="152.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="606.4" cy="152.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="610.6" cy="152.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="614.8" cy="152.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="619.0" cy="152.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="623.2" cy="152.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="627.4" cy="152.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="631.6" cy="152.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="635.8" cy="152.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="640.0" cy="152.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="644.2" cy="152.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="648.4" cy="152.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="652.6" cy="152.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="656.8" cy="152.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="661.0" cy="152.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="665.2" cy="152.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="669.4" cy="152.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="673.6" cy="152.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="677.8" cy="152.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="682.0" cy="152.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="686.2" cy="152.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="690.4" cy="152.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="694.6" cy="152.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="698.8" cy="152.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="703.0" cy="152.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="707.2" cy="152.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="711.4" cy="152.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="572.8" cy="156.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="577.0" cy="156.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="581.2" cy="156.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="585.4" cy="156.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="593.8" cy="156.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="598.0" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="602.2" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="606.4" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="610.6" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="614.8" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="619.0" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="623.2" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="627.4" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="631.6" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="635.8" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="640.0" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="644.2" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="648.4" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="652.6" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="656.8" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="661.0" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="665.2" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="669.4" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="673.6" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="677.8" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="682.0" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="686.2" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="690.4" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="694.6" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="698.8" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="703.0" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="707.2" cy="156.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="711.4" cy="156.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle cx="547.6" cy="160.6" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="560.2" cy="160.6" r="0.7" fill="#162945" opacity="0.35" />
+    <circle class="avatar-dot" cx="572.8" cy="160.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="577.0" cy="160.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="581.2" cy="160.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="585.4" cy="160.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="593.8" cy="160.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="598.0" cy="160.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="602.2" cy="160.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="606.4" cy="160.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="610.6" cy="160.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="614.8" cy="160.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="619.0" cy="160.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="623.2" cy="160.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="627.4" cy="160.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="631.6" cy="160.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="635.8" cy="160.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="640.0" cy="160.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="644.2" cy="160.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="648.4" cy="160.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="652.6" cy="160.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="656.8" cy="160.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="661.0" cy="160.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="665.2" cy="160.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="669.4" cy="160.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="673.6" cy="160.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="677.8" cy="160.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="682.0" cy="160.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="686.2" cy="160.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="690.4" cy="160.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="694.6" cy="160.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="698.8" cy="160.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="703.0" cy="160.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle cx="711.4" cy="160.6" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="724.0" cy="160.6" r="0.7" fill="#162945" opacity="0.35" />
+    <circle class="avatar-dot" cx="581.2" cy="164.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="585.4" cy="164.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="593.8" cy="164.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="598.0" cy="164.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="602.2" cy="164.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="606.4" cy="164.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="610.6" cy="164.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="614.8" cy="164.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="619.0" cy="164.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="623.2" cy="164.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="627.4" cy="164.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="631.6" cy="164.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="635.8" cy="164.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="640.0" cy="164.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="644.2" cy="164.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="648.4" cy="164.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="652.6" cy="164.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="656.8" cy="164.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="661.0" cy="164.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="665.2" cy="164.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="669.4" cy="164.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="673.6" cy="164.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="677.8" cy="164.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="682.0" cy="164.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="686.2" cy="164.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="690.4" cy="164.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="694.6" cy="164.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="698.8" cy="164.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="703.0" cy="164.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="581.2" cy="169.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="585.4" cy="169.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="593.8" cy="169.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="598.0" cy="169.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="602.2" cy="169.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="606.4" cy="169.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="610.6" cy="169.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="614.8" cy="169.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="619.0" cy="169.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="623.2" cy="169.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="627.4" cy="169.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="631.6" cy="169.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="635.8" cy="169.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="640.0" cy="169.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="644.2" cy="169.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="648.4" cy="169.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="652.6" cy="169.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="656.8" cy="169.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="661.0" cy="169.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="665.2" cy="169.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="669.4" cy="169.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="673.6" cy="169.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="677.8" cy="169.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="682.0" cy="169.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="686.2" cy="169.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="690.4" cy="169.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="694.6" cy="169.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="698.8" cy="169.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="703.0" cy="169.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="707.2" cy="169.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle cx="547.6" cy="173.2" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="560.2" cy="173.2" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="572.8" cy="173.2" r="0.7" fill="#162945" opacity="0.35" />
+    <circle class="avatar-dot" cx="581.2" cy="173.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="598.0" cy="173.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="602.2" cy="173.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="606.4" cy="173.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="610.6" cy="173.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="614.8" cy="173.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="619.0" cy="173.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="623.2" cy="173.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="627.4" cy="173.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="631.6" cy="173.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="635.8" cy="173.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="640.0" cy="173.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="644.2" cy="173.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="648.4" cy="173.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="652.6" cy="173.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="656.8" cy="173.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="661.0" cy="173.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="665.2" cy="173.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="669.4" cy="173.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="673.6" cy="173.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="677.8" cy="173.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="682.0" cy="173.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="686.2" cy="173.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="690.4" cy="173.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="694.6" cy="173.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="698.8" cy="173.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="703.0" cy="173.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="707.2" cy="173.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="711.4" cy="173.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle cx="724.0" cy="173.2" r="0.7" fill="#162945" opacity="0.35" />
+    <circle class="avatar-dot" cx="577.0" cy="177.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="581.2" cy="177.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="585.4" cy="177.4" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="593.8" cy="177.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="598.0" cy="177.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="602.2" cy="177.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="606.4" cy="177.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="610.6" cy="177.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="614.8" cy="177.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="619.0" cy="177.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="623.2" cy="177.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="627.4" cy="177.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="631.6" cy="177.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="635.8" cy="177.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="640.0" cy="177.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="644.2" cy="177.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="648.4" cy="177.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="652.6" cy="177.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="656.8" cy="177.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="661.0" cy="177.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="665.2" cy="177.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="669.4" cy="177.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="673.6" cy="177.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="677.8" cy="177.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="682.0" cy="177.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="686.2" cy="177.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="690.4" cy="177.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="694.6" cy="177.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="698.8" cy="177.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="703.0" cy="177.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="707.2" cy="177.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="711.4" cy="177.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="577.0" cy="181.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="585.4" cy="181.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="589.6" cy="181.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="593.8" cy="181.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="598.0" cy="181.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="602.2" cy="181.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="606.4" cy="181.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="610.6" cy="181.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="614.8" cy="181.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="619.0" cy="181.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="623.2" cy="181.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="627.4" cy="181.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="631.6" cy="181.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="635.8" cy="181.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="640.0" cy="181.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="648.4" cy="181.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="652.6" cy="181.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="656.8" cy="181.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="661.0" cy="181.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="665.2" cy="181.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="669.4" cy="181.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="673.6" cy="181.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="677.8" cy="181.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="682.0" cy="181.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="686.2" cy="181.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="690.4" cy="181.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="694.6" cy="181.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="698.8" cy="181.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="703.0" cy="181.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle cx="547.6" cy="185.8" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="560.2" cy="185.8" r="0.7" fill="#162945" opacity="0.35" />
+    <circle class="avatar-dot" cx="572.8" cy="185.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="577.0" cy="185.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="581.2" cy="185.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="585.4" cy="185.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="589.6" cy="185.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="593.8" cy="185.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="598.0" cy="185.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="602.2" cy="185.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="606.4" cy="185.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="610.6" cy="185.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="614.8" cy="185.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="619.0" cy="185.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="623.2" cy="185.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="627.4" cy="185.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="631.6" cy="185.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="635.8" cy="185.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="640.0" cy="185.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="644.2" cy="185.8" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="652.6" cy="185.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="656.8" cy="185.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="661.0" cy="185.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="665.2" cy="185.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="669.4" cy="185.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="673.6" cy="185.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="677.8" cy="185.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="682.0" cy="185.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="686.2" cy="185.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="690.4" cy="185.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="694.6" cy="185.8" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="698.8" cy="185.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="703.0" cy="185.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle cx="711.4" cy="185.8" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="724.0" cy="185.8" r="0.7" fill="#162945" opacity="0.35" />
+    <circle class="avatar-dot" cx="568.6" cy="190.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="572.8" cy="190.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="577.0" cy="190.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="581.2" cy="190.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="585.4" cy="190.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="589.6" cy="190.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="593.8" cy="190.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="598.0" cy="190.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="602.2" cy="190.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="606.4" cy="190.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="610.6" cy="190.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="614.8" cy="190.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="619.0" cy="190.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="623.2" cy="190.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="627.4" cy="190.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="631.6" cy="190.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="635.8" cy="190.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="640.0" cy="190.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="644.2" cy="190.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="656.8" cy="190.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="661.0" cy="190.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="665.2" cy="190.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="669.4" cy="190.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="673.6" cy="190.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="677.8" cy="190.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="682.0" cy="190.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="686.2" cy="190.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="698.8" cy="190.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="703.0" cy="190.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="581.2" cy="194.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="585.4" cy="194.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="589.6" cy="194.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="593.8" cy="194.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="598.0" cy="194.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="602.2" cy="194.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="606.4" cy="194.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="610.6" cy="194.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="619.0" cy="194.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="623.2" cy="194.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="627.4" cy="194.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="631.6" cy="194.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="635.8" cy="194.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="640.0" cy="194.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="644.2" cy="194.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="648.4" cy="194.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="652.6" cy="194.2" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="661.0" cy="194.2" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="665.2" cy="194.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="669.4" cy="194.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="673.6" cy="194.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="677.8" cy="194.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="682.0" cy="194.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="686.2" cy="194.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="690.4" cy="194.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="694.6" cy="194.2" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="698.8" cy="194.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="703.0" cy="194.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle cx="547.6" cy="198.4" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="560.2" cy="198.4" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="572.8" cy="198.4" r="0.7" fill="#162945" opacity="0.35" />
+    <circle class="avatar-dot" cx="581.2" cy="198.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="585.4" cy="198.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="589.6" cy="198.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="593.8" cy="198.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="598.0" cy="198.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="602.2" cy="198.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="606.4" cy="198.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="610.6" cy="198.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="623.2" cy="198.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="627.4" cy="198.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="652.6" cy="198.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="656.8" cy="198.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="661.0" cy="198.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="665.2" cy="198.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="669.4" cy="198.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="673.6" cy="198.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="677.8" cy="198.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="682.0" cy="198.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="686.2" cy="198.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="698.8" cy="198.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle cx="711.4" cy="198.4" r="0.7" fill="#162945" opacity="0.35" />
+    <circle class="avatar-dot" cx="719.8" cy="198.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="724.0" cy="198.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="728.2" cy="198.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="732.4" cy="198.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="581.2" cy="202.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="585.4" cy="202.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="589.6" cy="202.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="593.8" cy="202.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="598.0" cy="202.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="602.2" cy="202.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="606.4" cy="202.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="610.6" cy="202.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="619.0" cy="202.6" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="627.4" cy="202.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="635.8" cy="202.6" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="644.2" cy="202.6" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="652.6" cy="202.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="656.8" cy="202.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="661.0" cy="202.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="669.4" cy="202.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="673.6" cy="202.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="677.8" cy="202.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="686.2" cy="202.6" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="694.6" cy="202.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="698.8" cy="202.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="703.0" cy="202.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="715.6" cy="202.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="719.8" cy="202.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="724.0" cy="202.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="728.2" cy="202.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="732.4" cy="202.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="581.2" cy="206.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="589.6" cy="206.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="593.8" cy="206.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="598.0" cy="206.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="602.2" cy="206.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="606.4" cy="206.8" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="610.6" cy="206.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="627.4" cy="206.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="682.0" cy="206.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="686.2" cy="206.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="690.4" cy="206.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="694.6" cy="206.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="703.0" cy="206.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="707.2" cy="206.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="715.6" cy="206.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="719.8" cy="206.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="724.0" cy="206.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="728.2" cy="206.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="732.4" cy="206.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle cx="547.6" cy="211.0" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="560.2" cy="211.0" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="572.8" cy="211.0" r="0.7" fill="#162945" opacity="0.35" />
+    <circle class="avatar-dot" cx="577.0" cy="211.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="581.2" cy="211.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle cx="585.4" cy="211.0" r="0.7" fill="#162945" opacity="0.35" />
+    <circle class="avatar-dot" cx="589.6" cy="211.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="593.8" cy="211.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="598.0" cy="211.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="602.2" cy="211.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="606.4" cy="211.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="610.6" cy="211.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="619.0" cy="211.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="623.2" cy="211.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="627.4" cy="211.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="635.8" cy="211.0" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="644.2" cy="211.0" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="652.6" cy="211.0" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="661.0" cy="211.0" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="669.4" cy="211.0" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="673.6" cy="211.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="677.8" cy="211.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="682.0" cy="211.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="686.2" cy="211.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="690.4" cy="211.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="694.6" cy="211.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="703.0" cy="211.0" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="707.2" cy="211.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="711.4" cy="211.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="715.6" cy="211.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="719.8" cy="211.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="724.0" cy="211.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="728.2" cy="211.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="732.4" cy="211.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="585.4" cy="215.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="589.6" cy="215.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="593.8" cy="215.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="598.0" cy="215.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="602.2" cy="215.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="606.4" cy="215.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="610.6" cy="215.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="614.8" cy="215.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="619.0" cy="215.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="623.2" cy="215.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="665.2" cy="215.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="669.4" cy="215.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="673.6" cy="215.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="711.4" cy="215.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="715.6" cy="215.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="719.8" cy="215.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="724.0" cy="215.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="728.2" cy="215.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="732.4" cy="215.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="581.2" cy="219.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="585.4" cy="219.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="593.8" cy="219.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="598.0" cy="219.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="602.2" cy="219.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="606.4" cy="219.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="610.6" cy="219.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="614.8" cy="219.4" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="619.0" cy="219.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="627.4" cy="219.4" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="635.8" cy="219.4" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="644.2" cy="219.4" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="652.6" cy="219.4" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="661.0" cy="219.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="665.2" cy="219.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="669.4" cy="219.4" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="677.8" cy="219.4" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="686.2" cy="219.4" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="694.6" cy="219.4" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="703.0" cy="219.4" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="711.4" cy="219.4" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="715.6" cy="219.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="719.8" cy="219.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="724.0" cy="219.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="728.2" cy="219.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle cx="547.6" cy="223.6" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="560.2" cy="223.6" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="572.8" cy="223.6" r="0.7" fill="#162945" opacity="0.35" />
+    <circle class="avatar-dot" cx="577.0" cy="223.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="581.2" cy="223.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="593.8" cy="223.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="606.4" cy="223.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="619.0" cy="223.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="623.2" cy="223.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="644.2" cy="223.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="648.4" cy="223.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="652.6" cy="223.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="656.8" cy="223.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="661.0" cy="223.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="719.8" cy="223.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="724.0" cy="223.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="728.2" cy="223.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="577.0" cy="227.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="581.2" cy="227.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="585.4" cy="227.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="593.8" cy="227.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="602.2" cy="227.8" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="610.6" cy="227.8" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="619.0" cy="227.8" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="623.2" cy="227.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="627.4" cy="227.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="631.6" cy="227.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="635.8" cy="227.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="640.0" cy="227.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="644.2" cy="227.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="652.6" cy="227.8" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="661.0" cy="227.8" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="665.2" cy="227.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="669.4" cy="227.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="677.8" cy="227.8" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="686.2" cy="227.8" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="694.6" cy="227.8" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="703.0" cy="227.8" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="711.4" cy="227.8" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="719.8" cy="227.8" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="724.0" cy="227.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="577.0" cy="232.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="581.2" cy="232.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="585.4" cy="232.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="589.6" cy="232.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="593.8" cy="232.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="598.0" cy="232.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="602.2" cy="232.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="635.8" cy="232.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="640.0" cy="232.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="652.6" cy="232.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="656.8" cy="232.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="661.0" cy="232.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="669.4" cy="232.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="724.0" cy="232.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle cx="560.2" cy="236.2" r="0.7" fill="#162945" opacity="0.35" />
+    <circle cx="572.8" cy="236.2" r="0.7" fill="#162945" opacity="0.35" />
+    <circle class="avatar-dot" cx="581.2" cy="236.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="585.4" cy="236.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="589.6" cy="236.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="593.8" cy="236.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="602.2" cy="236.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="606.4" cy="236.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="610.6" cy="236.2" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="619.0" cy="236.2" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="627.4" cy="236.2" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="635.8" cy="236.2" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="640.0" cy="236.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="644.2" cy="236.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="648.4" cy="236.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="652.6" cy="236.2" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="656.8" cy="236.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="661.0" cy="236.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="665.2" cy="236.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="669.4" cy="236.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="673.6" cy="236.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="677.8" cy="236.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="686.2" cy="236.2" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="694.6" cy="236.2" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="703.0" cy="236.2" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="711.4" cy="236.2" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="719.8" cy="236.2" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="581.2" cy="240.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="585.4" cy="240.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="606.4" cy="240.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="610.6" cy="240.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="644.2" cy="240.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="648.4" cy="240.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="652.6" cy="240.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="656.8" cy="240.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="661.0" cy="240.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="665.2" cy="240.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="669.4" cy="240.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="677.8" cy="240.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="682.0" cy="240.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="560.2" cy="244.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="564.4" cy="244.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="568.6" cy="244.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="572.8" cy="244.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="577.0" cy="244.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="581.2" cy="244.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="585.4" cy="244.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="593.8" cy="244.6" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="602.2" cy="244.6" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="610.6" cy="244.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="614.8" cy="244.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="619.0" cy="244.6" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="627.4" cy="244.6" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="635.8" cy="244.6" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="644.2" cy="244.6" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="648.4" cy="244.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="652.6" cy="244.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="656.8" cy="244.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="661.0" cy="244.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="669.4" cy="244.6" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="673.6" cy="244.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="677.8" cy="244.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="682.0" cy="244.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="686.2" cy="244.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="694.6" cy="244.6" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="703.0" cy="244.6" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="711.4" cy="244.6" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="564.4" cy="248.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="568.6" cy="248.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="572.8" cy="248.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="577.0" cy="248.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="581.2" cy="248.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="585.4" cy="248.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="589.6" cy="248.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="614.8" cy="248.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="619.0" cy="248.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="665.2" cy="248.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="669.4" cy="248.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="673.6" cy="248.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="677.8" cy="248.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="682.0" cy="248.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="686.2" cy="248.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="694.6" cy="248.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="698.8" cy="248.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="703.0" cy="248.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="707.2" cy="248.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="564.4" cy="253.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="568.6" cy="253.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="572.8" cy="253.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="577.0" cy="253.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="581.2" cy="253.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="585.4" cy="253.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="589.6" cy="253.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="593.8" cy="253.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="598.0" cy="253.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="602.2" cy="253.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="606.4" cy="253.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="610.6" cy="253.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="614.8" cy="253.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="619.0" cy="253.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="623.2" cy="253.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="627.4" cy="253.0" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="635.8" cy="253.0" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="644.2" cy="253.0" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="652.6" cy="253.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="656.8" cy="253.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="661.0" cy="253.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="665.2" cy="253.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="669.4" cy="253.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="673.6" cy="253.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="677.8" cy="253.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="682.0" cy="253.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="686.2" cy="253.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="690.4" cy="253.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="694.6" cy="253.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="698.8" cy="253.0" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="703.0" cy="253.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="707.2" cy="253.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="711.4" cy="253.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="568.6" cy="257.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="572.8" cy="257.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="577.0" cy="257.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="581.2" cy="257.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="585.4" cy="257.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="598.0" cy="257.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="602.2" cy="257.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="606.4" cy="257.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="610.6" cy="257.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="614.8" cy="257.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="619.0" cy="257.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="623.2" cy="257.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="627.4" cy="257.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="631.6" cy="257.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="635.8" cy="257.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="640.0" cy="257.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="644.2" cy="257.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="648.4" cy="257.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="652.6" cy="257.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="656.8" cy="257.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="661.0" cy="257.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="665.2" cy="257.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="669.4" cy="257.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="673.6" cy="257.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="677.8" cy="257.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="682.0" cy="257.2" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="686.2" cy="257.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="690.4" cy="257.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="694.6" cy="257.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="698.8" cy="257.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="703.0" cy="257.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="707.2" cy="257.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="572.8" cy="261.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="577.0" cy="261.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="581.2" cy="261.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="585.4" cy="261.4" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="593.8" cy="261.4" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="598.0" cy="261.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="602.2" cy="261.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="606.4" cy="261.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="610.6" cy="261.4" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="619.0" cy="261.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="627.4" cy="261.4" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="631.6" cy="261.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="635.8" cy="261.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="640.0" cy="261.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="644.2" cy="261.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="648.4" cy="261.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="652.6" cy="261.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="656.8" cy="261.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="661.0" cy="261.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="665.2" cy="261.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="669.4" cy="261.4" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="673.6" cy="261.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="677.8" cy="261.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="682.0" cy="261.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="686.2" cy="261.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="690.4" cy="261.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="694.6" cy="261.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="698.8" cy="261.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="703.0" cy="261.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="589.6" cy="265.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="593.8" cy="265.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="598.0" cy="265.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="602.2" cy="265.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="606.4" cy="265.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="627.4" cy="265.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="631.6" cy="265.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="640.0" cy="265.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="644.2" cy="265.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="648.4" cy="265.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="652.6" cy="265.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="656.8" cy="265.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="669.4" cy="265.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="673.6" cy="265.6" r="1.8" fill="#f0f9ff" filter="url(#glow-soft)" />
+    <circle class="avatar-dot" cx="677.8" cy="265.6" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="682.0" cy="265.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="686.2" cy="265.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="690.4" cy="265.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="694.6" cy="265.6" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="585.4" cy="269.8" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="593.8" cy="269.8" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="602.2" cy="269.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="610.6" cy="269.8" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="619.0" cy="269.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="627.4" cy="269.8" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="635.8" cy="269.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="640.0" cy="269.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="644.2" cy="269.8" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="652.6" cy="269.8" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="661.0" cy="269.8" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="665.2" cy="269.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="669.4" cy="269.8" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="673.6" cy="269.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="677.8" cy="269.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="682.0" cy="269.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="686.2" cy="269.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="690.4" cy="269.8" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="593.8" cy="274.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="598.0" cy="274.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="602.2" cy="274.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="661.0" cy="274.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="665.2" cy="274.0" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="669.4" cy="274.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="673.6" cy="274.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="677.8" cy="274.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="682.0" cy="274.0" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="602.2" cy="278.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="606.4" cy="278.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="610.6" cy="278.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="614.8" cy="278.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="619.0" cy="278.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="627.4" cy="278.2" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="635.8" cy="278.2" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="644.2" cy="278.2" r="0.9" fill="#60a5fa" opacity="0.5" />
+    <circle class="avatar-dot" cx="652.6" cy="278.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="656.8" cy="278.2" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="661.0" cy="278.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="665.2" cy="278.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="669.4" cy="278.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="673.6" cy="278.2" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="610.6" cy="282.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="614.8" cy="282.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="619.0" cy="282.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="623.2" cy="282.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="627.4" cy="282.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="631.6" cy="282.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="635.8" cy="282.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="648.4" cy="282.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="652.6" cy="282.4" r="1.5" fill="#38bdf8" opacity="0.95" />
+    <circle class="avatar-dot" cx="656.8" cy="282.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="661.0" cy="282.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    <circle class="avatar-dot" cx="665.2" cy="282.4" r="1.1" fill="#1d4ed8" opacity="0.8" />
+    </g>
+
+    <!-- Holographic Moving Scanline Beam -->
+    <g class="scanline" transform="translate(0, 190)">
+      <line x1="535" y1="0" x2="745" y2="0" stroke="#38bdf8" stroke-width="2" filter="url(#glow-hud)" />
+      <line x1="535" y1="0" x2="745" y2="0" stroke="#ffffff" stroke-width="1" />
+    </g>
+
+    <!-- Radar Rotating Sweep -->
+    <g class="spin-element">
+      <path d="M 640 190 L 745 110 A 105 105 0 0 1 745 190 Z" fill="url(#radar-sweep-grad)" />
+      <line x1="640" y1="190" x2="745" y2="190" stroke="#38bdf8" stroke-width="1.5" opacity="0.8" filter="url(#glow-soft)" />
+    </g>
+
+    <!-- Vignette Shadow on Radar Edge -->
+    <circle cx="640" cy="190" r="105" fill="url(#hud-vignette)" />
+  </g>
+
+  <!-- Compass Cardinal Markers -->
+  <text class="hud-title" x="640" y="55" font-size="8" fill="#38bdf8" text-anchor="middle">000°</text>
+  <text class="hud-title" x="780" y="193" font-size="8" fill="#38bdf8" text-anchor="start">090°</text>
+  <text class="hud-title" x="640" y="332" font-size="8" fill="#38bdf8" text-anchor="middle">180°</text>
+  <text class="hud-title" x="500" y="193" font-size="8" fill="#38bdf8" text-anchor="end">270°</text>
+
+  <!-- Radar HUD Center Target Cross -->
+  <circle cx="640" cy="190" r="5" fill="#38bdf8" filter="url(#glow-hud)" />
+  <circle cx="640" cy="190" r="2" fill="#ffffff" />
+
+  <!-- Bottom Divider Line -->
+  <line x1="34" y1="340" x2="806" y2="340" stroke="#15243b" stroke-width="1" />
+
+  <!-- METRICS FOOTER ROW -->
+  <text class="hud-title" x="34" y="362" font-size="9.5" font-weight="600" fill="#64748b" letter-spacing="1.5">REPOSITORIES</text>
+  <circle class="beacon" cx="175" cy="358" r="3.5" fill="#38bdf8" />
+  <text class="hud-title" x="34" y="392" font-size="22" font-weight="700" fill="#ffffff">3</text>
+
+  <text class="hud-title" x="235" y="362" font-size="9.5" font-weight="600" fill="#64748b" letter-spacing="1.5">STARS</text>
+  <circle class="beacon" cx="350" cy="358" r="3.5" fill="#38bdf8" style="animation-delay: 0.6s;" />
+  <text class="hud-title" x="235" y="392" font-size="22" font-weight="700" fill="#ffffff">0</text>
+
+  <text class="hud-title" x="420" y="362" font-size="9.5" font-weight="600" fill="#64748b" letter-spacing="1.5">CONTRIBUTIONS</text>
+  <circle class="beacon" cx="555" cy="358" r="3.5" fill="#38bdf8" style="animation-delay: 1.2s;" />
+  <text class="hud-title" x="420" y="392" font-size="22" font-weight="700" fill="#ffffff">59</text>
+
+  <text class="hud-title" x="625" y="362" font-size="9.5" font-weight="600" fill="#64748b" letter-spacing="1.5">FOLLOWERS</text>
+  <circle class="beacon" cx="745" cy="358" r="3.5" fill="#38bdf8" style="animation-delay: 1.8s;" />
+  <text class="hud-title" x="625" y="392" font-size="22" font-weight="700" fill="#ffffff">1</text>
+
+  <text class="hud-title" x="806" y="402" font-size="8.5" fill="#2d4263" text-anchor="end" letter-spacing="0.8">SIGNAL // LIVING IDENTITY</text>
+</svg>
