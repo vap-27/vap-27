@@ -1814,7 +1814,7 @@
     <g transform="translate(424, 22)">
       <rect x="0" y="0" width="118" height="48" rx="7" fill="#0a1424" stroke="#1e3a6a" stroke-width="1.2" />
       <text class="hud-title" x="12" y="18" font-size="7.5" font-weight="700" fill="#64748b" letter-spacing="1">SCORE</text>
-      <text class="hud-title" x="12" y="38" font-size="16" font-weight="800" fill="#38bdf8">007300</text>
+      <text class="hud-title" x="12" y="38" font-size="16" font-weight="800" fill="#38bdf8">007400</text>
     </g>
 
     <!-- Score Box 2: Combo Streak -->
