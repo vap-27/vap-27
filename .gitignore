@@ -8,6 +8,7 @@ assets/test_pin_avatar_64.png
 assets/test_*.png
 assets/pin_*.png
 !assets/pin_70.png
+assets/avatar.sha256
 
 # Python bytecode & cache
 __pycache__/

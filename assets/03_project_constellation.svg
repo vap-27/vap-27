@@ -27,18 +27,23 @@
       100% { transform: rotate(0deg); }
     }
     @keyframes planet-pulse {
-      0%, 100% { r: 52; opacity: 0.8; }
-      50% { r: 58; opacity: 0.4; }
+      0%, 100% { transform: scale(1); opacity: 0.85; }
+      50% { transform: scale(1.12); opacity: 0.45; }
     }
     @keyframes signal-travel {
       0% { stroke-dashoffset: 200; }
       100% { stroke-dashoffset: 0; }
     }
-    .orbit-cw-1 { transform-origin: 200px 220px; animation: orbit-rotate-cw 18s linear infinite; }
-    .orbit-cw-2 { transform-origin: 430px 220px; animation: orbit-rotate-cw 25s linear infinite; }
-    .orbit-ccw-3 { transform-origin: 660px 220px; animation: orbit-rotate-ccw 20s linear infinite; }
-    .pulse-ring { animation: planet-pulse 3.5s ease-in-out infinite; }
-    .travel-line { animation: signal-travel 10s linear infinite; }
+    .orbit-cw-1 { transform-origin: 200px 220px; animation: orbit-rotate-cw 18s linear infinite; will-change: transform; }
+    .orbit-cw-2 { transform-origin: 430px 220px; animation: orbit-rotate-cw 25s linear infinite; will-change: transform; }
+    .orbit-ccw-3 { transform-origin: 660px 220px; animation: orbit-rotate-ccw 20s linear infinite; will-change: transform; }
+    .pulse-ring {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: planet-pulse 3.5s ease-in-out infinite;
+      will-change: transform, opacity;
+    }
+    .travel-line { animation: signal-travel 10s linear infinite; will-change: stroke-dashoffset; }
     .hud-title { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
   </style>
 
@@ -56,7 +61,7 @@
     <circle class="orbit-cw-1" cx="200" cy="220" r="38" fill="none" stroke="#38bdf8" stroke-width="1" stroke-dasharray="6 14" opacity="0.6" />
     <circle cx="200" cy="220" r="26" fill="#0c182c" stroke="#1d4ed8" stroke-width="1.5" />
     <text class="hud-title" x="200" y="224" font-size="12" font-weight="700" fill="#38bdf8" text-anchor="middle">TS</text>
-    <text class="hud-title" x="200" y="280" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">libris</text>
+    <text class="hud-title" x="200" y="280" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">libris-note</text>
     <text class="hud-title" x="200" y="298" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle">TypeScript · 0 stars</text>
   </g>
 
@@ -68,7 +73,7 @@
     <circle cx="430" cy="220" r="32" fill="#0e2342" stroke="#38bdf8" stroke-width="1.8" filter="url(#glow-const)" />
     <circle cx="430" cy="220" r="30" fill="#0a1a32" />
     <text class="hud-title" x="430" y="225" font-size="13" font-weight="700" fill="#bae6fd" text-anchor="middle">PY</text>
-    <text class="hud-title" x="430" y="295" font-size="17" font-weight="700" fill="#ffffff" text-anchor="middle">kxstrel</text>
+    <text class="hud-title" x="430" y="295" font-size="17" font-weight="700" fill="#ffffff" text-anchor="middle">x-rendr</text>
     <text class="hud-title" x="430" y="315" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle">Python · 0 stars</text>
   </g>
 
@@ -76,8 +81,8 @@
   <g>
     <circle class="orbit-ccw-3" cx="660" cy="220" r="38" fill="none" stroke="#818cf8" stroke-width="1" stroke-dasharray="6 14" opacity="0.6" />
     <circle cx="660" cy="220" r="26" fill="#111833" stroke="#4f46e5" stroke-width="1.5" />
-    <text class="hud-title" x="660" y="224" font-size="12" font-weight="700" fill="#a5b4fc" text-anchor="middle">PY</text>
-    <text class="hud-title" x="660" y="280" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">x-rendr</text>
-    <text class="hud-title" x="660" y="298" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle">Python · 0 stars</text>
+    <text class="hud-title" x="660" y="224" font-size="12" font-weight="700" fill="#a5b4fc" text-anchor="middle">OP</text>
+    <text class="hud-title" x="660" y="280" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">vap-27</text>
+    <text class="hud-title" x="660" y="298" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle">Open source · 0 stars</text>
   </g>
 </svg>
