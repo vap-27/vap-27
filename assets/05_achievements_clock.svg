@@ -322,7 +322,7 @@
       <!-- Top Repo Chip -->
       <rect x="714" y="322" width="88" height="26" rx="4" fill="#081b33" stroke="#0284c7" stroke-width="0.8" />
       <text class="hud-title" x="719" y="334" font-size="6.5" font-weight="700" fill="#38bdf8">CURRENT WORK</text>
-      <text class="hud-title" x="719" y="344" font-size="8" font-weight="700" fill="#ffffff">kxstrel</text>
+      <text class="hud-title" x="719" y="344" font-size="8" font-weight="700" fill="#ffffff">vap-27</text>
     </g>
   </g>
 </svg>
