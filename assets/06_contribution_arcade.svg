@@ -1814,21 +1814,21 @@
     <g transform="translate(424, 22)">
       <rect x="0" y="0" width="118" height="48" rx="7" fill="#0a1424" stroke="#1e3a6a" stroke-width="1.2" />
       <text class="hud-title" x="12" y="18" font-size="7.5" font-weight="700" fill="#64748b" letter-spacing="1">SCORE</text>
-      <text class="hud-title" x="12" y="38" font-size="16" font-weight="800" fill="#38bdf8">007400</text>
+      <text class="hud-title" x="12" y="38" font-size="16" font-weight="800" fill="#38bdf8">005500</text>
     </g>
 
     <!-- Score Box 2: Combo Streak -->
     <g transform="translate(552, 22)">
       <rect x="0" y="0" width="118" height="48" rx="7" fill="#0a1424" stroke="#1e3a6a" stroke-width="1.2" />
       <text class="hud-title" x="12" y="18" font-size="7.5" font-weight="700" fill="#64748b" letter-spacing="1">COMBO</text>
-      <text class="hud-title" x="12" y="38" font-size="16" font-weight="800" fill="#f59e0b">x4 STREAK</text>
+      <text class="hud-title" x="12" y="38" font-size="16" font-weight="800" fill="#f59e0b">x2 STREAK</text>
     </g>
 
     <!-- Score Box 3: Active Nodes -->
     <g transform="translate(680, 22)">
       <rect x="0" y="0" width="126" height="48" rx="7" fill="#0a1424" stroke="#1e3a6a" stroke-width="1.2" />
       <text class="hud-title" x="12" y="18" font-size="7.5" font-weight="700" fill="#64748b" letter-spacing="1">PELLETS EATEN</text>
-      <text class="hud-title" x="12" y="38" font-size="16" font-weight="800" fill="#38bdf8">14 / 14</text>
+      <text class="hud-title" x="12" y="38" font-size="16" font-weight="800" fill="#38bdf8">12 / 14</text>
     </g>
   </g>
 
@@ -2227,11 +2227,9 @@
     <rect x="783.1" y="127.5" width="10.5" height="10.5" rx="2.5" fill="#0a1322" stroke="#152742" stroke-width="0.8" />
     <rect x="783.1" y="141.0" width="10.5" height="10.5" rx="2.5" fill="#0a1322" stroke="#152742" stroke-width="0.8" />
     <rect x="783.1" y="154.5" width="10.5" height="10.5" rx="2.5" fill="#0a1322" stroke="#152742" stroke-width="0.8" />
-    <rect class="pellet-51-3" x="783.1" y="154.5" width="10.5" height="10.5" rx="2.5" fill="#0284c7" stroke="#7dd3fc" stroke-width="0.8" />
     <rect x="783.1" y="168.0" width="10.5" height="10.5" rx="2.5" fill="#0a1322" stroke="#152742" stroke-width="0.8" />
-    <rect class="pellet-51-4" x="783.1" y="168.0" width="10.5" height="10.5" rx="2.5" fill="#0ea5e9" stroke="#bae6fd" stroke-width="0.9" />
     <rect x="783.1" y="181.5" width="10.5" height="10.5" rx="2.5" fill="#0a1322" stroke="#152742" stroke-width="0.8" />
-    <rect class="pellet-51-5" x="783.1" y="181.5" width="10.5" height="10.5" rx="2.5" fill="#38bdf8" stroke="#ffffff" stroke-width="1.0" />
+    <rect class="pellet-51-5" x="783.1" y="181.5" width="10.5" height="10.5" rx="2.5" fill="#0284c7" stroke="#7dd3fc" stroke-width="0.8" />
     <rect x="783.1" y="195.0" width="10.5" height="10.5" rx="2.5" fill="#0a1322" stroke="#152742" stroke-width="0.8" />
     <rect class="pellet-51-6" x="783.1" y="195.0" width="10.5" height="10.5" rx="2.5" fill="#0ea5e9" stroke="#bae6fd" stroke-width="0.9" />
   </g>
