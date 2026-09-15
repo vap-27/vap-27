@@ -238,11 +238,11 @@
     <circle cx="433.6" cy="188" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="433.6" cy="202" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="448.4" cy="118" r="1.2" fill="#182740" opacity="0.45" />
-    <circle cx="448.4" cy="132" r="1.2" fill="#182740" opacity="0.45" />
-    <circle class="star-twinkle" cx="448.4" cy="146" r="3.0" fill="#60a5fa" style="animation-delay: 0.6s;" />
+    <circle class="star-twinkle" cx="448.4" cy="132" r="3.0" fill="#60a5fa" style="animation-delay: 0.6s;" />
+    <circle cx="448.4" cy="146" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="448.4" cy="160" r="1.2" fill="#182740" opacity="0.45" />
-    <circle cx="448.4" cy="174" r="1.2" fill="#182740" opacity="0.45" />
-    <circle class="star-twinkle" cx="448.4" cy="188" r="3.0" fill="#60a5fa" style="animation-delay: 0.6s;" />
+    <circle class="star-twinkle" cx="448.4" cy="174" r="3.0" fill="#60a5fa" style="animation-delay: 0.6s;" />
+    <circle cx="448.4" cy="188" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="448.4" cy="202" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="463.2" cy="118" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="463.2" cy="132" r="1.2" fill="#182740" opacity="0.45" />
@@ -271,8 +271,8 @@
     <circle cx="507.6" cy="160" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="507.6" cy="174" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="507.6" cy="188" r="1.2" fill="#182740" opacity="0.45" />
-    <circle cx="507.6" cy="202" r="1.2" fill="#182740" opacity="0.45" />
-    <circle class="star-twinkle" cx="522.4" cy="118" r="3.0" fill="#60a5fa" style="animation-delay: 1.6s;" />
+    <circle class="star-twinkle" cx="507.6" cy="202" r="3.0" fill="#60a5fa" style="animation-delay: 1.4s;" />
+    <circle cx="522.4" cy="118" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="522.4" cy="132" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="522.4" cy="146" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="522.4" cy="160" r="1.2" fill="#182740" opacity="0.45" />
@@ -285,8 +285,8 @@
     <circle cx="537.2" cy="160" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="537.2" cy="174" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="537.2" cy="188" r="1.2" fill="#182740" opacity="0.45" />
-    <circle cx="537.2" cy="202" r="1.2" fill="#182740" opacity="0.45" />
-    <circle class="star-twinkle" cx="552.0" cy="118" r="3.0" fill="#60a5fa" style="animation-delay: 2.0s;" />
+    <circle class="star-twinkle" cx="537.2" cy="202" r="3.0" fill="#60a5fa" style="animation-delay: 1.8s;" />
+    <circle cx="552.0" cy="118" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="552.0" cy="132" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="552.0" cy="146" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="552.0" cy="160" r="1.2" fill="#182740" opacity="0.45" />
@@ -297,8 +297,8 @@
     <circle cx="566.8" cy="132" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="566.8" cy="146" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="566.8" cy="160" r="1.2" fill="#182740" opacity="0.45" />
-    <circle cx="566.8" cy="174" r="1.2" fill="#182740" opacity="0.45" />
-    <circle class="star-twinkle" cx="566.8" cy="188" r="3.0" fill="#60a5fa" style="animation-delay: 2.2s;" />
+    <circle class="star-twinkle" cx="566.8" cy="174" r="3.0" fill="#60a5fa" style="animation-delay: 2.2s;" />
+    <circle cx="566.8" cy="188" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="566.8" cy="202" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="581.6" cy="118" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="581.6" cy="132" r="1.2" fill="#182740" opacity="0.45" />
@@ -354,8 +354,8 @@
     <circle cx="685.2" cy="146" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="685.2" cy="160" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="685.2" cy="174" r="1.2" fill="#182740" opacity="0.45" />
-    <circle cx="685.2" cy="188" r="1.2" fill="#182740" opacity="0.45" />
-    <circle class="star-twinkle" cx="685.2" cy="202" r="3.0" fill="#60a5fa" style="animation-delay: 1.3s;" />
+    <circle class="star-twinkle" cx="685.2" cy="188" r="3.0" fill="#60a5fa" style="animation-delay: 1.3s;" />
+    <circle cx="685.2" cy="202" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="700.0" cy="118" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="700.0" cy="132" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="700.0" cy="146" r="1.2" fill="#182740" opacity="0.45" />
@@ -393,18 +393,18 @@
     <circle cx="759.2" cy="202" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="774.0" cy="118" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="774.0" cy="132" r="1.2" fill="#182740" opacity="0.45" />
-    <circle cx="774.0" cy="146" r="1.2" fill="#182740" opacity="0.45" />
-    <circle class="star-twinkle" cx="774.0" cy="160" r="3.0" fill="#60a5fa" style="animation-delay: 0.0s;" />
-    <circle class="star-twinkle" cx="774.0" cy="174" r="7.0" fill="#ffffff" style="animation-delay: 0.0s;" filter="url(#glow-star)" />
+    <circle class="star-twinkle" cx="774.0" cy="146" r="3.0" fill="#60a5fa" style="animation-delay: 0.0s;" />
+    <circle class="star-twinkle" cx="774.0" cy="160" r="7.0" fill="#ffffff" style="animation-delay: 0.0s;" filter="url(#glow-star)" />
+    <circle class="star-twinkle" cx="774.0" cy="174" r="4.8" fill="#38bdf8" style="animation-delay: 0.0s;" filter="url(#glow-star)" />
     <circle class="star-twinkle" cx="774.0" cy="188" r="4.8" fill="#38bdf8" style="animation-delay: 0.0s;" filter="url(#glow-star)" />
-    <circle class="star-twinkle" cx="774.0" cy="202" r="4.8" fill="#38bdf8" style="animation-delay: 0.0s;" filter="url(#glow-star)" />
+    <circle cx="774.0" cy="202" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="788.8" cy="118" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="788.8" cy="132" r="1.2" fill="#182740" opacity="0.45" />
     <circle cx="788.8" cy="146" r="1.2" fill="#182740" opacity="0.45" />
-    <circle cx="788.8" cy="160" r="1.2" fill="#182740" opacity="0.45" />
-    <circle class="star-twinkle" cx="788.8" cy="174" r="3.0" fill="#60a5fa" style="animation-delay: 0.2s;" />
+    <circle class="star-twinkle" cx="788.8" cy="160" r="3.0" fill="#60a5fa" style="animation-delay: 0.2s;" />
+    <circle class="star-twinkle" cx="788.8" cy="174" r="7.0" fill="#ffffff" style="animation-delay: 0.1s;" filter="url(#glow-star)" />
     <circle class="star-twinkle" cx="788.8" cy="188" r="7.0" fill="#ffffff" style="animation-delay: 0.1s;" filter="url(#glow-star)" />
-    <circle class="star-twinkle" cx="788.8" cy="202" r="7.0" fill="#ffffff" style="animation-delay: 0.1s;" filter="url(#glow-star)" />
+    <circle cx="788.8" cy="202" r="1.2" fill="#182740" opacity="0.45" />
   </g>
 
   <!-- Bottom Divider Line -->
