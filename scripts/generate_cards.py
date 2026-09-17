@@ -996,27 +996,35 @@ def generate_04_launch_sequence(stats):
 
 def generate_05_achievements_clock(stats):
     """
-    Card 5: Achievements, Trophies & 7-Day Temporal Chronometer Clock.
+    Card 5: Achievements, Trophies & High-Level Digital Chronometer Clock Console.
     Features:
-    - 4 handcrafted vector cyber badges (zero simple emojis!).
-    - Title: Autonomous recognition (clean, no & 7-day velocity).
-    - Redesigned 7-Day Chronometer Clock with holographic laser sweep and live TODAY beacon.
-    - GPU hardware-accelerated scanning beacon (zero mobile lag).
+    - 2x2 Cyber Trophy Matrix on Left:
+      * Top-Left: GOLD S-RANK (Streak)
+      * Top-Right: PLATINUM (Languages)
+      * Bottom-Left: TITAN (Repositories)
+      * Bottom-Right: EMERALD (Contributions)
+    - High-Level Digital Chronometer Console on Right:
+      * Rotating Holographic Radar Dial with crosshair reticles & sweeping laser hand.
+      * Large Monospace 7-Day Rolling Velocity Readout with real-time frequency equalizer.
+      * 7-Day Activity Matrix: 7 sleek digital capsules capturing real contributions & top repos.
+      * Sweeping Radar Timeline Scanner across all 7 daily capsules with glowing leading edge.
+      * Live Beacon Pulse on TODAY capsule.
+      * Hardware-accelerated 60 FPS CSS transforms (zero lag on mobile or desktop).
     """
     seven_days = stats.get("seven_days", [])
     seven_day_total = stats.get("seven_day_total", 0)
 
-    # Render the 7 Daily Activity Capsules
+    # 7 Digital Capsules inside the 340px Clock Console
     capsules_svg = []
-    capsule_w = 104
-    capsule_h = 104
-    start_x = 34
-    start_y = 254
-    step_x = 112  # 104 width + 8 gap
+    capsule_w = 42
+    capsule_h = 100
+    start_cx = 474
+    start_cy = 236
+    step_cx = 46.5
 
     for i, day in enumerate(seven_days):
-        x = start_x + i * step_x
-        y = start_y
+        x = round(start_cx + i * step_cx, 1)
+        y = start_cy
         is_today = day.get("is_today", False)
         count = day.get("count", 0)
         day_label = day.get("day_name", "")
@@ -1024,68 +1032,58 @@ def generate_05_achievements_clock(stats):
         top_repo = day.get("top_repo", "IDLE")
 
         if is_today:
-            card_fill = "url(#today-capsule-grad)"
-            card_stroke = "#38bdf8"
-            stroke_w = "1.6"
-            day_color = "#38bdf8"
+            card_fill = "#0d2238"
+            card_stroke = "#00e5ff"
+            stroke_w = "1.5"
+            day_color = "#00e5ff"
             count_color = "#ffffff"
+            bar_color = "#00e5ff"
             accent_decor = f"""
-      <line x1="{x+8}" y1="{y}" x2="{x+96}" y2="{y}" stroke="#38bdf8" stroke-width="2.5" />
-      <circle class="today-ping-ring" cx="{x+94}" cy="{y+16}" r="3" fill="none" stroke="#38bdf8" stroke-width="1.5" />
-      <circle cx="{x+94}" cy="{y+16}" r="2.5" fill="#38bdf8" />
-      <path d="M {x+4} {y+12} L {x+4} {y+4} L {x+12} {y+4}" fill="none" stroke="#38bdf8" stroke-width="1.2" />
-      <path d="M {x+100} {y+92} L {x+100} {y+100} L {x+92} {y+100}" fill="none" stroke="#38bdf8" stroke-width="1.2" />"""
-            repo_chip_fill = "#081b33"
-            repo_chip_border = "#0284c7"
-            repo_label_color = "#38bdf8"
-            repo_name_color = "#ffffff"
+        <circle class="today-ping-ring" cx="{x+34}" cy="{y+11}" r="2" fill="none" stroke="#00e5ff" stroke-width="1.2" />
+        <circle cx="{x+34}" cy="{y+11}" r="2" fill="#00e5ff" />
+        <line x1="{x+4}" y1="{y}" x2="{x+38}" y2="{y}" stroke="#00e5ff" stroke-width="2" />"""
+            repo_color = "#38bdf8"
         elif count > 0:
-            card_fill = "#0a1628"
-            card_stroke = "#1d3d6b"
-            stroke_w = "1.2"
+            card_fill = "#091426"
+            card_stroke = "#1d4ed8"
+            stroke_w = "1.1"
             day_color = "#93c5fd"
-            count_color = "#f0f9ff"
-            accent_decor = f"""
-      <line x1="{x+10}" y1="{y}" x2="{x+40}" y2="{y}" stroke="#0284c7" stroke-width="1.5" />
-      <circle cx="{x+94}" cy="{y+16}" r="2" fill="#0284c7" />"""
-            repo_chip_fill = "#06101e"
-            repo_chip_border = "#1e3a5f"
-            repo_label_color = "#64748b"
-            repo_name_color = "#bae6fd"
+            count_color = "#f8fafc"
+            bar_color = "#38bdf8"
+            accent_decor = f'<circle cx="{x+34}" cy="{y+11}" r="1.5" fill="#38bdf8" />'
+            repo_color = "#94a3b8"
         else:
-            card_fill = "#08101d"
-            card_stroke = "#132135"
-            stroke_w = "1.0"
+            card_fill = "#060d1a"
+            card_stroke = "#111f35"
+            stroke_w = "0.9"
             day_color = "#475569"
             count_color = "#334155"
+            bar_color = "#111f35"
             accent_decor = ""
-            repo_chip_fill = "#050b14"
-            repo_chip_border = "#0f1b2b"
-            repo_label_color = "#475569"
-            repo_name_color = "#475569"
+            repo_color = "#334155"
 
-        bar_w = min(max(count * 6.5, 4 if count > 0 else 0), 84)
-        bar_fill = "#38bdf8" if is_today else ("#60a5fa" if count >= 8 else ("#0284c7" if count > 0 else "#111f35"))
+        bar_h = min(max(count * 2.5, 3 if count > 0 else 0), 20)
+        bar_y = y + 70 - bar_h
 
         capsules_svg.append(f"""
-    <!-- Capsule {i+1}: {day_label} ({short_date}) -->
+    <!-- Capsule {i+1}: {day_label} -->
     <g>
-      <rect x="{x}" y="{y}" width="{capsule_w}" height="{capsule_h}" rx="8" fill="{card_fill}" stroke="{card_stroke}" stroke-width="{stroke_w}" />
+      <rect x="{x}" y="{y}" width="{capsule_w}" height="{capsule_h}" rx="5" fill="{card_fill}" stroke="{card_stroke}" stroke-width="{stroke_w}" />
       {accent_decor}
-      <text class="hud-title" x="{x+10}" y="{y+19}" font-size="9" font-weight="800" fill="{day_color}" letter-spacing="0.5">{day_label}</text>
-      <text class="hud-title" x="{x+84 if is_today or count > 0 else x+94}" y="{y+19}" font-size="8" font-weight="600" fill="#64748b" text-anchor="end">{short_date}</text>
+      <text class="hud-title" x="{x+6}" y="{y+13}" font-size="7.5" font-weight="800" fill="{day_color}">{day_label[:3]}</text>
+      <text class="hud-title" x="{x+6}" y="{y+23}" font-size="6.5" font-weight="600" fill="#64748b">{short_date}</text>
+      
+      <text class="hud-title" x="{x+6}" y="{y+42}" font-size="14" font-weight="800" fill="{count_color}">{count}</text>
+      <text class="hud-title" x="{x+6}" y="{y+49}" font-size="5.5" font-weight="600" fill="#64748b">COMMITS</text>
 
-      <text class="hud-title" x="{x+10}" y="{y+46}" font-size="22" font-weight="800" fill="{count_color}">{count}</text>
-      <text class="hud-title" x="{x+10 + (26 if count < 10 else 38)}" y="{y+45}" font-size="8" font-weight="600" fill="#64748b">commits</text>
+      <!-- Vertical Activity Level Bar -->
+      <rect x="{x+6}" y="{y+55}" width="30" height="15" rx="2" fill="#050b14" stroke="#0e1e35" stroke-width="0.6" />
+      <rect x="{x+8}" y="{bar_y}" width="26" height="{bar_h}" rx="1.5" fill="{bar_color}" />
 
-      <!-- Activity Bar -->
-      <rect x="{x+10}" y="{y+56}" width="84" height="3" rx="1.5" fill="#0f1d31" />
-      <rect x="{x+10}" y="{y+56}" width="{bar_w}" height="3" rx="1.5" fill="{bar_fill}" />
-
-      <!-- Top Repo Chip -->
-      <rect x="{x+8}" y="{y+68}" width="88" height="26" rx="4" fill="{repo_chip_fill}" stroke="{repo_chip_border}" stroke-width="0.8" />
-      <text class="hud-title" x="{x+13}" y="{y+80}" font-size="6.5" font-weight="700" fill="{repo_label_color}">{"CURRENT WORK" if is_today else "TOP REPO"}</text>
-      <text class="hud-title" x="{x+13}" y="{y+90}" font-size="8" font-weight="700" fill="{repo_name_color}">{top_repo[:12]}</text>
+      <!-- Mini Top Repo Tag -->
+      <rect x="{x+4}" y="{y+75}" width="34" height="20" rx="3" fill="#040912" stroke="#0f1d33" stroke-width="0.6" />
+      <text class="hud-title" x="{x+7}" y="{y+84}" font-size="5" font-weight="700" fill="#475569">{"CURR" if is_today else "REPO"}</text>
+      <text class="hud-title" x="{x+7}" y="{y+92}" font-size="6" font-weight="700" fill="{repo_color}">{top_repo[:6]}</text>
     </g>""")
 
     capsules_markup = "\n".join(capsules_svg)
@@ -1095,21 +1093,13 @@ def generate_05_achievements_clock(stats):
     <pattern id="grid-trophies" width="24" height="24" patternUnits="userSpaceOnUse">
       <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#101c30" stroke-width="0.8" />
     </pattern>
-    <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#fbbf24" />
-      <stop offset="100%" stop-color="#d97706" />
+    <linearGradient id="clock-scan-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00e5ff" stop-opacity="0" />
+      <stop offset="60%" stop-color="#00e5ff" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#00e5ff" stop-opacity="0.8" />
     </linearGradient>
-    <linearGradient id="today-capsule-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#0f294a" />
-      <stop offset="100%" stop-color="#081424" />
-    </linearGradient>
-    <linearGradient id="laser-sweep-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0" />
-      <stop offset="60%" stop-color="#38bdf8" stop-opacity="0.12" />
-      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.75" />
-    </linearGradient>
-    <clipPath id="capsules-clip">
-      <rect x="34" y="254" width="776" height="106" rx="8" />
+    <clipPath id="timeline-clip">
+      <rect x="470" y="234" width="332" height="104" rx="6" />
     </clipPath>
   </defs>
 
@@ -1118,34 +1108,54 @@ def generate_05_achievements_clock(stats):
       0% {{ transform: rotate(0deg); }}
       100% {{ transform: rotate(360deg); }}
     }}
-    @keyframes badge-glow-pulse {{
-      0%, 100% {{ transform: scale(1); opacity: 0.95; }}
-      50% {{ transform: scale(1.15); opacity: 0.55; }}
+    @keyframes clock-dial-spin {{
+      0% {{ transform: rotate(0deg); }}
+      100% {{ transform: rotate(360deg); }}
     }}
-    @keyframes laser-radar-travel {{
+    @keyframes sweep-hand {{
+      0% {{ transform: rotate(0deg); }}
+      100% {{ transform: rotate(360deg); }}
+    }}
+    @keyframes laser-timeline-travel {{
       0% {{ transform: translateX(0px); opacity: 0; }}
-      4% {{ opacity: 0.85; }}
-      92% {{ opacity: 0.85; }}
-      100% {{ transform: translateX(776px); opacity: 0; }}
+      5% {{ opacity: 0.9; }}
+      90% {{ opacity: 0.9; }}
+      100% {{ transform: translateX(332px); opacity: 0; }}
     }}
     @keyframes ping-expand {{
-      0% {{ r: 2.5px; opacity: 1; stroke-width: 1.5px; }}
-      60% {{ r: 8px; opacity: 0.35; stroke-width: 1px; }}
-      100% {{ r: 11px; opacity: 0; stroke-width: 0; }}
+      0% {{ r: 2px; opacity: 1; stroke-width: 1.5px; }}
+      60% {{ r: 7px; opacity: 0.35; stroke-width: 1px; }}
+      100% {{ r: 10px; opacity: 0; stroke-width: 0; }}
+    }}
+    @keyframes eq-pulse-1 {{
+      0%, 100% {{ height: 4px; y: 16px; }}
+      50% {{ height: 18px; y: 2px; }}
+    }}
+    @keyframes eq-pulse-2 {{
+      0%, 100% {{ height: 16px; y: 4px; }}
+      50% {{ height: 6px; y: 14px; }}
+    }}
+    @keyframes eq-pulse-3 {{
+      0%, 100% {{ height: 10px; y: 10px; }}
+      50% {{ height: 20px; y: 0px; }}
     }}
     .gyro-spin {{
-      transform-origin: 36px 54px;
+      transform-origin: 34px 56px;
       animation: gyro-rotate 16s linear infinite;
       will-change: transform;
     }}
-    .chronometer-pulse {{
-      transform-box: fill-box;
-      transform-origin: center;
-      animation: badge-glow-pulse 2s ease-in-out infinite;
-      will-change: transform, opacity;
+    .clock-outer-ring {{
+      transform-origin: 512px 168px;
+      animation: clock-dial-spin 20s linear infinite;
+      will-change: transform;
     }}
-    .radar-laser-sweep {{
-      animation: laser-radar-travel 5.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    .clock-radar-hand {{
+      transform-origin: 512px 168px;
+      animation: sweep-hand 4s linear infinite;
+      will-change: transform;
+    }}
+    .timeline-laser-sweep {{
+      animation: laser-timeline-travel 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
       will-change: transform, opacity;
       pointer-events: none;
     }}
@@ -1153,6 +1163,9 @@ def generate_05_achievements_clock(stats):
       animation: ping-expand 2s ease-out infinite;
       will-change: r, opacity;
     }}
+    .eq-b1 {{ animation: eq-pulse-1 1.2s ease-in-out infinite; }}
+    .eq-b2 {{ animation: eq-pulse-2 0.9s ease-in-out infinite; }}
+    .eq-b3 {{ animation: eq-pulse-3 1.5s ease-in-out infinite; }}
     .hud-title {{ font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }}
   </style>
 
@@ -1165,110 +1178,166 @@ def generate_05_achievements_clock(stats):
   <text class="hud-title" x="34" y="66" font-size="18" font-weight="800" fill="#ffffff" letter-spacing="0.5">Autonomous recognition</text>
   <line x1="34" y1="84" x2="806" y2="84" stroke="#162744" stroke-width="1.2" stroke-dasharray="4 8" />
 
-  <!-- ================= 4 HANDCRAFTED VECTOR CYBER TROPHIES (ZERO EMOJIS) ================= -->
+  <!-- ================= LEFT SIDE: 2x2 CYBER TROPHIES (ZERO EMOJIS) ================= -->
 
-  <!-- Trophy 1: Orbital Momentum (Streak Gold Tier) -->
+  <!-- Top-Left: Trophy 1 - Orbital Momentum (Streak Gold Tier) -->
   <g transform="translate(34, 96)">
-    <rect x="0" y="0" width="184" height="106" rx="10" fill="#091322" stroke="#b45309" stroke-width="1.2" />
-    <text class="hud-title" x="174" y="17" font-size="7.5" font-weight="800" fill="#fbbf24" text-anchor="end">GOLD S-RANK</text>
+    <rect x="0" y="0" width="196" height="118" rx="10" fill="#091322" stroke="#b45309" stroke-width="1.2" />
+    <text class="hud-title" x="186" y="17" font-size="7.5" font-weight="800" fill="#fbbf24" text-anchor="end">GOLD S-RANK</text>
 
     <!-- Handcrafted Vector Insignia: Gyro Flame -->
     <g>
-      <circle cx="36" cy="54" r="20" fill="none" stroke="#b45309" stroke-width="1.1" stroke-dasharray="3 3" />
-      <circle class="gyro-spin" cx="36" cy="54" r="14" fill="none" stroke="#fbbf24" stroke-width="1.2" stroke-dasharray="6 4" />
-      <path d="M 36 44 C 32 48 33 53 35 56 C 36 57 37 57 38 56 C 40 53 41 48 36 44 Z" fill="#fbbf24" />
-      <circle cx="36" cy="55" r="2" fill="#ffffff" />
+      <circle cx="34" cy="56" r="18" fill="none" stroke="#b45309" stroke-width="1.1" stroke-dasharray="3 3" />
+      <circle class="gyro-spin" cx="34" cy="56" r="13" fill="none" stroke="#fbbf24" stroke-width="1.2" stroke-dasharray="6 4" />
+      <path d="M 34 46 C 30 50 31 55 33 58 C 34 59 35 59 36 58 C 38 55 39 50 34 46 Z" fill="#fbbf24" />
+      <circle cx="34" cy="57" r="1.8" fill="#ffffff" />
     </g>
 
-    <text class="hud-title" x="66" y="44" font-size="9" font-weight="800" fill="#fbbf24" letter-spacing="0.5">ORBITAL MOMENTUM</text>
-    <text class="hud-title" x="66" y="62" font-size="13" font-weight="800" fill="#ffffff">{stats['streak_days']}D ACTIVE STREAK</text>
-    <text class="hud-title" x="66" y="76" font-size="7.5" font-weight="600" fill="#78716c">CONTINUOUS VELOCITY</text>
-    <rect x="66" y="84" width="7" height="7" rx="1.5" fill="#f59e0b" />
-    <text class="hud-title" x="78" y="90.5" font-size="7" font-weight="700" fill="#fbbf24">STATUS: ACTIVE</text>
+    <text class="hud-title" x="62" y="44" font-size="9" font-weight="800" fill="#fbbf24" letter-spacing="0.5">ORBITAL MOMENTUM</text>
+    <text class="hud-title" x="62" y="62" font-size="13" font-weight="800" fill="#ffffff">{stats['streak_days']}D ACTIVE STREAK</text>
+    <text class="hud-title" x="62" y="77" font-size="7.5" font-weight="600" fill="#78716c">CONTINUOUS VELOCITY</text>
+    <rect x="62" y="87" width="7" height="7" rx="1.5" fill="#f59e0b" />
+    <text class="hud-title" x="74" y="93.5" font-size="7" font-weight="700" fill="#fbbf24">STATUS: ACTIVE</text>
   </g>
 
-  <!-- Trophy 2: Multi-Stack Architect -->
-  <g transform="translate(228, 96)">
-    <rect x="0" y="0" width="184" height="106" rx="10" fill="#091322" stroke="#1d4ed8" stroke-width="1.2" />
-    <text class="hud-title" x="174" y="17" font-size="7.5" font-weight="800" fill="#38bdf8" text-anchor="end">PLATINUM</text>
+  <!-- Top-Right: Trophy 2 - Multi-Stack Architect (Platinum) -->
+  <g transform="translate(242, 96)">
+    <rect x="0" y="0" width="196" height="118" rx="10" fill="#091322" stroke="#1d4ed8" stroke-width="1.2" />
+    <text class="hud-title" x="186" y="17" font-size="7.5" font-weight="800" fill="#38bdf8" text-anchor="end">PLATINUM</text>
 
     <!-- Handcrafted Vector Insignia: Quantum Tech Prisms -->
     <g>
-      <rect x="25" y="43" width="22" height="22" rx="4" fill="#0e2342" stroke="#38bdf8" stroke-width="1.2" transform="rotate(45 36 54)" />
-      <circle cx="36" cy="54" r="5" fill="#0284c7" />
-      <circle cx="36" cy="54" r="2" fill="#ffffff" />
+      <rect x="23" y="45" width="20" height="20" rx="4" fill="#0e2342" stroke="#38bdf8" stroke-width="1.2" transform="rotate(45 33 55)" />
+      <circle cx="33" cy="55" r="4.5" fill="#0284c7" />
+      <circle cx="33" cy="55" r="1.8" fill="#ffffff" />
     </g>
 
-    <text class="hud-title" x="66" y="44" font-size="9" font-weight="800" fill="#38bdf8" letter-spacing="0.5">SPECTRUM CORE</text>
-    <text class="hud-title" x="66" y="62" font-size="13" font-weight="800" fill="#ffffff">{len(stats.get('languages', []))} LANGUAGES</text>
-    <text class="hud-title" x="66" y="76" font-size="7.5" font-weight="600" fill="#64748b">POLYGLOT STACK</text>
-    <rect x="66" y="84" width="7" height="7" rx="1.5" fill="#0284c7" />
-    <text class="hud-title" x="78" y="90.5" font-size="7" font-weight="700" fill="#38bdf8">TIER: MASTER</text>
+    <text class="hud-title" x="62" y="44" font-size="9" font-weight="800" fill="#38bdf8" letter-spacing="0.5">SPECTRUM CORE</text>
+    <text class="hud-title" x="62" y="62" font-size="13" font-weight="800" fill="#ffffff">{len(stats.get('languages', []))} LANGUAGES</text>
+    <text class="hud-title" x="62" y="77" font-size="7.5" font-weight="600" fill="#64748b">POLYGLOT STACK</text>
+    <rect x="62" y="87" width="7" height="7" rx="1.5" fill="#0284c7" />
+    <text class="hud-title" x="74" y="93.5" font-size="7" font-weight="700" fill="#38bdf8">TIER: MASTER</text>
   </g>
 
-  <!-- Trophy 3: Deep Harbor (Public Repos) -->
-  <g transform="translate(422, 96)">
-    <rect x="0" y="0" width="184" height="106" rx="10" fill="#091322" stroke="#6d28d9" stroke-width="1.2" />
-    <text class="hud-title" x="174" y="17" font-size="7.5" font-weight="800" fill="#c084fc" text-anchor="end">TITAN</text>
+  <!-- Bottom-Left: Trophy 3 - Deep Harbor (TITAN) -->
+  <g transform="translate(34, 226)">
+    <rect x="0" y="0" width="196" height="118" rx="10" fill="#091322" stroke="#6d28d9" stroke-width="1.2" />
+    <text class="hud-title" x="186" y="17" font-size="7.5" font-weight="800" fill="#c084fc" text-anchor="end">TITAN</text>
 
     <!-- Handcrafted Vector Insignia: Nexus Constellation Nodes -->
     <g>
-      <circle cx="36" cy="45" r="4.5" fill="#7c3aed" stroke="#c084fc" stroke-width="1" />
-      <circle cx="27" cy="60" r="4" fill="#7c3aed" stroke="#c084fc" stroke-width="1" />
-      <circle cx="45" cy="60" r="4" fill="#7c3aed" stroke="#c084fc" stroke-width="1" />
-      <line x1="36" y1="45" x2="27" y2="60" stroke="#a855f7" stroke-width="1.2" />
-      <line x1="36" y1="45" x2="45" y2="60" stroke="#a855f7" stroke-width="1.2" />
-      <line x1="27" y1="60" x2="45" y2="60" stroke="#a855f7" stroke-width="1.2" />
+      <circle cx="34" cy="46" r="4" fill="#7c3aed" stroke="#c084fc" stroke-width="1" />
+      <circle cx="25" cy="62" r="3.5" fill="#7c3aed" stroke="#c084fc" stroke-width="1" />
+      <circle cx="43" cy="62" r="3.5" fill="#7c3aed" stroke="#c084fc" stroke-width="1" />
+      <line x1="34" y1="46" x2="25" y2="62" stroke="#a855f7" stroke-width="1.1" />
+      <line x1="34" y1="46" x2="43" y2="62" stroke="#a855f7" stroke-width="1.1" />
+      <line x1="25" y1="62" x2="43" y2="62" stroke="#a855f7" stroke-width="1.1" />
     </g>
 
-    <text class="hud-title" x="66" y="44" font-size="9" font-weight="800" fill="#c084fc" letter-spacing="0.5">DEEP HARBOR</text>
-    <text class="hud-title" x="66" y="62" font-size="13" font-weight="800" fill="#ffffff">{stats.get('repos', 0)} REPOSITORIES</text>
-    <text class="hud-title" x="66" y="76" font-size="7.5" font-weight="600" fill="#64748b">MISSION ARCHIVES</text>
-    <rect x="66" y="84" width="7" height="7" rx="1.5" fill="#7c3aed" />
-    <text class="hud-title" x="78" y="90.5" font-size="7" font-weight="700" fill="#c084fc">ARMORY: ONLINE</text>
+    <text class="hud-title" x="62" y="44" font-size="9" font-weight="800" fill="#c084fc" letter-spacing="0.5">DEEP HARBOR</text>
+    <text class="hud-title" x="62" y="62" font-size="13" font-weight="800" fill="#ffffff">{stats.get('repos', 0)} REPOSITORIES</text>
+    <text class="hud-title" x="62" y="77" font-size="7.5" font-weight="600" fill="#64748b">MISSION ARCHIVES</text>
+    <rect x="62" y="87" width="7" height="7" rx="1.5" fill="#7c3aed" />
+    <text class="hud-title" x="74" y="93.5" font-size="7" font-weight="700" fill="#c084fc">ARMORY: ONLINE</text>
   </g>
 
-  <!-- Trophy 4: Cosmic Forge (Total Contributions) -->
-  <g transform="translate(616, 96)">
-    <rect x="0" y="0" width="184" height="106" rx="10" fill="#091322" stroke="#059669" stroke-width="1.2" />
-    <text class="hud-title" x="174" y="17" font-size="7.5" font-weight="800" fill="#34d399" text-anchor="end">EMERALD</text>
+  <!-- Bottom-Right: Trophy 4 - Cosmic Forge (EMERALD) -->
+  <g transform="translate(242, 226)">
+    <rect x="0" y="0" width="196" height="118" rx="10" fill="#091322" stroke="#059669" stroke-width="1.2" />
+    <text class="hud-title" x="186" y="17" font-size="7.5" font-weight="800" fill="#34d399" text-anchor="end">EMERALD</text>
 
     <!-- Handcrafted Vector Insignia: Pulsing Atom Core -->
     <g>
-      <ellipse cx="36" cy="54" rx="18" ry="7" fill="none" stroke="#059669" stroke-width="1.3" transform="rotate(-30 36 54)" />
-      <ellipse cx="36" cy="54" rx="18" ry="7" fill="none" stroke="#34d399" stroke-width="1.3" transform="rotate(30 36 54)" />
-      <circle cx="36" cy="54" r="3.2" fill="#ffffff" />
+      <ellipse cx="34" cy="56" rx="16" ry="6.5" fill="none" stroke="#059669" stroke-width="1.2" transform="rotate(-30 34 56)" />
+      <ellipse cx="34" cy="56" rx="16" ry="6.5" fill="none" stroke="#34d399" stroke-width="1.2" transform="rotate(30 34 56)" />
+      <circle cx="34" cy="56" r="2.8" fill="#ffffff" />
     </g>
 
-    <text class="hud-title" x="66" y="44" font-size="9" font-weight="800" fill="#34d399" letter-spacing="0.5">COSMIC FORGE</text>
-    <text class="hud-title" x="66" y="62" font-size="13" font-weight="800" fill="#ffffff">{stats['contributions']} COMMITS</text>
-    <text class="hud-title" x="66" y="76" font-size="7.5" font-weight="600" fill="#64748b">ENERGY GENERATED</text>
-    <rect x="66" y="84" width="7" height="7" rx="1.5" fill="#059669" />
-    <text class="hud-title" x="78" y="90.5" font-size="7" font-weight="700" fill="#34d399">SIGNAL: LIVE</text>
+    <text class="hud-title" x="62" y="44" font-size="9" font-weight="800" fill="#34d399" letter-spacing="0.5">COSMIC FORGE</text>
+    <text class="hud-title" x="62" y="62" font-size="13" font-weight="800" fill="#ffffff">{stats['contributions']} COMMITS</text>
+    <text class="hud-title" x="62" y="77" font-size="7.5" font-weight="600" fill="#64748b">ENERGY GENERATED</text>
+    <rect x="62" y="87" width="7" height="7" rx="1.5" fill="#059669" />
+    <text class="hud-title" x="74" y="93.5" font-size="7" font-weight="700" fill="#34d399">SIGNAL: LIVE</text>
   </g>
 
-  <!-- ================= DIVIDER LINE ================= -->
-  <line x1="34" y1="216" x2="806" y2="216" stroke="#162744" stroke-width="1" />
+  <!-- Vertical Divider Between Trophies & Digital Clock -->
+  <line x1="452" y1="96" x2="452" y2="344" stroke="#162744" stroke-width="1.2" stroke-dasharray="3 5" />
 
-  <!-- ================= 7-DAY TEMPORAL CHRONOMETER CLOCK ================= -->
+  <!-- ================= RIGHT SIDE: HIGH-LEVEL DIGITAL CHRONOMETER CLOCK CONSOLE ================= -->
+  <!-- Digital Glass Frame -->
+  <rect x="464" y="96" width="342" height="248" rx="12" fill="#060c18" stroke="#162c4e" stroke-width="1.2" />
+  <line x1="476" y1="96" x2="536" y2="96" stroke="#00e5ff" stroke-width="2.5" />
+  <circle cx="792" cy="110" r="2.5" fill="#10b981" />
+  <circle class="today-ping-ring" cx="792" cy="110" r="2.5" fill="none" stroke="#10b981" stroke-width="1.2" />
+
+  <!-- Console Header -->
+  <text class="hud-title" x="478" y="113" font-size="8.5" font-weight="800" fill="#00e5ff" letter-spacing="1.5">DIGITAL CHRONOMETER</text>
+  <text class="hud-title" x="478" y="123" font-size="6.5" font-weight="600" fill="#64748b" letter-spacing="0.5">7D TELEMETRY // REAL-TIME PRECISION RADAR</text>
+  <line x1="476" y1="128" x2="794" y2="128" stroke="#112238" stroke-width="0.8" />
+
+  <!-- Top Half: Holographic Circular Dial + Velocity Readout -->
   <g>
-    <!-- Section Title & Rolling Velocity Pill -->
-    <text class="hud-title" x="34" y="238" font-size="10" font-weight="700" fill="#38bdf8" letter-spacing="2">TEMPORAL CHRONOMETER // 7-DAY REAL-TIME ROLLING RADAR</text>
-    <g transform="translate(614, 224)">
-      <rect x="0" y="0" width="192" height="22" rx="5" fill="#0b172a" stroke="#1d4ed8" stroke-width="1" />
-      <circle class="chronometer-pulse" cx="12" cy="11" r="3" fill="#38bdf8" />
-      <text class="hud-title" x="22" y="15" font-size="9" font-weight="700" fill="#93c5fd">7D ROLLING: {seven_day_total} COMMITS</text>
-    </g>
-
-    <!-- Sweeping Chronometer Holographic Laser Radar Beam -->
-    <g clip-path="url(#capsules-clip)">
-      <g class="radar-laser-sweep">
-        <rect x="0" y="254" width="48" height="106" fill="url(#laser-sweep-grad)" />
-        <line x1="48" y1="254" x2="48" y2="360" stroke="#7dd3fc" stroke-width="1.8" />
+    <!-- Circular Digital Radar Dial -->
+    <g transform="translate(512, 172)">
+      <circle cx="0" cy="0" r="30" fill="#071324" stroke="#112b4e" stroke-width="1.2" />
+      <circle class="clock-outer-ring" cx="0" cy="0" r="25" fill="none" stroke="#00e5ff" stroke-width="1.2" stroke-dasharray="5 7 2 7" opacity="0.85" />
+      <circle cx="0" cy="0" r="18" fill="none" stroke="#1e3a5f" stroke-width="0.8" stroke-dasharray="2 3" />
+      <line x1="-30" y1="0" x2="30" y2="0" stroke="#112b4e" stroke-width="0.8" />
+      <line x1="0" y1="-30" x2="0" y2="30" stroke="#112b4e" stroke-width="0.8" />
+      
+      <!-- Rotating Holographic Radar Sweep Hand -->
+      <g class="clock-radar-hand">
+        <line x1="0" y1="0" x2="0" y2="-26" stroke="#00e5ff" stroke-width="1.8" stroke-linecap="round" />
+        <polygon points="0,-26 -5,-10 5,-10" fill="#00e5ff" opacity="0.25" />
       </g>
+      
+      <!-- Dial Center Hub -->
+      <circle cx="0" cy="0" r="4" fill="#00e5ff" />
+      <circle cx="0" cy="0" r="1.8" fill="#ffffff" />
     </g>
 
-    <!-- 7 Daily Telemetry Capsules -->
+    <!-- Readout & Stats to the Right of Dial -->
+    <g transform="translate(562, 142)">
+      <!-- 7D Total Number -->
+      <text class="hud-title" x="0" y="24" font-size="24" font-weight="900" fill="#ffffff" letter-spacing="1">{seven_day_total}</text>
+      <text class="hud-title" x="38" y="16" font-size="8.5" font-weight="800" fill="#00e5ff" letter-spacing="1">COMMITS</text>
+      <text class="hud-title" x="38" y="26" font-size="6.5" font-weight="700" fill="#64748b" letter-spacing="0.5">7-DAY ROLLING VELOCITY</text>
+
+      <!-- Dynamic Animated Equalizer Bars -->
+      <g transform="translate(164, 8)">
+        <rect class="eq-b1" x="0" y="0" width="3" height="18" rx="1.5" fill="#00e5ff" />
+        <rect class="eq-b2" x="5" y="0" width="3" height="18" rx="1.5" fill="#38bdf8" />
+        <rect class="eq-b3" x="10" y="0" width="3" height="18" rx="1.5" fill="#0284c7" />
+        <rect class="eq-b1" x="15" y="0" width="3" height="18" rx="1.5" fill="#00e5ff" />
+        <rect class="eq-b2" x="20" y="0" width="3" height="18" rx="1.5" fill="#38bdf8" />
+      </g>
+
+      <!-- Status Pill Box -->
+      <rect x="0" y="38" width="228" height="22" rx="4" fill="#09182d" stroke="#16375c" stroke-width="0.8" />
+      <text class="hud-title" x="8" y="52" font-size="6.5" font-weight="700" fill="#38bdf8">RADAR: ACTIVE</text>
+      <text class="hud-title" x="76" y="52" font-size="6.5" font-weight="700" fill="#64748b">|</text>
+      <text class="hud-title" x="86" y="52" font-size="6.5" font-weight="700" fill="#93c5fd">ACCURACY: 100%</text>
+      <text class="hud-title" x="162" y="52" font-size="6.5" font-weight="700" fill="#64748b">|</text>
+      <text class="hud-title" x="172" y="52" font-size="6.5" font-weight="700" fill="#34d399">FREQ: 60FPS</text>
+    </g>
+  </g>
+
+  <!-- Mid Divider Inside Clock Console -->
+  <line x1="476" y1="218" x2="794" y2="218" stroke="#112238" stroke-width="0.8" stroke-dasharray="2 4" />
+
+  <!-- Bottom Half: Sweeping Timeline Laser & 7 Daily Capsules -->
+  <text class="hud-title" x="478" y="230" font-size="7" font-weight="700" fill="#38bdf8" letter-spacing="1">7-DAY ACTIVITY MATRIX // HOURLY LOGS</text>
+  
+  <!-- Laser Radar Beam Sweeping Across 7 Capsules -->
+  <g clip-path="url(#timeline-clip)">
+    <g class="timeline-laser-sweep">
+      <rect x="470" y="234" width="36" height="104" fill="url(#clock-scan-grad)" />
+      <line x1="506" y1="234" x2="506" y2="338" stroke="#00e5ff" stroke-width="1.8" />
+    </g>
+  </g>
+
+  <!-- 7 Daily Capsules Group -->
+  <g>
     {capsules_markup}
   </g>
 </svg>"""
@@ -1656,7 +1725,7 @@ __PELLETS_STYLE__
   <g transform="translate(34, 30)">
     <rect x="0" y="0" width="3" height="28" rx="1.5" fill="#00e5ff" />
     <text class="hud-title" x="12" y="15" font-size="12" font-weight="800" fill="#f8fafc" letter-spacing="1.5">CYBER ARCADE</text>
-    <text class="hud-title" x="12" y="27" font-size="8.5" font-weight="700" fill="#38bdf8" letter-spacing="1">4-PHASE CYBER VIPER // 100% LIVE INTERACTIVE HUNT</text>
+    <text class="hud-title" x="12" y="27" font-size="8.5" font-weight="700" fill="#38bdf8" letter-spacing="1">4-PHASE CYBER VIPER // INTERACTIVE HUNT</text>
   </g>
 
   <!-- Right Header Stats: Total Score & Active Pellets -->
