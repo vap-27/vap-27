@@ -169,46 +169,46 @@
     <text class="hud-title" x="462" y="116" font-size="8.5" font-weight="800" fill="#00e5ff" letter-spacing="1.5">7-DAY CHRONO RADAR</text>
     <text class="hud-title" x="462" y="127" font-size="6.5" font-weight="700" fill="#475569" letter-spacing="0.5">CYCLICAL RECOGNITION DIAL</text>
 
-    <!-- Top-Right Live Sync Telemetry Badge -->
-    <g transform="translate(714, 107)">
-      <rect x="0" y="0" width="76" height="18" rx="4" fill="#09182d" stroke="#183b63" stroke-width="0.8" />
+    <!-- Top-Right Live Sync Telemetry Badge (Time of Latest Commit) -->
+    <g transform="translate(690, 107)">
+      <rect x="0" y="0" width="100" height="18" rx="4" fill="#09182d" stroke="#183b63" stroke-width="0.8" />
       <circle cx="8" cy="9" r="2.2" fill="#00e5ff" />
-      <text class="hud-title" x="15" y="12.5" font-size="6.5" font-weight="800" fill="#e2e8f0" letter-spacing="0.5">08:07:17 UTC</text>
+      <text class="hud-title" x="15" y="12.5" font-size="6.5" font-weight="800" fill="#e2e8f0" letter-spacing="0.5">LAST: 06:23:21 UTC</text>
     </g>
 
-    <!-- Outer Orbit Dashed Ring (r = 80) -->
-    <circle cx="626" cy="222" r="80" fill="none" stroke="#162d4a" stroke-width="1.0" stroke-dasharray="3 5" />
+    <!-- Outer Orbit Dashed Ring (r = 76) -->
+    <circle cx="626" cy="222" r="76" fill="none" stroke="#162d4a" stroke-width="1.0" stroke-dasharray="3 5" />
 
-    <!-- Intermediate Micro-Dot Track Ring (r = 54) -->
-    <circle cx="626" cy="222" r="54" fill="none" stroke="#0a1728" stroke-width="7" />
-    <circle cx="626.0" cy="168.0" r="0.9" fill="#1e3a5f" />
-      <circle cx="638.0" cy="169.4" r="0.9" fill="#1e3a5f" />
-      <circle cx="649.4" cy="173.3" r="0.9" fill="#1e3a5f" />
-      <circle cx="659.7" cy="179.8" r="0.9" fill="#1e3a5f" />
-      <circle cx="668.2" cy="188.3" r="0.9" fill="#1e3a5f" />
-      <circle cx="674.7" cy="198.6" r="0.9" fill="#1e3a5f" />
-      <circle cx="678.6" cy="210.0" r="0.9" fill="#1e3a5f" />
-      <circle cx="680.0" cy="222.0" r="0.9" fill="#1e3a5f" />
-      <circle cx="678.6" cy="234.0" r="0.9" fill="#1e3a5f" />
-      <circle cx="674.7" cy="245.4" r="0.9" fill="#1e3a5f" />
-      <circle cx="668.2" cy="255.7" r="0.9" fill="#1e3a5f" />
-      <circle cx="659.7" cy="264.2" r="0.9" fill="#1e3a5f" />
-      <circle cx="649.4" cy="270.7" r="0.9" fill="#1e3a5f" />
-      <circle cx="638.0" cy="274.6" r="0.9" fill="#1e3a5f" />
-      <circle cx="626.0" cy="276.0" r="0.9" fill="#1e3a5f" />
-      <circle cx="614.0" cy="274.6" r="0.9" fill="#1e3a5f" />
-      <circle cx="602.6" cy="270.7" r="0.9" fill="#1e3a5f" />
-      <circle cx="592.3" cy="264.2" r="0.9" fill="#1e3a5f" />
-      <circle cx="583.8" cy="255.7" r="0.9" fill="#1e3a5f" />
-      <circle cx="577.3" cy="245.4" r="0.9" fill="#1e3a5f" />
-      <circle cx="573.4" cy="234.0" r="0.9" fill="#1e3a5f" />
-      <circle cx="572.0" cy="222.0" r="0.9" fill="#1e3a5f" />
-      <circle cx="573.4" cy="210.0" r="0.9" fill="#1e3a5f" />
-      <circle cx="577.3" cy="198.6" r="0.9" fill="#1e3a5f" />
-      <circle cx="583.8" cy="188.3" r="0.9" fill="#1e3a5f" />
-      <circle cx="592.3" cy="179.8" r="0.9" fill="#1e3a5f" />
-      <circle cx="602.6" cy="173.3" r="0.9" fill="#1e3a5f" />
-      <circle cx="614.0" cy="169.4" r="0.9" fill="#1e3a5f" />
+    <!-- Intermediate Micro-Dot Track Ring (r = 52) -->
+    <circle cx="626" cy="222" r="52" fill="none" stroke="#0a1728" stroke-width="7" />
+    <circle cx="626.0" cy="170.0" r="0.9" fill="#1e3a5f" />
+      <circle cx="637.6" cy="171.3" r="0.9" fill="#1e3a5f" />
+      <circle cx="648.6" cy="175.1" r="0.9" fill="#1e3a5f" />
+      <circle cx="658.4" cy="181.3" r="0.9" fill="#1e3a5f" />
+      <circle cx="666.7" cy="189.6" r="0.9" fill="#1e3a5f" />
+      <circle cx="672.9" cy="199.4" r="0.9" fill="#1e3a5f" />
+      <circle cx="676.7" cy="210.4" r="0.9" fill="#1e3a5f" />
+      <circle cx="678.0" cy="222.0" r="0.9" fill="#1e3a5f" />
+      <circle cx="676.7" cy="233.6" r="0.9" fill="#1e3a5f" />
+      <circle cx="672.9" cy="244.6" r="0.9" fill="#1e3a5f" />
+      <circle cx="666.7" cy="254.4" r="0.9" fill="#1e3a5f" />
+      <circle cx="658.4" cy="262.7" r="0.9" fill="#1e3a5f" />
+      <circle cx="648.6" cy="268.9" r="0.9" fill="#1e3a5f" />
+      <circle cx="637.6" cy="272.7" r="0.9" fill="#1e3a5f" />
+      <circle cx="626.0" cy="274.0" r="0.9" fill="#1e3a5f" />
+      <circle cx="614.4" cy="272.7" r="0.9" fill="#1e3a5f" />
+      <circle cx="603.4" cy="268.9" r="0.9" fill="#1e3a5f" />
+      <circle cx="593.6" cy="262.7" r="0.9" fill="#1e3a5f" />
+      <circle cx="585.3" cy="254.4" r="0.9" fill="#1e3a5f" />
+      <circle cx="579.1" cy="244.6" r="0.9" fill="#1e3a5f" />
+      <circle cx="575.3" cy="233.6" r="0.9" fill="#1e3a5f" />
+      <circle cx="574.0" cy="222.0" r="0.9" fill="#1e3a5f" />
+      <circle cx="575.3" cy="210.4" r="0.9" fill="#1e3a5f" />
+      <circle cx="579.1" cy="199.4" r="0.9" fill="#1e3a5f" />
+      <circle cx="585.3" cy="189.6" r="0.9" fill="#1e3a5f" />
+      <circle cx="593.6" cy="181.3" r="0.9" fill="#1e3a5f" />
+      <circle cx="603.4" cy="175.1" r="0.9" fill="#1e3a5f" />
+      <circle cx="614.4" cy="171.3" r="0.9" fill="#1e3a5f" />
 
     <!-- Rotating Holographic Gyro Ring -->
     <g>
@@ -219,8 +219,8 @@
         to="360 626 222"
         dur="24s"
         repeatCount="indefinite" />
-      <circle cx="626" cy="222" r="62" fill="none" stroke="#00e5ff" stroke-width="1.0" stroke-dasharray="14 42 28 56" opacity="0.35" />
-      <circle cx="626" cy="222" r="62" fill="none" stroke="#38bdf8" stroke-width="0.6" stroke-dasharray="8 60 12 70" opacity="0.25" />
+      <circle cx="626" cy="222" r="60" fill="none" stroke="#00e5ff" stroke-width="1.0" stroke-dasharray="14 42 28 56" opacity="0.35" />
+      <circle cx="626" cy="222" r="60" fill="none" stroke="#38bdf8" stroke-width="0.6" stroke-dasharray="8 60 12 70" opacity="0.25" />
     </g>
 
     <!-- Continuous Sweeping 360-Degree Radar Scanner -->
@@ -232,36 +232,36 @@
         to="360 626 222"
         dur="12s"
         repeatCount="indefinite" />
-      <line x1="626" y1="222" x2="626" y2="142" stroke="#00e5ff" stroke-width="1.2" opacity="0.8" stroke-linecap="round" />
-      <polygon points="626,222 626,142 604,145" fill="url(#radar-slice-grad)" opacity="0.4" />
+      <line x1="626" y1="222" x2="626" y2="146" stroke="#00e5ff" stroke-width="1.2" opacity="0.8" stroke-linecap="round" />
+      <polygon points="626,222 626,146 604,149" fill="url(#radar-slice-grad)" opacity="0.4" />
     </g>
 
     <!-- The 7 Day Spoke Rays & Activity Beams -->
     <g>
-      <line x1="626.0" y1="182.0" x2="626.0" y2="142.0" stroke="#0e1b2e" stroke-width="2.5" stroke-linecap="round" />
+      <line x1="626.0" y1="182.0" x2="626.0" y2="146.0" stroke="#0e1b2e" stroke-width="2.5" stroke-linecap="round" />
       <circle cx="626.0" cy="176.0" r="1.6" fill="#1b314f" />
-      <line x1="657.3" y1="197.1" x2="688.5" y2="172.1" stroke="#0e1b2e" stroke-width="2.5" stroke-linecap="round" />
+      <line x1="657.3" y1="197.1" x2="685.4" y2="174.6" stroke="#0e1b2e" stroke-width="2.5" stroke-linecap="round" />
       <!-- Spoke MON (4 commits) -->
-      <line x1="657.3" y1="197.1" x2="668.2" y2="188.3" stroke="#0284c7" stroke-width="3.2" stroke-linecap="round" />
-      <line x1="657.3" y1="197.1" x2="668.2" y2="188.3" stroke="#38bdf8" stroke-width="1.6" stroke-linecap="round" />
-      <circle cx="668.2" cy="188.3" r="2.8" fill="#38bdf8" stroke="#0284c7" stroke-width="1.0" />
-      <line x1="665.0" y1="230.9" x2="704.0" y2="239.8" stroke="#0e1b2e" stroke-width="2.5" stroke-linecap="round" />
+      <line x1="657.3" y1="197.1" x2="667.1" y2="189.2" stroke="#0284c7" stroke-width="3.2" stroke-linecap="round" />
+      <line x1="657.3" y1="197.1" x2="667.1" y2="189.2" stroke="#38bdf8" stroke-width="1.6" stroke-linecap="round" />
+      <circle cx="667.1" cy="189.2" r="2.8" fill="#38bdf8" stroke="#0284c7" stroke-width="1.0" />
+      <line x1="665.0" y1="230.9" x2="700.1" y2="238.9" stroke="#0e1b2e" stroke-width="2.5" stroke-linecap="round" />
       <!-- Spoke TUE (8 commits) -->
-      <line x1="665.0" y1="230.9" x2="691.0" y2="236.8" stroke="#0284c7" stroke-width="3.2" stroke-linecap="round" />
-      <line x1="665.0" y1="230.9" x2="691.0" y2="236.8" stroke="#38bdf8" stroke-width="1.6" stroke-linecap="round" />
-      <circle cx="691.0" cy="236.8" r="2.8" fill="#38bdf8" stroke="#0284c7" stroke-width="1.0" />
-      <line x1="643.4" y1="258.0" x2="660.7" y2="294.1" stroke="#0e1b2e" stroke-width="2.5" stroke-linecap="round" />
+      <line x1="665.0" y1="230.9" x2="688.4" y2="236.2" stroke="#0284c7" stroke-width="3.2" stroke-linecap="round" />
+      <line x1="665.0" y1="230.9" x2="688.4" y2="236.2" stroke="#38bdf8" stroke-width="1.6" stroke-linecap="round" />
+      <circle cx="688.4" cy="236.2" r="2.8" fill="#38bdf8" stroke="#0284c7" stroke-width="1.0" />
+      <line x1="643.4" y1="258.0" x2="659.0" y2="290.5" stroke="#0e1b2e" stroke-width="2.5" stroke-linecap="round" />
       <circle cx="646.0" cy="263.4" r="1.6" fill="#1b314f" />
-      <line x1="608.6" y1="258.0" x2="591.3" y2="294.1" stroke="#0e1b2e" stroke-width="2.5" stroke-linecap="round" />
+      <line x1="608.6" y1="258.0" x2="593.0" y2="290.5" stroke="#0e1b2e" stroke-width="2.5" stroke-linecap="round" />
       <!-- Spoke THU (TODAY HERO BEAM) -->
-      <line x1="608.6" y1="258.0" x2="591.3" y2="294.1" stroke="#00e5ff" stroke-width="8" opacity="0.45" filter="url(#glow-soft)" stroke-linecap="round" />
-      <line x1="608.6" y1="258.0" x2="591.3" y2="294.1" stroke="#38bdf8" stroke-width="4.2" stroke-linecap="round" />
-      <line x1="608.6" y1="258.0" x2="591.3" y2="294.1" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" />
-      <circle class="today-ping-ring" cx="591.3" cy="294.1" r="3" fill="none" stroke="#00e5ff" />
-      <circle cx="591.3" cy="294.1" r="4.2" fill="#00e5ff" stroke="#ffffff" stroke-width="1.4" />
-      <line x1="587.0" y1="230.9" x2="548.0" y2="239.8" stroke="#0e1b2e" stroke-width="2.5" stroke-linecap="round" />
+      <line x1="608.6" y1="258.0" x2="593.0" y2="290.5" stroke="#00e5ff" stroke-width="8" opacity="0.45" filter="url(#glow-soft)" stroke-linecap="round" />
+      <line x1="608.6" y1="258.0" x2="593.0" y2="290.5" stroke="#38bdf8" stroke-width="4.2" stroke-linecap="round" />
+      <line x1="608.6" y1="258.0" x2="593.0" y2="290.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" />
+      <circle class="today-ping-ring" cx="593.0" cy="290.5" r="3" fill="none" stroke="#00e5ff" />
+      <circle cx="593.0" cy="290.5" r="4.2" fill="#00e5ff" stroke="#ffffff" stroke-width="1.4" />
+      <line x1="587.0" y1="230.9" x2="551.9" y2="238.9" stroke="#0e1b2e" stroke-width="2.5" stroke-linecap="round" />
       <circle cx="581.2" cy="232.2" r="1.6" fill="#1b314f" />
-      <line x1="594.7" y1="197.1" x2="563.5" y2="172.1" stroke="#0e1b2e" stroke-width="2.5" stroke-linecap="round" />
+      <line x1="594.7" y1="197.1" x2="566.6" y2="174.6" stroke="#0e1b2e" stroke-width="2.5" stroke-linecap="round" />
       <circle cx="590.0" cy="193.3" r="1.6" fill="#1b314f" />
     </g>
 
@@ -288,26 +288,26 @@
     <!-- Outer 7-Day Labels & Commit Counts -->
     <g>
       <!-- Label SUN (Idle) -->
-      <text class="hud-title" x="626.0" y="123.0" font-size="7.5" font-weight="600" fill="#475569" text-anchor="middle">SUN</text>
-      <text class="hud-title" x="626.0" y="123.0" font-size="7.0" font-weight="600" fill="#334155" text-anchor="middle">0</text>
+      <text class="hud-title" x="626" y="130" font-size="8.0" font-weight="600" fill="#475569" text-anchor="middle">SUN</text>
+      <text class="hud-title" x="626" y="140" font-size="7.5" font-weight="600" fill="#334155" text-anchor="middle">0</text>
       <!-- Label MON -->
-      <text class="hud-title" x="704.8" y="159.5" font-size="7.5" font-weight="700" fill="#94a3b8" text-anchor="start">MON</text>
-      <text class="hud-title" x="711.9" y="162.9" font-size="7.5" font-weight="700" fill="#38bdf8" text-anchor="start">4</text>
+      <text class="hud-title" x="698.8" y="163.1" font-size="8.0" font-weight="700" fill="#94a3b8" text-anchor="start">MON</text>
+      <text class="hud-title" x="698.8" y="173.1" font-size="8.0" font-weight="700" fill="#38bdf8" text-anchor="start">4</text>
       <!-- Label TUE -->
-      <text class="hud-title" x="723.6" y="243.6" font-size="7.5" font-weight="700" fill="#94a3b8" text-anchor="start">TUE</text>
-      <text class="hud-title" x="732.3" y="254.6" font-size="7.5" font-weight="700" fill="#38bdf8" text-anchor="start">8</text>
+      <text class="hud-title" x="715.8" y="237.6" font-size="8.0" font-weight="700" fill="#94a3b8" text-anchor="start">TUE</text>
+      <text class="hud-title" x="715.8" y="247.6" font-size="8.0" font-weight="700" fill="#38bdf8" text-anchor="start">8</text>
       <!-- Label WED (Idle) -->
-      <text class="hud-title" x="671.1" y="311.4" font-size="7.5" font-weight="600" fill="#475569" text-anchor="start">WED</text>
-      <text class="hud-title" x="675.0" y="326.5" font-size="7.0" font-weight="600" fill="#334155" text-anchor="start">0</text>
+      <text class="hud-title" x="668.2" y="297.3" font-size="8.0" font-weight="600" fill="#475569" text-anchor="start">WED</text>
+      <text class="hud-title" x="668.2" y="307.3" font-size="7.5" font-weight="600" fill="#334155" text-anchor="start">0</text>
       <!-- Label THU (TODAY) -->
-      <text class="hud-title" x="580.9" y="311.4" font-size="8.5" font-weight="900" fill="#ffffff" text-anchor="end" filter="url(#glow-soft)">THU</text>
-      <text class="hud-title" x="577.0" y="326.5" font-size="8.5" font-weight="800" fill="#00e5ff" text-anchor="end">8 PTS</text>
+      <text class="hud-title" x="583.8" y="297.3" font-size="8.5" font-weight="900" fill="#ffffff" text-anchor="end" filter="url(#glow-soft)">THU</text>
+      <text class="hud-title" x="583.8" y="307.3" font-size="8.5" font-weight="800" fill="#00e5ff" text-anchor="end">8 PTS</text>
       <!-- Label FRI (Idle) -->
-      <text class="hud-title" x="528.4" y="243.6" font-size="7.5" font-weight="600" fill="#475569" text-anchor="end">FRI</text>
-      <text class="hud-title" x="519.7" y="254.6" font-size="7.0" font-weight="600" fill="#334155" text-anchor="end">0</text>
+      <text class="hud-title" x="536.2" y="237.6" font-size="8.0" font-weight="600" fill="#475569" text-anchor="end">FRI</text>
+      <text class="hud-title" x="536.2" y="247.6" font-size="7.5" font-weight="600" fill="#334155" text-anchor="end">0</text>
       <!-- Label SAT (Idle) -->
-      <text class="hud-title" x="547.2" y="159.5" font-size="7.5" font-weight="600" fill="#475569" text-anchor="end">SAT</text>
-      <text class="hud-title" x="540.1" y="162.9" font-size="7.0" font-weight="600" fill="#334155" text-anchor="end">0</text>
+      <text class="hud-title" x="553.2" y="163.1" font-size="8.0" font-weight="600" fill="#475569" text-anchor="end">SAT</text>
+      <text class="hud-title" x="553.2" y="173.1" font-size="7.5" font-weight="600" fill="#334155" text-anchor="end">0</text>
     </g>
   </g>
 </svg>

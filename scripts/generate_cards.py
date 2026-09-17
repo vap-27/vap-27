@@ -451,6 +451,23 @@ def gather_user_stats(token=None):
     stats["seven_days"] = seven_days
     stats["seven_day_total"] = sum(d["count"] for d in seven_days)
 
+    # 5. Fetch time of latest commit
+    latest_commit_time = "06:23:21 UTC"
+    try:
+        events_data = fetch_json(f"https://api.github.com/users/{USERNAME}/events?per_page=10", token)
+        if events_data and isinstance(events_data, list):
+            for ev in events_data:
+                if ev.get("type") == "PushEvent":
+                    created_at = ev.get("created_at")
+                    if created_at:
+                        dt = datetime.fromisoformat(created_at.replace("Z", "+00:00"))
+                        latest_commit_time = dt.strftime("%H:%M:%S UTC")
+                        print(f" [+] Found latest commit push event at {latest_commit_time}")
+                        break
+    except Exception as e:
+        print(f" [!] Failed to fetch latest commit time: {e}")
+    stats["latest_commit_time"] = latest_commit_time
+
     return stats
 
 def render_dot_matrix_text(text, start_x, start_y, dot_r=2.5, spacing=7):
@@ -1054,10 +1071,11 @@ def generate_05_achievements_clock(stats):
     clock_cx = 626
     clock_cy = 222
     r_core = 38
-    r_track = 54
-    r_orbit = 80
-    r_label = 97
-    r_count = 106
+    r_track = 52
+    r_orbit = 76
+    r_label = 88
+
+    latest_commit_time = stats.get("latest_commit_time", "06:23:21 UTC")
 
     # 7-Day Weekly Map (Sun=0, Mon=1, Tue=2, Wed=3, Thu=4, Fri=5, Sat=6)
     day_keys = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
@@ -1103,21 +1121,25 @@ def generate_05_achievements_clock(stats):
         # Base guide spoke
         spokes_svg.append(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="#0e1b2e" stroke-width="2.5" stroke-linecap="round" />')
         
-        # Text anchoring based on quadrant
-        if cos_a > 0.35:
-            anchor = "start"
-            lx_offset = 3
-        elif cos_a < -0.35:
-            anchor = "end"
-            lx_offset = -3
-        else:
+        # Exact non-overlapping label placement
+        if i == 0:  # SUN (Straight UP)
             anchor = "middle"
-            lx_offset = 0
-            
-        lx = round(clock_cx + r_label * cos_a + lx_offset, 1)
-        ly = round(clock_cy + r_label * sin_a + (2 if sin_a > 0.3 else (-2 if sin_a < -0.3 else 0)), 1)
-        cx_lbl = round(clock_cx + r_count * cos_a + lx_offset, 1)
-        cy_lbl = round(clock_cy + r_count * sin_a + (9 if sin_a > 0.3 else (7 if sin_a < -0.3 else 9)), 1)
+            lx = clock_cx
+            ly = round(clock_cy - r_label - 4, 1)
+            cx_lbl = clock_cx
+            cy_lbl = round(ly + 10, 1)
+        elif cos_a > 0.3:  # Right side (MON, TUE, WED)
+            anchor = "start"
+            lx = round(clock_cx + r_label * cos_a + 4, 1)
+            ly = round(clock_cy + r_label * sin_a - 4, 1)
+            cx_lbl = lx
+            cy_lbl = round(ly + 10, 1)
+        else:  # Left side (THU, FRI, SAT)
+            anchor = "end"
+            lx = round(clock_cx + r_label * cos_a - 4, 1)
+            ly = round(clock_cy + r_label * sin_a - 4, 1)
+            cx_lbl = lx
+            cy_lbl = round(ly + 10, 1)
 
         if is_today:
             # High-intensity Radiant White-and-Cyan Beam Hand (Locked directly to Today's angle)
@@ -1147,8 +1169,8 @@ def generate_05_achievements_clock(stats):
             spokes_svg.append(spoke_markup)
             
             lbl_markup = f"""<!-- Label {name} -->
-      <text class="hud-title" x="{lx}" y="{ly}" font-size="7.5" font-weight="700" fill="#94a3b8" text-anchor="{anchor}">{name}</text>
-      <text class="hud-title" x="{cx_lbl}" y="{cy_lbl}" font-size="7.5" font-weight="700" fill="#38bdf8" text-anchor="{anchor}">{cnt}</text>"""
+      <text class="hud-title" x="{lx}" y="{ly}" font-size="8.0" font-weight="700" fill="#94a3b8" text-anchor="{anchor}">{name}</text>
+      <text class="hud-title" x="{cx_lbl}" y="{cy_lbl}" font-size="8.0" font-weight="700" fill="#38bdf8" text-anchor="{anchor}">{cnt}</text>"""
             labels_svg.append(lbl_markup)
         else:
             # Idle day pip
@@ -1157,8 +1179,8 @@ def generate_05_achievements_clock(stats):
             spokes_svg.append(f'<circle cx="{px}" cy="{py}" r="1.6" fill="#1b314f" />')
             
             lbl_markup = f"""<!-- Label {name} (Idle) -->
-      <text class="hud-title" x="{lx}" y="{ly}" font-size="7.5" font-weight="600" fill="#475569" text-anchor="{anchor}">{name}</text>
-      <text class="hud-title" x="{cx_lbl}" y="{cy_lbl}" font-size="7.0" font-weight="600" fill="#334155" text-anchor="{anchor}">0</text>"""
+      <text class="hud-title" x="{lx}" y="{ly}" font-size="8.0" font-weight="600" fill="#475569" text-anchor="{anchor}">{name}</text>
+      <text class="hud-title" x="{cx_lbl}" y="{cy_lbl}" font-size="7.5" font-weight="600" fill="#334155" text-anchor="{anchor}">0</text>"""
             labels_svg.append(lbl_markup)
 
     spokes_markup = "\n      ".join(spokes_svg)
@@ -1335,11 +1357,11 @@ def generate_05_achievements_clock(stats):
     <text class="hud-title" x="{console_x + 16}" y="{console_y + 20}" font-size="8.5" font-weight="800" fill="#00e5ff" letter-spacing="1.5">7-DAY CHRONO RADAR</text>
     <text class="hud-title" x="{console_x + 16}" y="{console_y + 31}" font-size="6.5" font-weight="700" fill="#475569" letter-spacing="0.5">CYCLICAL RECOGNITION DIAL</text>
 
-    <!-- Top-Right Live Sync Telemetry Badge -->
-    <g transform="translate({console_x + console_w - 92}, {console_y + 11})">
-      <rect x="0" y="0" width="76" height="18" rx="4" fill="#09182d" stroke="#183b63" stroke-width="0.8" />
+    <!-- Top-Right Live Sync Telemetry Badge (Time of Latest Commit) -->
+    <g transform="translate({console_x + console_w - 116}, {console_y + 11})">
+      <rect x="0" y="0" width="100" height="18" rx="4" fill="#09182d" stroke="#183b63" stroke-width="0.8" />
       <circle cx="8" cy="9" r="2.2" fill="#00e5ff" />
-      <text class="hud-title" x="15" y="12.5" font-size="6.5" font-weight="800" fill="#e2e8f0" letter-spacing="0.5">{time_str}</text>
+      <text class="hud-title" x="15" y="12.5" font-size="6.5" font-weight="800" fill="#e2e8f0" letter-spacing="0.5">LAST: {latest_commit_time}</text>
     </g>
 
     <!-- Outer Orbit Dashed Ring (r = {r_orbit}) -->
