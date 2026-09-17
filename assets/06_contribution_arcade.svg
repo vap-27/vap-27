@@ -2385,7 +2385,7 @@
   <g transform="translate(560, 30)">
     <rect x="0" y="0" width="246" height="32" rx="6" fill="#081528" stroke="#162c4e" stroke-width="1" />
     <text class="hud-title arcade-flash" x="14" y="20" font-size="9" font-weight="800" fill="#00e5ff" letter-spacing="1">TOTAL SCORE</text>
-    <text class="hud-mono" x="110" y="21" font-size="12" font-weight="800" fill="#ffffff" letter-spacing="1">6,300 PTS</text>
+    <text class="hud-mono" x="110" y="21" font-size="12" font-weight="800" fill="#ffffff" letter-spacing="1">6,500 PTS</text>
     <text class="hud-mono" x="198" y="20.5" font-size="8.5" font-weight="700" fill="#38bdf8">[12 PELLETS]</text>
   </g>
 
@@ -2784,7 +2784,7 @@
     <rect class="pellet-51-2" x="783.1" y="141.0" width="10.5" height="10.5" rx="2.5" fill="#0ea5e9" stroke="#bae6fd" stroke-width="0.9" />
     <rect x="783.1" y="154.5" width="10.5" height="10.5" rx="2.5" fill="#0a1322" stroke="#152742" stroke-width="0.8" />
     <rect x="783.1" y="168.0" width="10.5" height="10.5" rx="2.5" fill="#0a1322" stroke="#152742" stroke-width="0.8" />
-    <rect class="pellet-51-4" x="783.1" y="168.0" width="10.5" height="10.5" rx="2.5" fill="#0ea5e9" stroke="#bae6fd" stroke-width="0.9" />
+    <rect class="pellet-51-4" x="783.1" y="168.0" width="10.5" height="10.5" rx="2.5" fill="#38bdf8" stroke="#ffffff" stroke-width="1.0" />
   </g>
 
   <!-- ================= THE WORKING MULTI-SEGMENT CYBER SNAKE (RADIANT VIPER) ================= -->

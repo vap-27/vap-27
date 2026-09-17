@@ -148,12 +148,12 @@
     </g>
 
     <text class="hud-title" x="62" y="44" font-size="9" font-weight="800" fill="#34d399" letter-spacing="0.5">CELESTIAL PULSE</text>
-    <text class="hud-title" x="62" y="62" font-size="13" font-weight="800" fill="#ffffff">63 COMMITS</text>
+    <text class="hud-title" x="62" y="62" font-size="13" font-weight="800" fill="#ffffff">65 COMMITS</text>
     <text class="hud-title" x="62" y="77" font-size="7.5" font-weight="600" fill="#64748b">1-YEAR CALENDAR</text>
 
     <!-- Progress Track -->
     <rect x="14" y="98" width="168" height="5" rx="2.5" fill="#1e1e24" />
-    <rect x="14" y="98" width="52" height="5" rx="2.5" fill="#34d399" />
+    <rect x="14" y="98" width="54" height="5" rx="2.5" fill="#34d399" />
   </g>
 
   <!-- ================= RIGHT SIDE: EVOLVED 7-DAY CYBER CHRONOMETER CLOCK CONSOLE ================= -->
@@ -273,7 +273,7 @@
 
       <!-- Center Core Typography -->
       <text class="hud-title" x="626" y="208" font-size="6" font-weight="800" fill="#64748b" letter-spacing="1.5" text-anchor="middle">CYCLE 7D</text>
-      <text class="hud-title" x="626" y="226" font-size="17" font-weight="900" fill="#ffffff" letter-spacing="0.5" text-anchor="middle">20</text>
+      <text class="hud-title" x="626" y="226" font-size="17" font-weight="900" fill="#ffffff" letter-spacing="0.5" text-anchor="middle">22</text>
       <text class="hud-title" x="626" y="237" font-size="6" font-weight="800" fill="#38bdf8" letter-spacing="1.5" text-anchor="middle">COMMITS</text>
 
       <!-- Dynamic Animated Equalizer Bars inside Core -->
@@ -301,7 +301,7 @@
       <text class="hud-title" x="668.2" y="307.3" font-size="7.5" font-weight="600" fill="#334155" text-anchor="start">0</text>
       <!-- Label THU (TODAY) -->
       <text class="hud-title" x="583.8" y="297.3" font-size="8.5" font-weight="900" fill="#ffffff" text-anchor="end" filter="url(#glow-soft)">THU</text>
-      <text class="hud-title" x="583.8" y="307.3" font-size="8.5" font-weight="800" fill="#00e5ff" text-anchor="end">8 PTS</text>
+      <text class="hud-title" x="583.8" y="307.3" font-size="8.5" font-weight="800" fill="#00e5ff" text-anchor="end">10 PTS</text>
       <!-- Label FRI (Idle) -->
       <text class="hud-title" x="536.2" y="237.6" font-size="8.0" font-weight="600" fill="#475569" text-anchor="end">FRI</text>
       <text class="hud-title" x="536.2" y="247.6" font-size="7.5" font-weight="600" fill="#334155" text-anchor="end">0</text>
