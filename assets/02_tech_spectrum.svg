@@ -49,10 +49,10 @@
     <rect x="0" y="0" width="30" height="30" rx="6" fill="#0f1a2e" stroke="#1e3458" stroke-width="1" />
     <text class="hud-title" x="15" y="19" font-size="11" font-weight="700" fill="#38bdf8" text-anchor="middle">PY</text>
     <text class="hud-title" x="40" y="20" font-size="14" font-weight="700" fill="#ffffff">Python</text>
-    <text class="hud-title" x="0" y="48" font-size="11" font-weight="500" fill="#64748b">41.9% of public code</text>
+    <text class="hud-title" x="0" y="48" font-size="11" font-weight="500" fill="#64748b">42.0% of public code</text>
     <rect x="0" y="58" width="224" height="4" rx="2" fill="#0f1a2e" />
-    <rect class="meter-bar" x="0" y="58" width="93" height="4" rx="2" fill="#38bdf8" />
-    <circle cx="93" cy="60" r="2.5" fill="#ffffff" filter="url(#glow-soft)" />
+    <rect class="meter-bar" x="0" y="58" width="94" height="4" rx="2" fill="#38bdf8" />
+    <circle cx="94" cy="60" r="2.5" fill="#ffffff" filter="url(#glow-soft)" />
   </g>
 
   <g transform="translate(562, 125)">
@@ -77,16 +77,6 @@
 
   <g transform="translate(298, 210)">
     <rect x="0" y="0" width="30" height="30" rx="6" fill="#0f1a2e" stroke="#1e3458" stroke-width="1" />
-    <text class="hud-title" x="15" y="19" font-size="11" font-weight="700" fill="#e34c26" text-anchor="middle">HT</text>
-    <text class="hud-title" x="40" y="20" font-size="14" font-weight="700" fill="#ffffff">HTML</text>
-    <text class="hud-title" x="0" y="48" font-size="11" font-weight="500" fill="#64748b">0.6% of public code</text>
-    <rect x="0" y="58" width="224" height="4" rx="2" fill="#0f1a2e" />
-    <rect class="meter-bar" x="0" y="58" width="5" height="4" rx="2" fill="#e34c26" />
-    <circle cx="5" cy="60" r="2.5" fill="#ffffff" filter="url(#glow-soft)" />
-  </g>
-
-  <g transform="translate(562, 210)">
-    <rect x="0" y="0" width="30" height="30" rx="6" fill="#0f1a2e" stroke="#1e3458" stroke-width="1" />
     <text class="hud-title" x="15" y="19" font-size="11" font-weight="700" fill="#0284c7" text-anchor="middle">PS</text>
     <text class="hud-title" x="40" y="20" font-size="14" font-weight="700" fill="#ffffff">PowerShell</text>
     <text class="hud-title" x="0" y="48" font-size="11" font-weight="500" fill="#64748b">0.6% of public code</text>
@@ -95,7 +85,17 @@
     <circle cx="5" cy="60" r="2.5" fill="#ffffff" filter="url(#glow-soft)" />
   </g>
 
+  <g transform="translate(562, 210)">
+    <rect x="0" y="0" width="30" height="30" rx="6" fill="#0f1a2e" stroke="#1e3458" stroke-width="1" />
+    <text class="hud-title" x="15" y="19" font-size="11" font-weight="700" fill="#e34c26" text-anchor="middle">HT</text>
+    <text class="hud-title" x="40" y="20" font-size="14" font-weight="700" fill="#ffffff">HTML</text>
+    <text class="hud-title" x="0" y="48" font-size="11" font-weight="500" fill="#64748b">0.6% of public code</text>
+    <rect x="0" y="58" width="224" height="4" rx="2" fill="#0f1a2e" />
+    <rect class="meter-bar" x="0" y="58" width="5" height="4" rx="2" fill="#e34c26" />
+    <circle cx="5" cy="60" r="2.5" fill="#ffffff" filter="url(#glow-soft)" />
+  </g>
+
   <!-- ================= INTEGRATED FOOTER ================= -->
   <line x1="34" y1="298" x2="806" y2="298" stroke="#162744" stroke-width="1" />
-  <text class="hud-title" x="34" y="330" font-size="11" font-weight="600" fill="#93c5fd">TypeScript · Python · CSS · JavaScript · HTML · PowerShell · Shell · Dockerfile <tspan font-style="italic" font-weight="500" fill="#64748b">· chosen for the work, not the trend</tspan></text>
+  <text class="hud-title" x="34" y="330" font-size="11" font-weight="600" fill="#93c5fd">TypeScript · Python · CSS · JavaScript · PowerShell · HTML · Shell · Dockerfile <tspan font-style="italic" font-weight="500" fill="#64748b">· chosen for the work, not the trend</tspan></text>
 </svg>
