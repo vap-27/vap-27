@@ -1277,19 +1277,19 @@ def generate_05_achievements_clock(stats):
 
 def generate_06_contribution_arcade(stats):
     """
-    Card 6: Gamified Cyber Arcade Contribution Matrix (4-Phase Cyber Viper Engine).
+    Card 6: Gamified Cyber Arcade Contribution Matrix (Dynamic 4-Phase Cyber Viper Engine).
     Features:
-    - 4 DISTINCT ENTRANCE & EXIT PATHS in a continuous 48-second master loop:
-      * Path 1: Top-Left (18, -2) -> Bottom-Right (60, 6)
-      * Path 2: Bottom-Left (20, 8) -> Top-Right (60, 0)
-      * Path 3: Top-Right (50, -2) -> Bottom-Left (18, 8)
-      * Path 4: Far-Left (-2, 1) -> Far-Right (60, 3)
-    - Radiant Cyber Viper design with crisp white-and-dark eyes (always facing forward).
-    - Visible structured cyber grid of square boxes (zero dots!).
-    - Synchronized eating keyframes across all 4 cycles (pellets pop, vanish, and respawn).
+    - 100% REAL DYNAMIC PATHFINDING: The cyber viper directly hunts and eats every real contribution pellet on the user's heatmap!
+    - 4 DISTINCT ENTRANCE & EXIT ROUTES across continuous 48-second loop:
+      * Phase 1: Top-Left -> Bottom-Right (left-to-right hunt)
+      * Phase 2: Bottom-Left -> Top-Right (bottom-up wave)
+      * Phase 3: Top-Right -> Bottom-Left (right-to-left sweep)
+      * Phase 4: Far-Left -> Far-Right (greedy shortest intercept tour)
+    - REAL-TIME BITE & EAT INTERACTION: Pellets expand (1.4x), flash radiant cyan with bite flare drop-shadow, vanish into the snake, and respawn at cycle turnaround.
+    - Radiant Cyber Viper with crisp directional white-and-dark pupils looking forward.
+    - Clean square box matrix (zero dots!).
     - Minimalist footer: "CYBER SNAKE //"
-    - Zero green accents anywhere on card.
-    - Zero mobile lag: GPU-accelerated CSS translate transforms.
+    - GPU-accelerated translate & scale keyframes for 60 FPS mobile and desktop performance.
     """
     cols = 52
     rows = 7
@@ -1332,68 +1332,113 @@ def generate_06_contribution_arcade(stats):
 
     months_markup = "\n    ".join(month_labels_svg)
 
-    # 4 Distinct Manhattan Waypoints & Paths
-    def build_path(waypoints):
-        p = []
+    # Extract REAL active commit coordinates from sub_daily
+    active_pellets = []
+    for c in range(cols):
+        for r in range(rows):
+            idx = c * rows + r
+            if idx < len(sub_daily) and sub_daily[idx].get("count", 0) > 0:
+                active_pellets.append((c, r))
+
+    if not active_pellets:
+        active_pellets = [(20, 3), (25, 3), (30, 3), (35, 3), (40, 3)]
+        min_c, max_c = 15, 45
+    else:
+        min_c = min(c for c, r in active_pellets)
+        max_c = max(c for c, r in active_pellets)
+
+    def build_manhattan_route(waypoints):
+        full_path = []
         for wp in waypoints:
-            if not p:
-                p.append(wp)
-            else:
-                c, r = wp
-                curr_c, curr_r = p[-1]
-                while (curr_c, curr_r) != (c, r):
-                    if curr_c < c: curr_c += 1
-                    elif curr_c > c: curr_c -= 1
-                    elif curr_r < r: curr_r += 1
-                    elif curr_r > r: curr_r -= 1
-                    p.append((curr_c, curr_r))
-        return p
+            if not full_path:
+                full_path.append(wp)
+                continue
+            curr_x, curr_y = full_path[-1]
+            target_x, target_y = wp
+            
+            while (curr_x, curr_y) != (target_x, target_y):
+                last_dx = full_path[-1][0] - full_path[-2][0] if len(full_path) >= 2 else 0
+                last_dy = full_path[-1][1] - full_path[-2][1] if len(full_path) >= 2 else 0
+                
+                dx = target_x - curr_x
+                dy = target_y - curr_y
+                
+                moved = False
+                if last_dx != 0 and (dx * last_dx > 0):
+                    step = 1 if last_dx > 0 else -1
+                    curr_x += step
+                    full_path.append((curr_x, curr_y))
+                    moved = True
+                elif last_dy != 0 and (dy * last_dy > 0):
+                    step = 1 if last_dy > 0 else -1
+                    curr_y += step
+                    full_path.append((curr_x, curr_y))
+                    moved = True
+                else:
+                    prefer_x = abs(dx) >= abs(dy)
+                    if prefer_x:
+                        if dx != 0 and not (last_dx != 0 and dx * last_dx < 0):
+                            step = 1 if dx > 0 else -1
+                            curr_x += step
+                            full_path.append((curr_x, curr_y))
+                            moved = True
+                        elif dy != 0 and not (last_dy != 0 and dy * last_dy < 0):
+                            step = 1 if dy > 0 else -1
+                            curr_y += step
+                            full_path.append((curr_x, curr_y))
+                            moved = True
+                    else:
+                        if dy != 0 and not (last_dy != 0 and dy * last_dy < 0):
+                            step = 1 if dy > 0 else -1
+                            curr_y += step
+                            full_path.append((curr_x, curr_y))
+                            moved = True
+                        elif dx != 0 and not (last_dx != 0 and dx * last_dx < 0):
+                            step = 1 if dx > 0 else -1
+                            curr_x += step
+                            full_path.append((curr_x, curr_y))
+                            moved = True
+                            
+                    if not moved:
+                        if last_dx != 0:
+                            step_y = 1 if curr_y < rows - 1 else -1
+                            curr_y += step_y
+                            full_path.append((curr_x, curr_y))
+                        else:
+                            step_x = 1 if curr_x < cols - 1 else -1
+                            curr_x += step_x
+                            full_path.append((curr_x, curr_y))
+        return full_path
 
-    # Path 1: Top-Left -> Bottom-Right
-    p1 = build_path([
-        (18, -2), (18, 1), (28, 1), (28, 6),
-        (36, 6), (36, 4), (40, 4), (40, 5),
-        (44, 5), (50, 5), (50, 2), (51, 2),
-        (51, 6), (60, 6)
-    ])
+    # Phase 1: Top-Left -> Bottom-Right (left-to-right sweep)
+    order1 = sorted(active_pellets, key=lambda x: (x[0], x[1]))
+    p1 = build_manhattan_route([(min_c - 1, -2), (min_c - 1, 0)] + order1 + [(max_c + 2, 6), (cols + 2, 6)])
 
-    # Path 2: Bottom-Left -> Top-Right
-    p2 = build_path([
-        (20, 8), (20, 6), (36, 6), (36, 4),
-        (28, 4), (28, 1), (44, 1), (44, 5),
-        (50, 5), (50, 2), (51, 2), (51, 6),
-        (54, 6), (54, 0), (60, 0)
-    ])
+    # Phase 2: Bottom-Left -> Top-Right (bottom-up wave)
+    order2 = sorted(active_pellets, key=lambda x: (x[0], -x[1]))
+    p2 = build_manhattan_route([(min_c - 1, 8), (min_c - 1, 6)] + order2 + [(max_c + 2, 0), (cols + 2, 0)])
 
-    # Path 3: Top-Right -> Bottom-Left
-    p3 = build_path([
-        (50, -2), (50, 2), (50, 5),
-        (51, 5), (51, 2), (51, 6),
-        (44, 6), (44, 5), (36, 5), (36, 4),
-        (34, 4), (34, 6), (28, 6), (28, 1),
-        (18, 1), (18, 8)
-    ])
+    # Phase 3: Top-Right -> Bottom-Left (right-to-left sweep)
+    order3 = sorted(active_pellets, key=lambda x: (-x[0], x[1]))
+    p3 = build_manhattan_route([(max_c + 2, -2), (max_c + 2, 0)] + order3 + [(min_c - 2, 6), (min_c - 2, 8)])
 
-    # Path 4: Far-Left -> Far-Right
-    p4 = build_path([
-        (-2, 1), (28, 1), (28, 4), (28, 6),
-        (36, 6), (36, 4), (44, 4), (44, 5),
-        (50, 5), (50, 2), (51, 2), (51, 6),
-        (54, 6), (54, 3), (60, 3)
-    ])
+    # Phase 4: Far-Left -> Far-Right (greedy shortest tour)
+    curr = (min_c - 1, 3)
+    remaining = set(active_pellets)
+    order4 = []
+    while remaining:
+        nxt = min(remaining, key=lambda p: abs(p[0]-curr[0]) + abs(p[1]-curr[1]))
+        order4.append(nxt)
+        remaining.remove(nxt)
+        curr = nxt
+    p4 = build_manhattan_route([(-2, 3), (min_c - 1, 3)] + order4 + [(max_c + 2, 3), (cols + 2, 3)])
 
     cycles = [p1, p2, p3, p4]
     num_cycles = len(cycles)
     cycle_duration = 12.0
     total_duration = cycle_duration * num_cycles  # 48.0s
 
-    active_pellets = [
-        (28, 1), (28, 4), (32, 6), (34, 6), (36, 4), (44, 5),
-        (50, 5), (50, 4), (50, 3), (50, 2),
-        (51, 3), (51, 4), (51, 5), (51, 6)
-    ]
-
-    # Directions per cycle
+    # Directions per cycle for head rotation
     cycle_dirs = []
     for p in cycles:
         dirs = []
@@ -1446,7 +1491,7 @@ def generate_06_contribution_arcade(stats):
 
     segment_css = ["\n".join(kf0)]
 
-    # Keyframes s1..s4 (Body segments trailing)
+    # Keyframes s1..s4 (Body segments trailing with clean entry opacity)
     for seg in range(1, 5):
         kf = [f"    @keyframes s{seg} {{"]
         for k, p in enumerate(cycles):
@@ -1458,40 +1503,44 @@ def generate_06_contribution_arcade(stats):
 
             for t in range(N_k):
                 pos_idx = t - seg
+                pct = round(S_k + (t / T_k) * (100.0 / num_cycles), 2)
                 if pos_idx < 0:
-                    c = p[0][0]
-                    r = p[0][1] - (seg - t)
+                    c, r = p[0]
+                    cx, cy = get_center_xy(c, r)
+                    kf.append(f"      {pct}% {{ transform: translate({cx}px, {cy}px); opacity: 0; }}")
                 elif pos_idx >= N_k:
-                    c = p[-1][0] + (pos_idx - N_k + 1)
-                    r = p[-1][1]
+                    c, r = p[-1]
+                    cx, cy = get_center_xy(c, r)
+                    kf.append(f"      {pct}% {{ transform: translate({cx}px, {cy}px); opacity: 0; }}")
                 else:
                     c, r = p[pos_idx]
-                cx, cy = get_center_xy(c, r)
-                pct = round(S_k + (t / T_k) * (100.0 / num_cycles), 2)
-                kf.append(f"      {pct}% {{ transform: translate({cx}px, {cy}px); opacity: 1; }}")
+                    cx, cy = get_center_xy(c, r)
+                    kf.append(f"      {pct}% {{ transform: translate({cx}px, {cy}px); opacity: 1; }}")
 
             exit_pct = round(S_k + (N_k / T_k) * (100.0 / num_cycles), 2)
             next_k = (k + 1) % num_cycles
-            seg_start_cx, seg_start_cy = get_center_xy(cycles[next_k][0][0], cycles[next_k][0][1] - seg)
+            next_start_cx, next_start_cy = get_center_xy(cycles[next_k][0][0], cycles[next_k][0][1])
 
             kf.append(f"      {exit_pct + 0.3}%, {round(E_k - 0.6, 2)}% {{ opacity: 0; }}")
-            kf.append(f"      {round(E_k - 0.5, 2)}%, {round(E_k - 0.1, 2)}% {{ transform: translate({seg_start_cx}px, {seg_start_cy}px); opacity: 0; }}")
+            kf.append(f"      {round(E_k - 0.5, 2)}%, {round(E_k - 0.1, 2)}% {{ transform: translate({next_start_cx}px, {next_start_cy}px); opacity: 0; }}")
             if k < num_cycles - 1:
-                kf.append(f"      {round(E_k, 2)}% {{ transform: translate({seg_start_cx}px, {seg_start_cy}px); opacity: 1; }}")
+                kf.append(f"      {round(E_k, 2)}% {{ transform: translate({next_start_cx}px, {next_start_cy}px); opacity: 0; }}")
 
-        p0_seg_cx, p0_seg_cy = get_center_xy(cycles[0][0][0], cycles[0][0][1] - seg)
-        kf.append(f"      100% {{ transform: translate({p0_seg_cx}px, {p0_seg_cy}px); opacity: 1; }}")
+        p0_start_cx, p0_start_cy = get_center_xy(cycles[0][0][0], cycles[0][0][1])
+        kf.append(f"      100% {{ transform: translate({p0_start_cx}px, {p0_start_cy}px); opacity: 0; }}")
         kf.append("    }")
         kf.append(f"    .s{seg} {{ animation: s{seg} {total_duration}s linear infinite; will-change: transform, opacity; }}")
         segment_css.append("\n".join(kf))
 
     segments_style = "\n".join(segment_css)
 
-    # Keyframes for active commit square boxes
+    # Keyframes for eating active commit square boxes
     pellet_css = []
     for ac in active_pellets:
         c, r = ac
         kf_p = [f"    @keyframes eat-{c}-{r} {{"]
+        keyframes = []
+
         for k, p in enumerate(cycles):
             S_k = (k / num_cycles) * 100.0
             E_k = ((k + 1) / num_cycles) * 100.0
@@ -1502,14 +1551,27 @@ def generate_06_contribution_arcade(stats):
             if ac in p:
                 step_idx = p.index(ac)
                 pct_eat = round(S_k + (step_idx / T_k) * (100.0 / num_cycles), 2)
-                p_before = max(round(S_k, 2), round(pct_eat - 0.3, 2))
+                p_before = max(round(S_k + 0.1, 2), round(pct_eat - 0.3, 2))
+                p_chomped = round(pct_eat, 2)
                 p_gone = round(pct_eat + 0.3, 2)
-                p_respawn = round(E_k - 0.5, 2)
+                p_respawn_pre = round(E_k - 0.4, 2)
+                p_respawn = round(E_k, 2)
 
-                kf_p.append(f"      {p_before}% {{ opacity: 1; transform: scale(1); }}")
-                kf_p.append(f"      {pct_eat}% {{ opacity: 1; transform: scale(1.35); }}")
-                kf_p.append(f"      {p_gone}%, {p_respawn}% {{ opacity: 0; transform: scale(0); }}")
-                kf_p.append(f"      {round(E_k, 2)}% {{ opacity: 1; transform: scale(1); }}")
+                keyframes.append((round(S_k, 2), "opacity: 1; transform: scale(1); filter: none;"))
+                if p_before > S_k:
+                    keyframes.append((p_before, "opacity: 1; transform: scale(1); filter: none;"))
+                keyframes.append((p_chomped, "opacity: 1; transform: scale(1.4); filter: drop-shadow(0 0 8px #00e5ff); fill: #38bdf8;"))
+                keyframes.append((p_gone, "opacity: 0; transform: scale(0);"))
+                keyframes.append((p_respawn_pre, "opacity: 0; transform: scale(0);"))
+                keyframes.append((p_respawn, "opacity: 1; transform: scale(1); filter: none;"))
+
+        keyframes.sort(key=lambda x: x[0])
+        seen_pcts = set()
+        for pct, style in keyframes:
+            if pct not in seen_pcts and 0 <= pct <= 100:
+                seen_pcts.add(pct)
+                kf_p.append(f"      {pct}% {{ {style} }}")
+
         kf_p.append("    }")
         kf_p.append(f"    .pellet-{c}-{r} {{ transform-box: fill-box; transform-origin: center; animation: eat-{c}-{r} {total_duration}s ease-in-out infinite; will-change: transform, opacity; }}")
         pellet_css.append("\n".join(kf_p))
@@ -1581,41 +1643,29 @@ def generate_06_contribution_arcade(stats):
     }}
 __SEGMENTS_STYLE__
 __PELLETS_STYLE__
-    .hud-title {{ font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }}
   </style>
 
-  <!-- Card Body -->
-  <rect x="1" y="1" width="838" height="272" rx="18" fill="#080d1a" stroke="#162744" stroke-width="1.5" />
-  <rect x="2" y="2" width="836" height="270" rx="17" fill="url(#grid-arcade)" opacity="0.85" />
+  <!-- Outer Glass Canvas Frame -->
+  <rect x="1" y="1" width="838" height="272" rx="14" fill="#040914" stroke="#162744" stroke-width="1.2" />
+  <rect x="2" y="2" width="836" height="270" rx="13" fill="url(#grid-arcade)" opacity="0.4" />
 
-  <!-- Arcade Header & Scoreboard (Zero Green Dots) -->
-  <g>
-    <text class="hud-title" x="34" y="38" font-size="10" font-weight="700" fill="#38bdf8" letter-spacing="2.5">ARCADE MATRIX RUNNER // 4-PHASE CYBER VIPER</text>
-    <text class="hud-title" x="34" y="66" font-size="18" font-weight="800" fill="#ffffff" letter-spacing="0.5">FEED THE CYBER SNAKE</text>
+  <!-- Top Ambient Glow -->
+  <ellipse cx="420" cy="18" rx="280" ry="12" fill="#00e5ff" opacity="0.06" filter="blur(16px)" />
 
-    <!-- Score Box 1: Score -->
-    <g transform="translate(424, 22)">
-      <rect x="0" y="0" width="118" height="48" rx="7" fill="#0a1424" stroke="#1e3a6a" stroke-width="1.2" />
-      <text class="hud-title" x="12" y="18" font-size="7.5" font-weight="700" fill="#64748b" letter-spacing="1">SCORE</text>
-      <text class="hud-title" x="12" y="38" font-size="16" font-weight="800" fill="#38bdf8">{total_score:06d}</text>
-    </g>
-
-    <!-- Score Box 2: Combo Streak -->
-    <g transform="translate(552, 22)">
-      <rect x="0" y="0" width="118" height="48" rx="7" fill="#0a1424" stroke="#1e3a6a" stroke-width="1.2" />
-      <text class="hud-title" x="12" y="18" font-size="7.5" font-weight="700" fill="#64748b" letter-spacing="1">COMBO</text>
-      <text class="hud-title" x="12" y="38" font-size="16" font-weight="800" fill="#f59e0b">x{stats['streak_days']} STREAK</text>
-    </g>
-
-    <!-- Score Box 3: Active Nodes -->
-    <g transform="translate(680, 22)">
-      <rect x="0" y="0" width="126" height="48" rx="7" fill="#0a1424" stroke="#1e3a6a" stroke-width="1.2" />
-      <text class="hud-title" x="12" y="18" font-size="7.5" font-weight="700" fill="#64748b" letter-spacing="1">PELLETS EATEN</text>
-      <text class="hud-title" x="12" y="38" font-size="16" font-weight="800" fill="#38bdf8">{active_count} / {len(active_pellets)}</text>
-    </g>
+  <!-- Header: Arcade Title & Real-time Contribution Score -->
+  <g transform="translate(34, 30)">
+    <rect x="0" y="0" width="3" height="28" rx="1.5" fill="#00e5ff" />
+    <text class="hud-title" x="12" y="15" font-size="12" font-weight="800" fill="#f8fafc" letter-spacing="1.5">CYBER ARCADE</text>
+    <text class="hud-title" x="12" y="27" font-size="8.5" font-weight="700" fill="#38bdf8" letter-spacing="1">4-PHASE CYBER VIPER // 100% LIVE INTERACTIVE HUNT</text>
   </g>
 
-  <line x1="34" y1="84" x2="806" y2="84" stroke="#162744" stroke-width="1.2" stroke-dasharray="4 8" />
+  <!-- Right Header Stats: Total Score & Active Pellets -->
+  <g transform="translate(560, 30)">
+    <rect x="0" y="0" width="246" height="32" rx="6" fill="#081528" stroke="#162c4e" stroke-width="1" />
+    <text class="hud-title arcade-flash" x="14" y="20" font-size="9" font-weight="800" fill="#00e5ff" letter-spacing="1">TOTAL SCORE</text>
+    <text class="hud-mono" x="110" y="21" font-size="12" font-weight="800" fill="#ffffff" letter-spacing="1">{total_score:,} PTS</text>
+    <text class="hud-mono" x="198" y="20.5" font-size="8.5" font-weight="700" fill="#38bdf8">[{len(active_pellets)} PELLETS]</text>
+  </g>
 
   <!-- Month Guide Row -->
   {months_markup}
@@ -1676,6 +1726,14 @@ __PELLETS_STYLE__
 
 def main():
     token = os.environ.get("GITHUB_TOKEN")
+    if not token:
+        token_file = os.path.join(os.path.dirname(__file__), "..", ".token")
+        if os.path.exists(token_file):
+            try:
+                with open(token_file, "r", encoding="utf-8") as tf:
+                    token = tf.read().strip()
+            except Exception:
+                pass
     print(f"[*] Gathering real-time profile telemetry for {USERNAME}...")
     stats = gather_user_stats(token)
 

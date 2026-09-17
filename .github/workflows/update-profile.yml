@@ -34,7 +34,7 @@ jobs:
 
       - name: Generate Dynamic Animated Profile Cards
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.FINEGRAINED_PAT || secrets.PROFILE_TOKEN || secrets.GITHUB_TOKEN }}
         run: |
           python scripts/generate_cards.py
 

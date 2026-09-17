@@ -424,7 +424,7 @@
       <line x1="14" y1="0" x2="48" y2="0" stroke="#38bdf8" stroke-width="2.2" />
       <text class="hud-title" x="14" y="20" font-size="9" font-weight="700" fill="#64748b" letter-spacing="1.5">CONTRIBUTIONS</text>
       <circle class="beacon" cx="166" cy="16" r="3" fill="#38bdf8" style="animation-delay: 1.2s;" />
-      <text class="hud-title" x="14" y="44" font-size="22" font-weight="800" fill="#ffffff">55</text>
+      <text class="hud-title" x="14" y="44" font-size="22" font-weight="800" fill="#ffffff">60</text>
     </g>
 
     <!-- Col 4: Followers -->
