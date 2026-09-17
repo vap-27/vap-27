@@ -39,7 +39,7 @@
     <rect x="0" y="0" width="30" height="30" rx="6" fill="#0f1a2e" stroke="#1e3458" stroke-width="1" />
     <text class="hud-title" x="15" y="19" font-size="11" font-weight="700" fill="#3178c6" text-anchor="middle">TS</text>
     <text class="hud-title" x="40" y="20" font-size="14" font-weight="700" fill="#ffffff">TypeScript</text>
-    <text class="hud-title" x="0" y="48" font-size="11" font-weight="500" fill="#64748b">45.2% of public code</text>
+    <text class="hud-title" x="0" y="48" font-size="11" font-weight="500" fill="#64748b">45.1% of public code</text>
     <rect x="0" y="58" width="224" height="4" rx="2" fill="#0f1a2e" />
     <rect class="meter-bar" x="0" y="58" width="101" height="4" rx="2" fill="#3178c6" />
     <circle cx="101" cy="60" r="2.5" fill="#ffffff" filter="url(#glow-soft)" />
@@ -49,10 +49,10 @@
     <rect x="0" y="0" width="30" height="30" rx="6" fill="#0f1a2e" stroke="#1e3458" stroke-width="1" />
     <text class="hud-title" x="15" y="19" font-size="11" font-weight="700" fill="#38bdf8" text-anchor="middle">PY</text>
     <text class="hud-title" x="40" y="20" font-size="14" font-weight="700" fill="#ffffff">Python</text>
-    <text class="hud-title" x="0" y="48" font-size="11" font-weight="500" fill="#64748b">41.5% of public code</text>
+    <text class="hud-title" x="0" y="48" font-size="11" font-weight="500" fill="#64748b">41.6% of public code</text>
     <rect x="0" y="58" width="224" height="4" rx="2" fill="#0f1a2e" />
-    <rect class="meter-bar" x="0" y="58" width="92" height="4" rx="2" fill="#38bdf8" />
-    <circle cx="92" cy="60" r="2.5" fill="#ffffff" filter="url(#glow-soft)" />
+    <rect class="meter-bar" x="0" y="58" width="93" height="4" rx="2" fill="#38bdf8" />
+    <circle cx="93" cy="60" r="2.5" fill="#ffffff" filter="url(#glow-soft)" />
   </g>
 
   <g transform="translate(562, 125)">
