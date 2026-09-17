@@ -178,12 +178,12 @@
 
     <!-- 7 Daily Telemetry Capsules -->
     
-    <!-- Capsule 1: THU (09/10) -->
+    <!-- Capsule 1: FRI (09/11) -->
     <g>
       <rect x="34" y="254" width="104" height="104" rx="8" fill="#08101d" stroke="#132135" stroke-width="1.0" />
       
-      <text class="hud-title" x="44" y="273" font-size="9" font-weight="800" fill="#475569" letter-spacing="0.5">THU</text>
-      <text class="hud-title" x="128" y="273" font-size="8" font-weight="600" fill="#64748b" text-anchor="end">09/10</text>
+      <text class="hud-title" x="44" y="273" font-size="9" font-weight="800" fill="#475569" letter-spacing="0.5">FRI</text>
+      <text class="hud-title" x="128" y="273" font-size="8" font-weight="600" fill="#64748b" text-anchor="end">09/11</text>
 
       <text class="hud-title" x="44" y="300" font-size="22" font-weight="800" fill="#334155">0</text>
       <text class="hud-title" x="70" y="299" font-size="8" font-weight="600" fill="#64748b">commits</text>
@@ -198,12 +198,12 @@
       <text class="hud-title" x="47" y="344" font-size="8" font-weight="700" fill="#475569">IDLE</text>
     </g>
 
-    <!-- Capsule 2: FRI (09/11) -->
+    <!-- Capsule 2: SAT (09/12) -->
     <g>
       <rect x="146" y="254" width="104" height="104" rx="8" fill="#08101d" stroke="#132135" stroke-width="1.0" />
       
-      <text class="hud-title" x="156" y="273" font-size="9" font-weight="800" fill="#475569" letter-spacing="0.5">FRI</text>
-      <text class="hud-title" x="240" y="273" font-size="8" font-weight="600" fill="#64748b" text-anchor="end">09/11</text>
+      <text class="hud-title" x="156" y="273" font-size="9" font-weight="800" fill="#475569" letter-spacing="0.5">SAT</text>
+      <text class="hud-title" x="240" y="273" font-size="8" font-weight="600" fill="#64748b" text-anchor="end">09/12</text>
 
       <text class="hud-title" x="156" y="300" font-size="22" font-weight="800" fill="#334155">0</text>
       <text class="hud-title" x="182" y="299" font-size="8" font-weight="600" fill="#64748b">commits</text>
@@ -218,12 +218,12 @@
       <text class="hud-title" x="159" y="344" font-size="8" font-weight="700" fill="#475569">IDLE</text>
     </g>
 
-    <!-- Capsule 3: SAT (09/12) -->
+    <!-- Capsule 3: SUN (09/13) -->
     <g>
       <rect x="258" y="254" width="104" height="104" rx="8" fill="#08101d" stroke="#132135" stroke-width="1.0" />
       
-      <text class="hud-title" x="268" y="273" font-size="9" font-weight="800" fill="#475569" letter-spacing="0.5">SAT</text>
-      <text class="hud-title" x="352" y="273" font-size="8" font-weight="600" fill="#64748b" text-anchor="end">09/12</text>
+      <text class="hud-title" x="268" y="273" font-size="9" font-weight="800" fill="#475569" letter-spacing="0.5">SUN</text>
+      <text class="hud-title" x="352" y="273" font-size="8" font-weight="600" fill="#64748b" text-anchor="end">09/13</text>
 
       <text class="hud-title" x="268" y="300" font-size="22" font-weight="800" fill="#334155">0</text>
       <text class="hud-title" x="294" y="299" font-size="8" font-weight="600" fill="#64748b">commits</text>
@@ -238,41 +238,43 @@
       <text class="hud-title" x="271" y="344" font-size="8" font-weight="700" fill="#475569">IDLE</text>
     </g>
 
-    <!-- Capsule 4: SUN (09/13) -->
+    <!-- Capsule 4: MON (09/14) -->
     <g>
-      <rect x="370" y="254" width="104" height="104" rx="8" fill="#08101d" stroke="#132135" stroke-width="1.0" />
+      <rect x="370" y="254" width="104" height="104" rx="8" fill="#0a1628" stroke="#1d3d6b" stroke-width="1.2" />
       
-      <text class="hud-title" x="380" y="273" font-size="9" font-weight="800" fill="#475569" letter-spacing="0.5">SUN</text>
-      <text class="hud-title" x="464" y="273" font-size="8" font-weight="600" fill="#64748b" text-anchor="end">09/13</text>
+      <line x1="380" y1="254" x2="410" y2="254" stroke="#0284c7" stroke-width="1.5" />
+      <circle cx="464" cy="270" r="2" fill="#0284c7" />
+      <text class="hud-title" x="380" y="273" font-size="9" font-weight="800" fill="#93c5fd" letter-spacing="0.5">MON</text>
+      <text class="hud-title" x="454" y="273" font-size="8" font-weight="600" fill="#64748b" text-anchor="end">09/14</text>
 
-      <text class="hud-title" x="380" y="300" font-size="22" font-weight="800" fill="#334155">0</text>
+      <text class="hud-title" x="380" y="300" font-size="22" font-weight="800" fill="#f0f9ff">4</text>
       <text class="hud-title" x="406" y="299" font-size="8" font-weight="600" fill="#64748b">commits</text>
 
       <!-- Activity Bar -->
       <rect x="380" y="310" width="84" height="3" rx="1.5" fill="#0f1d31" />
-      <rect x="380" y="310" width="0.0" height="3" rx="1.5" fill="#111f35" />
+      <rect x="380" y="310" width="26.0" height="3" rx="1.5" fill="#0284c7" />
 
       <!-- Top Repo Chip -->
-      <rect x="378" y="322" width="88" height="26" rx="4" fill="#050b14" stroke="#0f1b2b" stroke-width="0.8" />
-      <text class="hud-title" x="383" y="334" font-size="6.5" font-weight="700" fill="#475569">TOP REPO</text>
-      <text class="hud-title" x="383" y="344" font-size="8" font-weight="700" fill="#475569">IDLE</text>
+      <rect x="378" y="322" width="88" height="26" rx="4" fill="#06101e" stroke="#1e3a5f" stroke-width="0.8" />
+      <text class="hud-title" x="383" y="334" font-size="6.5" font-weight="700" fill="#64748b">TOP REPO</text>
+      <text class="hud-title" x="383" y="344" font-size="8" font-weight="700" fill="#bae6fd">vap-27</text>
     </g>
 
-    <!-- Capsule 5: MON (09/14) -->
+    <!-- Capsule 5: TUE (09/15) -->
     <g>
       <rect x="482" y="254" width="104" height="104" rx="8" fill="#0a1628" stroke="#1d3d6b" stroke-width="1.2" />
       
       <line x1="492" y1="254" x2="522" y2="254" stroke="#0284c7" stroke-width="1.5" />
       <circle cx="576" cy="270" r="2" fill="#0284c7" />
-      <text class="hud-title" x="492" y="273" font-size="9" font-weight="800" fill="#93c5fd" letter-spacing="0.5">MON</text>
-      <text class="hud-title" x="566" y="273" font-size="8" font-weight="600" fill="#64748b" text-anchor="end">09/14</text>
+      <text class="hud-title" x="492" y="273" font-size="9" font-weight="800" fill="#93c5fd" letter-spacing="0.5">TUE</text>
+      <text class="hud-title" x="566" y="273" font-size="8" font-weight="600" fill="#64748b" text-anchor="end">09/15</text>
 
-      <text class="hud-title" x="492" y="300" font-size="22" font-weight="800" fill="#f0f9ff">4</text>
+      <text class="hud-title" x="492" y="300" font-size="22" font-weight="800" fill="#f0f9ff">8</text>
       <text class="hud-title" x="518" y="299" font-size="8" font-weight="600" fill="#64748b">commits</text>
 
       <!-- Activity Bar -->
       <rect x="492" y="310" width="84" height="3" rx="1.5" fill="#0f1d31" />
-      <rect x="492" y="310" width="26.0" height="3" rx="1.5" fill="#0284c7" />
+      <rect x="492" y="310" width="52.0" height="3" rx="1.5" fill="#60a5fa" />
 
       <!-- Top Repo Chip -->
       <rect x="490" y="322" width="88" height="26" rx="4" fill="#06101e" stroke="#1e3a5f" stroke-width="0.8" />
@@ -280,29 +282,27 @@
       <text class="hud-title" x="495" y="344" font-size="8" font-weight="700" fill="#bae6fd">kxstrel</text>
     </g>
 
-    <!-- Capsule 6: TUE (09/15) -->
+    <!-- Capsule 6: WED (09/16) -->
     <g>
-      <rect x="594" y="254" width="104" height="104" rx="8" fill="#0a1628" stroke="#1d3d6b" stroke-width="1.2" />
+      <rect x="594" y="254" width="104" height="104" rx="8" fill="#08101d" stroke="#132135" stroke-width="1.0" />
       
-      <line x1="604" y1="254" x2="634" y2="254" stroke="#0284c7" stroke-width="1.5" />
-      <circle cx="688" cy="270" r="2" fill="#0284c7" />
-      <text class="hud-title" x="604" y="273" font-size="9" font-weight="800" fill="#93c5fd" letter-spacing="0.5">TUE</text>
-      <text class="hud-title" x="678" y="273" font-size="8" font-weight="600" fill="#64748b" text-anchor="end">09/15</text>
+      <text class="hud-title" x="604" y="273" font-size="9" font-weight="800" fill="#475569" letter-spacing="0.5">WED</text>
+      <text class="hud-title" x="688" y="273" font-size="8" font-weight="600" fill="#64748b" text-anchor="end">09/16</text>
 
-      <text class="hud-title" x="604" y="300" font-size="22" font-weight="800" fill="#f0f9ff">8</text>
+      <text class="hud-title" x="604" y="300" font-size="22" font-weight="800" fill="#334155">0</text>
       <text class="hud-title" x="630" y="299" font-size="8" font-weight="600" fill="#64748b">commits</text>
 
       <!-- Activity Bar -->
       <rect x="604" y="310" width="84" height="3" rx="1.5" fill="#0f1d31" />
-      <rect x="604" y="310" width="52.0" height="3" rx="1.5" fill="#60a5fa" />
+      <rect x="604" y="310" width="0.0" height="3" rx="1.5" fill="#111f35" />
 
       <!-- Top Repo Chip -->
-      <rect x="602" y="322" width="88" height="26" rx="4" fill="#06101e" stroke="#1e3a5f" stroke-width="0.8" />
-      <text class="hud-title" x="607" y="334" font-size="6.5" font-weight="700" fill="#64748b">TOP REPO</text>
-      <text class="hud-title" x="607" y="344" font-size="8" font-weight="700" fill="#bae6fd">libris</text>
+      <rect x="602" y="322" width="88" height="26" rx="4" fill="#050b14" stroke="#0f1b2b" stroke-width="0.8" />
+      <text class="hud-title" x="607" y="334" font-size="6.5" font-weight="700" fill="#475569">TOP REPO</text>
+      <text class="hud-title" x="607" y="344" font-size="8" font-weight="700" fill="#475569">IDLE</text>
     </g>
 
-    <!-- Capsule 7: TODAY (09/16) -->
+    <!-- Capsule 7: TODAY (09/17) -->
     <g>
       <rect x="706" y="254" width="104" height="104" rx="8" fill="url(#today-capsule-grad)" stroke="#38bdf8" stroke-width="1.6" />
       
@@ -312,7 +312,7 @@
       <path d="M 710 266 L 710 258 L 718 258" fill="none" stroke="#38bdf8" stroke-width="1.2" />
       <path d="M 806 346 L 806 354 L 798 354" fill="none" stroke="#38bdf8" stroke-width="1.2" />
       <text class="hud-title" x="716" y="273" font-size="9" font-weight="800" fill="#38bdf8" letter-spacing="0.5">TODAY</text>
-      <text class="hud-title" x="790" y="273" font-size="8" font-weight="600" fill="#64748b" text-anchor="end">09/16</text>
+      <text class="hud-title" x="790" y="273" font-size="8" font-weight="600" fill="#64748b" text-anchor="end">09/17</text>
 
       <text class="hud-title" x="716" y="300" font-size="22" font-weight="800" fill="#ffffff">0</text>
       <text class="hud-title" x="742" y="299" font-size="8" font-weight="600" fill="#64748b">commits</text>
