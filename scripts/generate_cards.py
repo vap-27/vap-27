@@ -346,6 +346,7 @@ def gather_user_stats(token=None):
         if gql_res and "data" in gql_res and gql_res["data"].get("user"):
             calendar = gql_res["data"]["user"]["contributionsCollection"]["contributionCalendar"]
             stats["contributions"] = calendar.get("totalContributions", stats["contributions"])
+            stats["contribution_weeks"] = calendar.get("weeks", [])
             days_list = []
             for w in calendar.get("weeks", []):
                 for d in w.get("contributionDays", []):
@@ -368,6 +369,30 @@ def gather_user_stats(token=None):
                     stats["daily_contributions"] = c_data["contributions"]
                     if "total" in c_data and "lastYear" in c_data["total"]:
                         stats["contributions"] = c_data["total"]["lastYear"]
+                    
+                    # Reconstruct week structure (Sunday=0 .. Saturday=6)
+                    reconstructed_weeks = []
+                    curr_week = []
+                    for day in c_data["contributions"]:
+                        dt_str = day.get("date", "")
+                        try:
+                            dt = datetime.strptime(dt_str, "%Y-%m-%d")
+                            wkday = (dt.weekday() + 1) % 7
+                        except Exception:
+                            wkday = len(curr_week) % 7
+                        day_obj = {
+                            "date": dt_str,
+                            "contributionCount": day.get("count", 0),
+                            "weekday": wkday
+                        }
+                        if wkday == 0 and curr_week:
+                            reconstructed_weeks.append({"contributionDays": curr_week})
+                            curr_week = [day_obj]
+                        else:
+                            curr_week.append(day_obj)
+                    if curr_week:
+                        reconstructed_weeks.append({"contributionDays": curr_week})
+                    stats["contribution_weeks"] = reconstructed_weeks
                     contrib_fetched = True
                     print(f" [+] Successfully loaded {len(stats['daily_contributions'])} real contribution days!")
         except Exception as e:
@@ -996,159 +1021,169 @@ def generate_04_launch_sequence(stats):
 
 def generate_05_achievements_clock(stats):
     """
-    Card 5: Achievements, Trophies & High-Level Digital Chronometer Clock Console.
+    Card 5: Achievements, Trophies & High-Level 7-Day Cyclical Chrono Radar Clock Console.
     Features:
     - 2x2 Cyber Trophy Matrix on Left:
       * Top-Left: GOLD S-RANK (Streak)
       * Top-Right: PLATINUM (Languages)
       * Bottom-Left: TITAN (Repositories)
       * Bottom-Right: EMERALD (Contributions)
-    - High-Level Digital Chronometer Console on Right:
-      * Rotating Holographic Radar Dial with crosshair reticles & sweeping laser hand.
-      * Large Monospace 7-Day Rolling Velocity Readout with real-time frequency equalizer.
-      * 7-Day Activity Matrix: 7 sleek digital capsules capturing real contributions & top repos.
-      * Sweeping Radar Timeline Scanner across all 7 daily capsules with glowing leading edge.
-      * Live Beacon Pulse on TODAY capsule.
-      * Hardware-accelerated 60 FPS CSS transforms (zero lag on mobile or desktop).
+    - Evolved 7-Day Cyclical Chrono Radar Clock Console on Right:
+      * 7 Radial Day Spoke Axes (Sun, Mon, Tue, Wed, Thu, Fri, Sat) matching 7-day orbital cycle.
+      * 100% REAL-TIME & REFRESH-PROOF: Today's active radiant beam is locked directly to the real weekday angle (never starts over from 0 on page refresh).
+      * Active commit energy beams scaled proportionally to real daily commits.
+      * Hero Illuminated Beam on TODAY with radiant cyan glow, white-hot core, and pulsating beacon ring.
+      * Holographic Concentric Dial with 28 precision micro-dots track.
+      * Continuous 360-degree sweeping phosphor radar scanner.
+      * Rotating segmented holographic gyro ring.
+      * Center Cyber Core: "CYCLE 7D", big bold 7-day commit velocity readout, dynamic equalizer bars.
+      * Live UTC chronometer timestamp and telemetry sync badge.
+      * Zero emojis, 100% vector cyber HUD aesthetics.
     """
     seven_days = stats.get("seven_days", [])
     seven_day_total = stats.get("seven_day_total", 0)
-
-    # Calculate real-world analog & digital clock parameters
     now = datetime.now(timezone.utc)
-    hour = now.hour % 12
-    minute = now.minute
-    second = now.second
     time_str = now.strftime("%H:%M:%S UTC")
 
-    minute_angle = round((minute + second / 60.0) * 6.0, 1)
-    hour_angle = round((hour + minute / 60.0 + second / 3600.0) * 30.0, 1)
+    # Console and Clock Dimensions
+    console_x = 446
+    console_y = 96
+    console_w = 360
+    console_h = 252
 
-    clock_radius = 42
-    clock_cx = 524
-    clock_cy = 168
+    clock_cx = 626
+    clock_cy = 222
+    r_core = 38
+    r_track = 54
+    r_orbit = 80
+    r_label = 97
+    r_count = 106
 
-    clock_ticks = []
-    for ti in range(60):
-        angle_rad = math.radians(ti * 6 - 90)
-        cos_a = math.cos(angle_rad)
-        sin_a = math.sin(angle_rad)
-        if ti % 5 == 0:
-            r_in = clock_radius - 8
-            r_out = clock_radius - 2
-            st_col = "#00e5ff" if ti % 15 == 0 else "#38bdf8"
-            st_w = "1.8" if ti % 15 == 0 else "1.2"
+    # 7-Day Weekly Map (Sun=0, Mon=1, Tue=2, Wed=3, Thu=4, Fri=5, Sat=6)
+    day_keys = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
+    day_data_map = {}
+    for d in seven_days:
+        dt_str = d.get("date", "")
+        if dt_str:
+            try:
+                dt = datetime.strptime(dt_str, "%Y-%m-%d")
+                wkday = (dt.weekday() + 1) % 7
+                day_data_map[wkday] = d
+            except Exception:
+                pass
+
+    # Generate 28 Micro-Dots on track ring
+    dots_svg = []
+    for j in range(28):
+        ang = math.radians(j * (360.0 / 28.0) - 90.0)
+        dx = round(clock_cx + r_track * math.cos(ang), 1)
+        dy = round(clock_cy + r_track * math.sin(ang), 1)
+        dots_svg.append(f'<circle cx="{dx}" cy="{dy}" r="0.9" fill="#1e3a5f" />')
+    dots_markup = "\n      ".join(dots_svg)
+
+    # Generate 7 Day Spokes & Real Activity Beams
+    spokes_svg = []
+    labels_svg = []
+
+    for i in range(7):
+        name = day_keys[i]
+        info = day_data_map.get(i, {"count": 0, "is_today": False})
+        cnt = info.get("count", 0)
+        is_today = info.get("is_today", False)
+        
+        ang_rad = math.radians(i * (360.0 / 7.0) - 90.0)
+        cos_a = math.cos(ang_rad)
+        sin_a = math.sin(ang_rad)
+        
+        x1 = round(clock_cx + (r_core + 2) * cos_a, 1)
+        y1 = round(clock_cy + (r_core + 2) * sin_a, 1)
+        x2 = round(clock_cx + r_orbit * cos_a, 1)
+        y2 = round(clock_cy + r_orbit * sin_a, 1)
+        
+        # Base guide spoke
+        spokes_svg.append(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="#0e1b2e" stroke-width="2.5" stroke-linecap="round" />')
+        
+        # Text anchoring based on quadrant
+        if cos_a > 0.35:
+            anchor = "start"
+            lx_offset = 3
+        elif cos_a < -0.35:
+            anchor = "end"
+            lx_offset = -3
         else:
-            r_in = clock_radius - 5
-            r_out = clock_radius - 2
-            st_col = "#1e3a5f"
-            st_w = "0.7"
-        tx1 = round(cos_a * r_in, 1)
-        ty1 = round(sin_a * r_in, 1)
-        tx2 = round(cos_a * r_out, 1)
-        ty2 = round(sin_a * r_out, 1)
-        clock_ticks.append(f'<line x1="{tx1}" y1="{ty1}" x2="{tx2}" y2="{ty2}" stroke="{st_col}" stroke-width="{st_w}" />')
-
-    clock_numerals = [
-        ("12", 0, -clock_radius + 15),
-        ("3", clock_radius - 15, 2.5),
-        ("6", 0, clock_radius - 11),
-        ("9", -clock_radius + 15, 2.5)
-    ]
-    numerals_svg = []
-    for num, nx, ny in clock_numerals:
-        numerals_svg.append(f'<text class="hud-title" x="{nx}" y="{ny}" font-size="7.5" font-weight="800" fill="#94a3b8" text-anchor="middle" dominant-baseline="middle">{num}</text>')
-
-    clock_ticks_markup = "\n      ".join(clock_ticks)
-    clock_numerals_markup = "\n      ".join(numerals_svg)
-
-    # 7 Digital Capsules inside the 340px Clock Console
-    capsules_svg = []
-    capsule_w = 42
-    capsule_h = 100
-    start_cx = 474
-    start_cy = 236
-    step_cx = 46.5
-
-    for i, day in enumerate(seven_days):
-        x = round(start_cx + i * step_cx, 1)
-        y = start_cy
-        is_today = day.get("is_today", False)
-        count = day.get("count", 0)
-        day_label = day.get("day_name", "")
-        short_date = day.get("short_date", "")
-        top_repo = day.get("top_repo", "IDLE")
+            anchor = "middle"
+            lx_offset = 0
+            
+        lx = round(clock_cx + r_label * cos_a + lx_offset, 1)
+        ly = round(clock_cy + r_label * sin_a + (2 if sin_a > 0.3 else (-2 if sin_a < -0.3 else 0)), 1)
+        cx_lbl = round(clock_cx + r_count * cos_a + lx_offset, 1)
+        cy_lbl = round(clock_cy + r_count * sin_a + (9 if sin_a > 0.3 else (7 if sin_a < -0.3 else 9)), 1)
 
         if is_today:
-            card_fill = "#0d2238"
-            card_stroke = "#00e5ff"
-            stroke_w = "1.5"
-            day_color = "#00e5ff"
-            count_color = "#ffffff"
-            bar_color = "#00e5ff"
-            accent_decor = f"""
-        <circle class="today-ping-ring" cx="{x+34}" cy="{y+11}" r="2" fill="none" stroke="#00e5ff" stroke-width="1.2" />
-        <circle cx="{x+34}" cy="{y+11}" r="2" fill="#00e5ff" />
-        <line x1="{x+4}" y1="{y}" x2="{x+38}" y2="{y}" stroke="#00e5ff" stroke-width="2" />"""
-            repo_color = "#38bdf8"
-        elif count > 0:
-            card_fill = "#091426"
-            card_stroke = "#1d4ed8"
-            stroke_w = "1.1"
-            day_color = "#93c5fd"
-            count_color = "#f8fafc"
-            bar_color = "#38bdf8"
-            accent_decor = f'<circle cx="{x+34}" cy="{y+11}" r="1.5" fill="#38bdf8" />'
-            repo_color = "#94a3b8"
+            # High-intensity Radiant White-and-Cyan Beam Hand (Locked directly to Today's angle)
+            spoke_markup = f"""<!-- Spoke {name} (TODAY HERO BEAM) -->
+      <line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="#00e5ff" stroke-width="8" opacity="0.45" filter="url(#glow-soft)" stroke-linecap="round" />
+      <line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="#38bdf8" stroke-width="4.2" stroke-linecap="round" />
+      <line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" />
+      <circle class="today-ping-ring" cx="{x2}" cy="{y2}" r="3" fill="none" stroke="#00e5ff" />
+      <circle cx="{x2}" cy="{y2}" r="4.2" fill="#00e5ff" stroke="#ffffff" stroke-width="1.4" />"""
+            spokes_svg.append(spoke_markup)
+            
+            lbl_markup = f"""<!-- Label {name} (TODAY) -->
+      <text class="hud-title" x="{lx}" y="{ly}" font-size="8.5" font-weight="900" fill="#ffffff" text-anchor="{anchor}" filter="url(#glow-soft)">{name}</text>
+      <text class="hud-title" x="{cx_lbl}" y="{cy_lbl}" font-size="8.5" font-weight="800" fill="#00e5ff" text-anchor="{anchor}">{cnt} PTS</text>"""
+            labels_svg.append(lbl_markup)
+        elif cnt > 0:
+            # Active past day beam scaled by commits
+            frac = min(1.0, max(0.35, cnt / 12.0))
+            act_len = (r_core + 2) + frac * (r_orbit - (r_core + 2))
+            ax2 = round(clock_cx + act_len * cos_a, 1)
+            ay2 = round(clock_cy + act_len * sin_a, 1)
+            
+            spoke_markup = f"""<!-- Spoke {name} ({cnt} commits) -->
+      <line x1="{x1}" y1="{y1}" x2="{ax2}" y2="{ay2}" stroke="#0284c7" stroke-width="3.2" stroke-linecap="round" />
+      <line x1="{x1}" y1="{y1}" x2="{ax2}" y2="{ay2}" stroke="#38bdf8" stroke-width="1.6" stroke-linecap="round" />
+      <circle cx="{ax2}" cy="{ay2}" r="2.8" fill="#38bdf8" stroke="#0284c7" stroke-width="1.0" />"""
+            spokes_svg.append(spoke_markup)
+            
+            lbl_markup = f"""<!-- Label {name} -->
+      <text class="hud-title" x="{lx}" y="{ly}" font-size="7.5" font-weight="700" fill="#94a3b8" text-anchor="{anchor}">{name}</text>
+      <text class="hud-title" x="{cx_lbl}" y="{cy_lbl}" font-size="7.5" font-weight="700" fill="#38bdf8" text-anchor="{anchor}">{cnt}</text>"""
+            labels_svg.append(lbl_markup)
         else:
-            card_fill = "#060d1a"
-            card_stroke = "#111f35"
-            stroke_w = "0.9"
-            day_color = "#475569"
-            count_color = "#334155"
-            bar_color = "#111f35"
-            accent_decor = ""
-            repo_color = "#334155"
+            # Idle day pip
+            px = round(clock_cx + (r_core + 8) * cos_a, 1)
+            py = round(clock_cy + (r_core + 8) * sin_a, 1)
+            spokes_svg.append(f'<circle cx="{px}" cy="{py}" r="1.6" fill="#1b314f" />')
+            
+            lbl_markup = f"""<!-- Label {name} (Idle) -->
+      <text class="hud-title" x="{lx}" y="{ly}" font-size="7.5" font-weight="600" fill="#475569" text-anchor="{anchor}">{name}</text>
+      <text class="hud-title" x="{cx_lbl}" y="{cy_lbl}" font-size="7.0" font-weight="600" fill="#334155" text-anchor="{anchor}">0</text>"""
+            labels_svg.append(lbl_markup)
 
-        bar_h = min(max(count * 2.5, 3 if count > 0 else 0), 20)
-        bar_y = y + 70 - bar_h
-
-        capsules_svg.append(f"""
-    <!-- Capsule {i+1}: {day_label} -->
-    <g>
-      <rect x="{x}" y="{y}" width="{capsule_w}" height="{capsule_h}" rx="5" fill="{card_fill}" stroke="{card_stroke}" stroke-width="{stroke_w}" />
-      {accent_decor}
-      <text class="hud-title" x="{x+6}" y="{y+13}" font-size="7.5" font-weight="800" fill="{day_color}">{day_label[:3]}</text>
-      <text class="hud-title" x="{x+6}" y="{y+23}" font-size="6.5" font-weight="600" fill="#64748b">{short_date}</text>
-      
-      <text class="hud-title" x="{x+6}" y="{y+42}" font-size="14" font-weight="800" fill="{count_color}">{count}</text>
-      <text class="hud-title" x="{x+6}" y="{y+49}" font-size="5.5" font-weight="600" fill="#64748b">COMMITS</text>
-
-      <!-- Vertical Activity Level Bar -->
-      <rect x="{x+6}" y="{y+55}" width="30" height="15" rx="2" fill="#050b14" stroke="#0e1e35" stroke-width="0.6" />
-      <rect x="{x+8}" y="{bar_y}" width="26" height="{bar_h}" rx="1.5" fill="{bar_color}" />
-
-      <!-- Mini Top Repo Tag -->
-      <rect x="{x+4}" y="{y+75}" width="34" height="20" rx="3" fill="#040912" stroke="#0f1d33" stroke-width="0.6" />
-      <text class="hud-title" x="{x+7}" y="{y+84}" font-size="5" font-weight="700" fill="#475569">{"CURR" if is_today else "REPO"}</text>
-      <text class="hud-title" x="{x+7}" y="{y+92}" font-size="6" font-weight="700" fill="{repo_color}">{top_repo[:6]}</text>
-    </g>""")
-
-    capsules_markup = "\n".join(capsules_svg)
+    spokes_markup = "\n      ".join(spokes_svg)
+    labels_markup = "\n      ".join(labels_svg)
 
     svg = f"""<svg width="840" height="380" viewBox="0 0 840 380" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <pattern id="grid-trophies" width="24" height="24" patternUnits="userSpaceOnUse">
       <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#101c30" stroke-width="0.8" />
     </pattern>
-    <linearGradient id="clock-scan-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <pattern id="grid-clock-console" width="16" height="16" patternUnits="userSpaceOnUse">
+      <path d="M 16 0 L 0 0 0 16" fill="none" stroke="#102540" stroke-width="0.6" />
+    </pattern>
+    <filter id="glow-soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <linearGradient id="radar-slice-grad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#00e5ff" stop-opacity="0" />
-      <stop offset="60%" stop-color="#00e5ff" stop-opacity="0.15" />
-      <stop offset="100%" stop-color="#00e5ff" stop-opacity="0.8" />
+      <stop offset="60%" stop-color="#00e5ff" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#00e5ff" stop-opacity="0.35" />
     </linearGradient>
-    <clipPath id="timeline-clip">
-      <rect x="470" y="234" width="332" height="104" rx="6" />
-    </clipPath>
   </defs>
 
   <style>
@@ -1156,40 +1191,27 @@ def generate_05_achievements_clock(stats):
       0% {{ transform: rotate(0deg); }}
       100% {{ transform: rotate(360deg); }}
     }}
-
-    @keyframes laser-timeline-travel {{
-      0% {{ transform: translateX(0px); opacity: 0; }}
-      5% {{ opacity: 0.9; }}
-      90% {{ opacity: 0.9; }}
-      100% {{ transform: translateX(332px); opacity: 0; }}
-    }}
     @keyframes ping-expand {{
-      0% {{ r: 2px; opacity: 1; stroke-width: 1.5px; }}
-      60% {{ r: 7px; opacity: 0.35; stroke-width: 1px; }}
-      100% {{ r: 10px; opacity: 0; stroke-width: 0; }}
+      0% {{ r: 2.5px; opacity: 1; stroke-width: 1.5px; }}
+      60% {{ r: 8px; opacity: 0.35; stroke-width: 1px; }}
+      100% {{ r: 12px; opacity: 0; stroke-width: 0; }}
     }}
     @keyframes eq-pulse-1 {{
-      0%, 100% {{ height: 4px; y: 16px; }}
-      50% {{ height: 18px; y: 2px; }}
+      0%, 100% {{ height: 3px; y: 23px; }}
+      50% {{ height: 8px; y: 18px; }}
     }}
     @keyframes eq-pulse-2 {{
-      0%, 100% {{ height: 16px; y: 4px; }}
-      50% {{ height: 6px; y: 14px; }}
+      0%, 100% {{ height: 9px; y: 17px; }}
+      50% {{ height: 4px; y: 22px; }}
     }}
     @keyframes eq-pulse-3 {{
-      0%, 100% {{ height: 10px; y: 10px; }}
-      50% {{ height: 20px; y: 0px; }}
+      0%, 100% {{ height: 5px; y: 21px; }}
+      50% {{ height: 10px; y: 16px; }}
     }}
     .gyro-spin {{
       transform-origin: 34px 56px;
       animation: gyro-rotate 16s linear infinite;
       will-change: transform;
-    }}
-
-    .timeline-laser-sweep {{
-      animation: laser-timeline-travel 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-      will-change: transform, opacity;
-      pointer-events: none;
     }}
     .today-ping-ring {{
       animation: ping-expand 2s ease-out infinite;
@@ -1206,7 +1228,7 @@ def generate_05_achievements_clock(stats):
   <rect x="2" y="2" width="836" height="376" rx="17" fill="url(#grid-trophies)" opacity="0.85" />
 
   <!-- Header Row -->
-  <text class="hud-title" x="34" y="38" font-size="10.5" font-weight="700" fill="#60a5fa" letter-spacing="2.5">RECOGNITION DECK // CYBER TROPHIES &amp; CLOCK</text>
+  <text class="hud-title" x="34" y="38" font-size="10.5" font-weight="700" fill="#60a5fa" letter-spacing="2.5">RECOGNITION DECK // CYBER TROPHIES &amp; RADAR</text>
   <text class="hud-title" x="34" y="66" font-size="18" font-weight="800" fill="#ffffff" letter-spacing="0.5">Autonomous recognition</text>
   <line x1="34" y1="84" x2="806" y2="84" stroke="#162744" stroke-width="1.2" stroke-dasharray="4 8" />
 
@@ -1228,200 +1250,178 @@ def generate_05_achievements_clock(stats):
     <text class="hud-title" x="62" y="44" font-size="9" font-weight="800" fill="#fbbf24" letter-spacing="0.5">ORBITAL MOMENTUM</text>
     <text class="hud-title" x="62" y="62" font-size="13" font-weight="800" fill="#ffffff">{stats['streak_days']}D ACTIVE STREAK</text>
     <text class="hud-title" x="62" y="77" font-size="7.5" font-weight="600" fill="#78716c">CONTINUOUS VELOCITY</text>
-    <rect x="62" y="87" width="7" height="7" rx="1.5" fill="#f59e0b" />
-    <text class="hud-title" x="74" y="93.5" font-size="7" font-weight="700" fill="#fbbf24">STATUS: ACTIVE</text>
+
+    <!-- Progress Track -->
+    <rect x="14" y="96" width="168" height="5" rx="2.5" fill="#1e1e24" />
+    <rect x="14" y="96" width="{min(168, int(stats['streak_days'] / 30.0 * 168))}" height="5" rx="2.5" fill="#fbbf24" />
   </g>
 
-  <!-- Top-Right: Trophy 2 - Multi-Stack Architect (Platinum) -->
-  <g transform="translate(242, 96)">
-    <rect x="0" y="0" width="196" height="118" rx="10" fill="#091322" stroke="#1d4ed8" stroke-width="1.2" />
+  <!-- Top-Right: Trophy 2 - Polyglot Nexus (Languages Platinum Tier) -->
+  <g transform="translate(236, 96)">
+    <rect x="0" y="0" width="196" height="118" rx="10" fill="#091322" stroke="#38bdf8" stroke-width="1.2" />
     <text class="hud-title" x="186" y="17" font-size="7.5" font-weight="800" fill="#38bdf8" text-anchor="end">PLATINUM</text>
 
-    <!-- Handcrafted Vector Insignia: Quantum Tech Prisms -->
+    <!-- Handcrafted Vector Insignia: Multi-Language Core Prism -->
     <g>
-      <rect x="23" y="45" width="20" height="20" rx="4" fill="#0e2342" stroke="#38bdf8" stroke-width="1.2" transform="rotate(45 33 55)" />
-      <circle cx="33" cy="55" r="4.5" fill="#0284c7" />
-      <circle cx="33" cy="55" r="1.8" fill="#ffffff" />
+      <circle cx="34" cy="56" r="18" fill="none" stroke="#0369a1" stroke-width="1.1" />
+      <polygon points="34,44 44,52 40,64 28,64 24,52" fill="none" stroke="#38bdf8" stroke-width="1.2" />
+      <circle cx="34" cy="56" r="3.5" fill="#38bdf8" />
+      <circle cx="34" cy="56" r="1.5" fill="#ffffff" />
     </g>
 
-    <text class="hud-title" x="62" y="44" font-size="9" font-weight="800" fill="#38bdf8" letter-spacing="0.5">SPECTRUM CORE</text>
+    <text class="hud-title" x="62" y="44" font-size="9" font-weight="800" fill="#38bdf8" letter-spacing="0.5">POLYGLOT NEXUS</text>
     <text class="hud-title" x="62" y="62" font-size="13" font-weight="800" fill="#ffffff">{len(stats.get('languages', []))} LANGUAGES</text>
-    <text class="hud-title" x="62" y="77" font-size="7.5" font-weight="600" fill="#64748b">POLYGLOT STACK</text>
-    <rect x="62" y="87" width="7" height="7" rx="1.5" fill="#0284c7" />
-    <text class="hud-title" x="74" y="93.5" font-size="7" font-weight="700" fill="#38bdf8">TIER: MASTER</text>
+    <text class="hud-title" x="62" y="77" font-size="7.5" font-weight="600" fill="#64748b">{', '.join(stats.get('all_language_names', ['TS', 'PY', 'CSS'])[:3])}</text>
+
+    <!-- Progress Track -->
+    <rect x="14" y="96" width="168" height="5" rx="2.5" fill="#1e1e24" />
+    <rect x="14" y="96" width="{min(168, int(len(stats.get('languages', [])) / 8.0 * 168))}" height="5" rx="2.5" fill="#38bdf8" />
   </g>
 
-  <!-- Bottom-Left: Trophy 3 - Deep Harbor (TITAN) -->
-  <g transform="translate(34, 226)">
-    <rect x="0" y="0" width="196" height="118" rx="10" fill="#091322" stroke="#6d28d9" stroke-width="1.2" />
-    <text class="hud-title" x="186" y="17" font-size="7.5" font-weight="800" fill="#c084fc" text-anchor="end">TITAN</text>
+  <!-- Bottom-Left: Trophy 3 - Core Architect (Repositories Titan Tier) -->
+  <g transform="translate(34, 228)">
+    <rect x="0" y="0" width="196" height="120" rx="10" fill="#091322" stroke="#6366f1" stroke-width="1.2" />
+    <text class="hud-title" x="186" y="17" font-size="7.5" font-weight="800" fill="#818cf8" text-anchor="end">TITAN</text>
 
-    <!-- Handcrafted Vector Insignia: Nexus Constellation Nodes -->
+    <!-- Handcrafted Vector Insignia: Hexagonal Matrix -->
     <g>
-      <circle cx="34" cy="46" r="4" fill="#7c3aed" stroke="#c084fc" stroke-width="1" />
-      <circle cx="25" cy="62" r="3.5" fill="#7c3aed" stroke="#c084fc" stroke-width="1" />
-      <circle cx="43" cy="62" r="3.5" fill="#7c3aed" stroke="#c084fc" stroke-width="1" />
-      <line x1="34" y1="46" x2="25" y2="62" stroke="#a855f7" stroke-width="1.1" />
-      <line x1="34" y1="46" x2="43" y2="62" stroke="#a855f7" stroke-width="1.1" />
-      <line x1="25" y1="62" x2="43" y2="62" stroke="#a855f7" stroke-width="1.1" />
+      <circle cx="34" cy="56" r="18" fill="none" stroke="#312e81" stroke-width="1.1" />
+      <polygon points="34,42 45,49 45,63 34,70 23,63 23,49" fill="none" stroke="#818cf8" stroke-width="1.2" />
+      <rect x="30" y="52" width="8" height="8" rx="2" fill="#818cf8" />
+      <circle cx="34" cy="56" r="1.5" fill="#ffffff" />
     </g>
 
-    <text class="hud-title" x="62" y="44" font-size="9" font-weight="800" fill="#c084fc" letter-spacing="0.5">DEEP HARBOR</text>
-    <text class="hud-title" x="62" y="62" font-size="13" font-weight="800" fill="#ffffff">{stats.get('repos', 0)} REPOSITORIES</text>
-    <text class="hud-title" x="62" y="77" font-size="7.5" font-weight="600" fill="#64748b">MISSION ARCHIVES</text>
-    <rect x="62" y="87" width="7" height="7" rx="1.5" fill="#7c3aed" />
-    <text class="hud-title" x="74" y="93.5" font-size="7" font-weight="700" fill="#c084fc">ARMORY: ONLINE</text>
+    <text class="hud-title" x="62" y="44" font-size="9" font-weight="800" fill="#818cf8" letter-spacing="0.5">CORE ARCHITECT</text>
+    <text class="hud-title" x="62" y="62" font-size="13" font-weight="800" fill="#ffffff">{len(stats.get('active_repos', []))} REPOSITORIES</text>
+    <text class="hud-title" x="62" y="77" font-size="7.5" font-weight="600" fill="#64748b">AUTONOMOUS FORGE</text>
+
+    <!-- Progress Track -->
+    <rect x="14" y="98" width="168" height="5" rx="2.5" fill="#1e1e24" />
+    <rect x="14" y="98" width="{min(168, int(len(stats.get('active_repos', [])) / 10.0 * 168))}" height="5" rx="2.5" fill="#818cf8" />
   </g>
 
-  <!-- Bottom-Right: Trophy 4 - Cosmic Forge (EMERALD) -->
-  <g transform="translate(242, 226)">
-    <rect x="0" y="0" width="196" height="118" rx="10" fill="#091322" stroke="#059669" stroke-width="1.2" />
+  <!-- Bottom-Right: Trophy 4 - Celestial Pulse (Contributions Emerald Tier) -->
+  <g transform="translate(236, 228)">
+    <rect x="0" y="0" width="196" height="120" rx="10" fill="#091322" stroke="#059669" stroke-width="1.2" />
     <text class="hud-title" x="186" y="17" font-size="7.5" font-weight="800" fill="#34d399" text-anchor="end">EMERALD</text>
 
-    <!-- Handcrafted Vector Insignia: Pulsing Atom Core -->
+    <!-- Handcrafted Vector Insignia: Quantum Diamond Pulse -->
     <g>
-      <ellipse cx="34" cy="56" rx="16" ry="6.5" fill="none" stroke="#059669" stroke-width="1.2" transform="rotate(-30 34 56)" />
-      <ellipse cx="34" cy="56" rx="16" ry="6.5" fill="none" stroke="#34d399" stroke-width="1.2" transform="rotate(30 34 56)" />
-      <circle cx="34" cy="56" r="2.8" fill="#ffffff" />
+      <circle cx="34" cy="56" r="18" fill="none" stroke="#064e3b" stroke-width="1.1" stroke-dasharray="2 3" />
+      <polygon points="34,43 45,56 34,69 23,56" fill="none" stroke="#34d399" stroke-width="1.2" />
+      <circle cx="34" cy="56" r="3.2" fill="#34d399" />
+      <circle cx="34" cy="56" r="1.5" fill="#ffffff" />
     </g>
 
-    <text class="hud-title" x="62" y="44" font-size="9" font-weight="800" fill="#34d399" letter-spacing="0.5">COSMIC FORGE</text>
-    <text class="hud-title" x="62" y="62" font-size="13" font-weight="800" fill="#ffffff">{stats['contributions']} COMMITS</text>
-    <text class="hud-title" x="62" y="77" font-size="7.5" font-weight="600" fill="#64748b">ENERGY GENERATED</text>
-    <rect x="62" y="87" width="7" height="7" rx="1.5" fill="#059669" />
-    <text class="hud-title" x="74" y="93.5" font-size="7" font-weight="700" fill="#34d399">SIGNAL: LIVE</text>
+    <text class="hud-title" x="62" y="44" font-size="9" font-weight="800" fill="#34d399" letter-spacing="0.5">CELESTIAL PULSE</text>
+    <text class="hud-title" x="62" y="62" font-size="13" font-weight="800" fill="#ffffff">{stats.get('contributions', 0)} COMMITS</text>
+    <text class="hud-title" x="62" y="77" font-size="7.5" font-weight="600" fill="#64748b">1-YEAR CALENDAR</text>
+
+    <!-- Progress Track -->
+    <rect x="14" y="98" width="168" height="5" rx="2.5" fill="#1e1e24" />
+    <rect x="14" y="98" width="{min(168, int(stats.get('contributions', 0) / 200.0 * 168))}" height="5" rx="2.5" fill="#34d399" />
   </g>
 
-  <!-- Vertical Divider Between Trophies & Digital Clock -->
-  <line x1="452" y1="96" x2="452" y2="344" stroke="#162744" stroke-width="1.2" stroke-dasharray="3 5" />
-
-  <!-- ================= RIGHT SIDE: HIGH-LEVEL DIGITAL CHRONOMETER CLOCK CONSOLE ================= -->
-  <!-- Digital Glass Frame -->
-  <rect x="464" y="96" width="342" height="248" rx="12" fill="#060c18" stroke="#162c4e" stroke-width="1.2" />
-  <line x1="476" y1="96" x2="536" y2="96" stroke="#00e5ff" stroke-width="2.5" />
-  <circle cx="792" cy="110" r="2.5" fill="#10b981" />
-  <circle class="today-ping-ring" cx="792" cy="110" r="2.5" fill="none" stroke="#10b981" stroke-width="1.2" />
-
-  <!-- Console Header -->
-  <text class="hud-title" x="478" y="113" font-size="8.5" font-weight="800" fill="#00e5ff" letter-spacing="1.5">DIGITAL CHRONOMETER</text>
-  <text class="hud-title" x="478" y="123" font-size="6.5" font-weight="600" fill="#64748b" letter-spacing="0.5">7D TELEMETRY // REAL-TIME PRECISION RADAR</text>
-  <line x1="476" y1="128" x2="794" y2="128" stroke="#112238" stroke-width="0.8" />
-
-  <!-- Top Half: Holographic Circular Dial + Velocity Readout -->
+  <!-- ================= RIGHT SIDE: EVOLVED 7-DAY CYBER CHRONOMETER CLOCK CONSOLE ================= -->
   <g>
-    <!-- Real Physical Cyber Chronometer (Centered firmly at cx={clock_cx}, cy={clock_cy} - ZERO FLYING PIECES) -->
-    <g transform="translate({clock_cx}, {clock_cy})">
-      <!-- Stationary Outer Watch Bezel & Screws -->
-      <circle cx="0" cy="0" r="{clock_radius + 4}" fill="#040914" stroke="#162c4e" stroke-width="1.8" />
-      <circle cx="0" cy="0" r="{clock_radius}" fill="#08101e" stroke="#1e3a5f" stroke-width="1.2" />
-      <circle cx="0" cy="0" r="{clock_radius - 1}" fill="none" stroke="#0a1d36" stroke-width="0.8" stroke-dasharray="1 3" />
-      <circle cx="0" cy="0" r="{clock_radius - 10}" fill="#050c18" stroke="#11243e" stroke-width="0.8" />
+    <!-- Console Outer Frame -->
+    <rect x="{console_x}" y="{console_y}" width="{console_w}" height="{console_h}" rx="14" fill="#050b16" stroke="#162c4e" stroke-width="1.2" />
+    <rect x="{console_x + 1}" y="{console_y + 1}" width="{console_w - 2}" height="{console_h - 2}" rx="13" fill="url(#grid-clock-console)" opacity="0.35" />
 
-      <!-- Dial Face Ticks & Hour Numerals (12, 3, 6, 9) -->
-      {clock_ticks_markup}
-      {clock_numerals_markup}
+    <!-- Top Ambient Flare -->
+    <ellipse cx="{clock_cx}" cy="{console_y + 12}" rx="120" ry="8" fill="#00e5ff" opacity="0.08" filter="blur(10px)" />
 
-      <!-- Center Subtle Crosshairs -->
-      <line x1="-12" y1="0" x2="12" y2="0" stroke="#162d4a" stroke-width="0.8" />
-      <line x1="0" y1="-12" x2="0" y2="12" stroke="#162d4a" stroke-width="0.8" />
-      <circle cx="0" cy="0" r="14" fill="none" stroke="#102540" stroke-width="0.6" stroke-dasharray="2 3" />
+    <!-- Header inside Console -->
+    <text class="hud-title" x="{console_x + 16}" y="{console_y + 20}" font-size="8.5" font-weight="800" fill="#00e5ff" letter-spacing="1.5">7-DAY CHRONO RADAR</text>
+    <text class="hud-title" x="{console_x + 16}" y="{console_y + 31}" font-size="6.5" font-weight="700" fill="#475569" letter-spacing="0.5">CYCLICAL RECOGNITION DIAL</text>
 
-      <!-- Real Hour Hand (Real Time Angle: {hour_angle} deg) -->
-      <g transform="rotate({hour_angle})">
-        <polygon points="-2.5,4 0,-20 2.5,4" fill="#38bdf8" />
-        <polygon points="-1.2,2 0,-18 1.2,2" fill="#e0f2fe" />
-        <line x1="0" y1="4" x2="0" y2="-21" stroke="#0284c7" stroke-width="0.6" />
-      </g>
-
-      <!-- Real Minute Hand (Real Time Angle: {minute_angle} deg) -->
-      <g transform="rotate({minute_angle})">
-        <polygon points="-1.8,5 0,-30 1.8,5" fill="#00e5ff" />
-        <polygon points="-0.8,3 0,-28 0.8,3" fill="#ffffff" />
-        <line x1="0" y1="5" x2="0" y2="-31" stroke="#0284c7" stroke-width="0.6" />
-      </g>
-
-      <!-- Real Second Needle (Smooth 60s Quartz Sweep Locked Firmly to (0,0) Pivot via native SVG animateTransform) -->
-      <g>
-        <animateTransform
-          attributeName="transform"
-          type="rotate"
-          from="0 0 0"
-          to="360 0 0"
-          dur="60s"
-          repeatCount="indefinite" />
-        <line x1="0" y1="10" x2="0" y2="-36" stroke="#00e5ff" stroke-width="1.2" stroke-linecap="round" />
-        <circle cx="0" cy="6" r="2.2" fill="#0284c7" stroke="#00e5ff" stroke-width="0.8" />
-        <polygon points="-1.2,-28 0,-37 1.2,-28" fill="#00e5ff" />
-      </g>
-
-      <!-- Physical Center Pivot Spindle Cap -->
-      <circle cx="0" cy="0" r="4.2" fill="#0f172a" stroke="#00e5ff" stroke-width="1.2" />
-      <circle cx="0" cy="0" r="2.2" fill="#38bdf8" />
-      <circle cx="0" cy="0" r="1.0" fill="#ffffff" />
+    <!-- Top-Right Live Sync Telemetry Badge -->
+    <g transform="translate({console_x + console_w - 92}, {console_y + 11})">
+      <rect x="0" y="0" width="76" height="18" rx="4" fill="#09182d" stroke="#183b63" stroke-width="0.8" />
+      <circle cx="8" cy="9" r="2.2" fill="#00e5ff" />
+      <text class="hud-title" x="15" y="12.5" font-size="6.5" font-weight="800" fill="#e2e8f0" letter-spacing="0.5">{time_str}</text>
     </g>
 
-    <!-- Digital Readout to the Right of Dial -->
-    <g transform="translate(580, 140)">
-      <!-- Real-time Digital Chrono Timestamp -->
-      <text class="hud-title" x="0" y="14" font-size="12" font-weight="900" fill="#00e5ff" letter-spacing="1.5">{time_str}</text>
-      
-      <!-- 7D Total Number & Label -->
-      <text class="hud-title" x="0" y="34" font-size="18" font-weight="900" fill="#ffffff" letter-spacing="1">{seven_day_total} <tspan font-size="8.5" font-weight="800" fill="#38bdf8">COMMITS</tspan></text>
-      <text class="hud-title" x="0" y="44" font-size="6.5" font-weight="700" fill="#64748b" letter-spacing="0.5">7-DAY ROLLING VELOCITY</text>
+    <!-- Outer Orbit Dashed Ring (r = {r_orbit}) -->
+    <circle cx="{clock_cx}" cy="{clock_cy}" r="{r_orbit}" fill="none" stroke="#162d4a" stroke-width="1.0" stroke-dasharray="3 5" />
 
-      <!-- Dynamic Animated Equalizer Bars -->
-      <g transform="translate(162, 2)">
-        <rect class="eq-b1" x="0" y="0" width="3" height="18" rx="1.5" fill="#00e5ff" />
-        <rect class="eq-b2" x="5" y="0" width="3" height="18" rx="1.5" fill="#38bdf8" />
-        <rect class="eq-b3" x="10" y="0" width="3" height="18" rx="1.5" fill="#0284c7" />
-        <rect class="eq-b1" x="15" y="0" width="3" height="18" rx="1.5" fill="#00e5ff" />
-        <rect class="eq-b2" x="20" y="0" width="3" height="18" rx="1.5" fill="#38bdf8" />
+    <!-- Intermediate Micro-Dot Track Ring (r = {r_track}) -->
+    <circle cx="{clock_cx}" cy="{clock_cy}" r="{r_track}" fill="none" stroke="#0a1728" stroke-width="7" />
+    {dots_markup}
+
+    <!-- Rotating Holographic Gyro Ring -->
+    <g>
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        from="0 {clock_cx} {clock_cy}"
+        to="360 {clock_cx} {clock_cy}"
+        dur="24s"
+        repeatCount="indefinite" />
+      <circle cx="{clock_cx}" cy="{clock_cy}" r="{r_track + 8}" fill="none" stroke="#00e5ff" stroke-width="1.0" stroke-dasharray="14 42 28 56" opacity="0.35" />
+      <circle cx="{clock_cx}" cy="{clock_cy}" r="{r_track + 8}" fill="none" stroke="#38bdf8" stroke-width="0.6" stroke-dasharray="8 60 12 70" opacity="0.25" />
+    </g>
+
+    <!-- Continuous Sweeping 360-Degree Radar Scanner -->
+    <g>
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        from="0 {clock_cx} {clock_cy}"
+        to="360 {clock_cx} {clock_cy}"
+        dur="12s"
+        repeatCount="indefinite" />
+      <line x1="{clock_cx}" y1="{clock_cy}" x2="{clock_cx}" y2="{clock_cy - r_orbit}" stroke="#00e5ff" stroke-width="1.2" opacity="0.8" stroke-linecap="round" />
+      <polygon points="{clock_cx},{clock_cy} {clock_cx},{clock_cy - r_orbit} {clock_cx - 22},{clock_cy - r_orbit + 3}" fill="url(#radar-slice-grad)" opacity="0.4" />
+    </g>
+
+    <!-- The 7 Day Spoke Rays & Activity Beams -->
+    <g>
+      {spokes_markup}
+    </g>
+
+    <!-- Inner Holographic Cyber Core (r = {r_core}) -->
+    <g>
+      <circle cx="{clock_cx}" cy="{clock_cy}" r="{r_core}" fill="#060f1c" stroke="#1c3b60" stroke-width="1.5" />
+      <circle cx="{clock_cx}" cy="{clock_cy}" r="{r_core - 4}" fill="none" stroke="#00e5ff" stroke-width="0.8" stroke-dasharray="2 3" opacity="0.4" />
+      <circle cx="{clock_cx}" cy="{clock_cy}" r="{r_core - 8}" fill="#00e5ff" opacity="0.04" filter="blur(6px)" />
+
+      <!-- Center Core Typography -->
+      <text class="hud-title" x="{clock_cx}" y="{clock_cy - 14}" font-size="6" font-weight="800" fill="#64748b" letter-spacing="1.5" text-anchor="middle">CYCLE 7D</text>
+      <text class="hud-title" x="{clock_cx}" y="{clock_cy + 4}" font-size="17" font-weight="900" fill="#ffffff" letter-spacing="0.5" text-anchor="middle">{seven_day_total}</text>
+      <text class="hud-title" x="{clock_cx}" y="{clock_cy + 15}" font-size="6" font-weight="800" fill="#38bdf8" letter-spacing="1.5" text-anchor="middle">COMMITS</text>
+
+      <!-- Dynamic Animated Equalizer Bars inside Core -->
+      <g transform="translate({clock_cx - 9}, {clock_cy})">
+        <rect class="eq-b1" x="0" y="16" width="2.5" height="7" rx="1" fill="#00e5ff" />
+        <rect class="eq-b2" x="5" y="16" width="2.5" height="9" rx="1" fill="#38bdf8" />
+        <rect class="eq-b3" x="10" y="16" width="2.5" height="6" rx="1" fill="#0ea5e9" />
+        <rect class="eq-b1" x="15" y="16" width="2.5" height="8" rx="1" fill="#00e5ff" />
       </g>
-
-      <!-- Telemetry Status Pill Box -->
-      <rect x="0" y="52" width="214" height="20" rx="4" fill="#09182d" stroke="#16375c" stroke-width="0.8" />
-      <text class="hud-title" x="8" y="65" font-size="6.5" font-weight="700" fill="#38bdf8">CAL: REALTIME</text>
-      <text class="hud-title" x="72" y="65" font-size="6.5" font-weight="700" fill="#64748b">|</text>
-      <text class="hud-title" x="82" y="65" font-size="6.5" font-weight="700" fill="#93c5fd">PHYSICS: 100%</text>
-      <text class="hud-title" x="156" y="65" font-size="6.5" font-weight="700" fill="#64748b">|</text>
-      <text class="hud-title" x="166" y="65" font-size="6.5" font-weight="700" fill="#34d399">60FPS</text>
     </g>
-  </g>
 
-  <!-- Mid Divider Inside Clock Console -->
-  <line x1="476" y1="218" x2="794" y2="218" stroke="#112238" stroke-width="0.8" stroke-dasharray="2 4" />
-
-  <!-- Bottom Half: Sweeping Timeline Laser & 7 Daily Capsules -->
-  <text class="hud-title" x="478" y="230" font-size="7" font-weight="700" fill="#38bdf8" letter-spacing="1">7-DAY ACTIVITY MATRIX // HOURLY LOGS</text>
-  
-  <!-- Laser Radar Beam Sweeping Across 7 Capsules -->
-  <g clip-path="url(#timeline-clip)">
-    <g class="timeline-laser-sweep">
-      <rect x="470" y="234" width="36" height="104" fill="url(#clock-scan-grad)" />
-      <line x1="506" y1="234" x2="506" y2="338" stroke="#00e5ff" stroke-width="1.8" />
+    <!-- Outer 7-Day Labels & Commit Counts -->
+    <g>
+      {labels_markup}
     </g>
-  </g>
-
-  <!-- 7 Daily Capsules Group -->
-  <g>
-    {capsules_markup}
   </g>
 </svg>"""
     return svg
-
 
 def generate_06_contribution_arcade(stats):
     """
     Card 6: Gamified Cyber Arcade Contribution Matrix (Dynamic 4-Phase Cyber Viper Engine).
     Features:
-    - 100% REAL DYNAMIC PATHFINDING: The cyber viper directly hunts and eats every real contribution pellet on the user's heatmap!
+    - 100% REAL GITHUB HEATMAP: Week-by-week calendar mapping matching GitHub profile with 1:1 precision.
     - 4 DISTINCT ENTRANCE & EXIT ROUTES across continuous 48-second loop:
-      * Phase 1: Top-Left -> Bottom-Right (left-to-right hunt)
-      * Phase 2: Bottom-Left -> Top-Right (bottom-up wave)
-      * Phase 3: Top-Right -> Bottom-Left (right-to-left sweep)
-      * Phase 4: Far-Left -> Far-Right (greedy shortest intercept tour)
+      * Phase 1: Top-Left (-6, 0) -> Bottom-Right (58, 6)
+      * Phase 2: Bottom-Left (-6, 6) -> Top-Right (58, 0)
+      * Phase 3: Top-Right (58, 0) -> Bottom-Left (-6, 6)
+      * Phase 4: Center-Left (-6, 3) -> Center-Right (58, 3)
+    - REALISTIC COMPLETE EXIT: All 5 snake segments step fully off the grid into the void before phase turnaround.
+    - INVISIBLE BACKSTAGE RESET: Position is held stationary at the exit until phase boundary, then jumps instantaneously backstage without any visible travel across the heatmap.
     - REAL-TIME BITE & EAT INTERACTION: Pellets expand (1.4x), flash radiant cyan with bite flare drop-shadow, vanish into the snake, and respawn at cycle turnaround.
-    - Radiant Cyber Viper with crisp directional white-and-dark pupils looking forward.
+    - Radiant Cyber Viper with crisp directional white-and-dark pupils looking forward in motion direction.
     - Clean square box matrix (zero dots!).
     - Minimalist footer: "CYBER SNAKE //"
     - GPU-accelerated translate & scale keyframes for 60 FPS mobile and desktop performance.
@@ -1435,28 +1435,46 @@ def generate_06_contribution_arcade(stats):
     cell_w = 10.5
     cell_h = 10.5
 
-    daily = stats.get("daily_contributions", [])
-    if daily and len(daily) >= 364:
-        sub_daily = daily[-364:]
-    elif daily:
-        sub_daily = daily
-    else:
-        sub_daily = []
-
     def get_center_xy(c, r):
         return (round(start_x + c * step_x + cell_w / 2, 1), round(start_y + r * step_y + cell_h / 2, 1))
 
-    # Month Labels
+    # Extract weeks structure (100% real GitHub profile alignment)
+    weeks = stats.get("contribution_weeks", [])
+    if weeks and len(weeks) >= cols:
+        display_weeks = weeks[-cols:]
+    elif weeks:
+        display_weeks = weeks
+    else:
+        display_weeks = []
+
+    # Build 2D grid [col][row] where row is 0=Sun, 1=Mon, ..., 6=Sat
+    grid_matrix = [[{"count": 0, "date": "", "has_day": False} for _ in range(rows)] for _ in range(cols)]
+    active_pellets = []
+
+    for c, w in enumerate(display_weeks):
+        for d in w.get("contributionDays", []):
+            r = d.get("weekday", 0)
+            cnt = d.get("contributionCount", 0)
+            dt = d.get("date", "")
+            if 0 <= r < rows and 0 <= c < cols:
+                grid_matrix[c][r] = {
+                    "count": cnt,
+                    "date": dt,
+                    "has_day": True
+                }
+                if cnt > 0:
+                    active_pellets.append((c, r))
+
+    # Month Labels positioned above weeks where each month begins
     month_names = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     month_labels_svg = []
     last_m = None
     last_c = -5
     for c in range(cols):
-        day_idx = c * rows
-        if day_idx < len(sub_daily):
-            date_str = sub_daily[day_idx].get("date", "")
-            if date_str and len(date_str) >= 7:
-                m = int(date_str[5:7])
+        for r in range(rows):
+            cell = grid_matrix[c][r]
+            if cell["has_day"] and cell["date"] and len(cell["date"]) >= 7:
+                m = int(cell["date"].split("-")[1])
                 if m != last_m and (c - last_c) >= 3 and c >= 1:
                     last_m = m
                     last_c = c
@@ -1464,23 +1482,13 @@ def generate_06_contribution_arcade(stats):
                     month_labels_svg.append(
                         f'<text class="hud-title" x="{mx}" y="105" font-size="8.5" font-weight="700" fill="#475569">{month_names[m]}</text>'
                     )
+                break
 
     months_markup = "\n    ".join(month_labels_svg)
 
-    # Extract REAL active commit coordinates from sub_daily
-    active_pellets = []
-    for c in range(cols):
-        for r in range(rows):
-            idx = c * rows + r
-            if idx < len(sub_daily) and sub_daily[idx].get("count", 0) > 0:
-                active_pellets.append((c, r))
-
+    # Fallback target if 0 active pellets
     if not active_pellets:
         active_pellets = [(20, 3), (25, 3), (30, 3), (35, 3), (40, 3)]
-        min_c, max_c = 15, 45
-    else:
-        min_c = min(c for c, r in active_pellets)
-        max_c = max(c for c, r in active_pellets)
 
     def build_manhattan_route(waypoints):
         full_path = []
@@ -1536,29 +1544,29 @@ def generate_06_contribution_arcade(stats):
                             
                     if not moved:
                         if last_dx != 0:
-                            step_y = 1 if curr_y < rows - 1 else -1
+                            step_y = 1 if dy >= 0 else -1
                             curr_y += step_y
                             full_path.append((curr_x, curr_y))
                         else:
-                            step_x = 1 if curr_x < cols - 1 else -1
+                            step_x = 1 if dx >= 0 else -1
                             curr_x += step_x
                             full_path.append((curr_x, curr_y))
         return full_path
 
     # Phase 1: Top-Left -> Bottom-Right (left-to-right sweep)
     order1 = sorted(active_pellets, key=lambda x: (x[0], x[1]))
-    p1 = build_manhattan_route([(min_c - 1, -2), (min_c - 1, 0)] + order1 + [(max_c + 2, 6), (cols + 2, 6)])
+    p1 = build_manhattan_route([(-6, 0), (0, 0)] + order1 + [(51, 6), (58, 6)])
 
     # Phase 2: Bottom-Left -> Top-Right (bottom-up wave)
     order2 = sorted(active_pellets, key=lambda x: (x[0], -x[1]))
-    p2 = build_manhattan_route([(min_c - 1, 8), (min_c - 1, 6)] + order2 + [(max_c + 2, 0), (cols + 2, 0)])
+    p2 = build_manhattan_route([(-6, 6), (0, 6)] + order2 + [(51, 0), (58, 0)])
 
     # Phase 3: Top-Right -> Bottom-Left (right-to-left sweep)
     order3 = sorted(active_pellets, key=lambda x: (-x[0], x[1]))
-    p3 = build_manhattan_route([(max_c + 2, -2), (max_c + 2, 0)] + order3 + [(min_c - 2, 6), (min_c - 2, 8)])
+    p3 = build_manhattan_route([(58, 0), (51, 0)] + order3 + [(0, 6), (-6, 6)])
 
     # Phase 4: Far-Left -> Far-Right (greedy shortest tour)
-    curr = (min_c - 1, 3)
+    curr = (0, 3)
     remaining = set(active_pellets)
     order4 = []
     while remaining:
@@ -1566,7 +1574,7 @@ def generate_06_contribution_arcade(stats):
         order4.append(nxt)
         remaining.remove(nxt)
         curr = nxt
-    p4 = build_manhattan_route([(-2, 3), (min_c - 1, 3)] + order4 + [(max_c + 2, 3), (cols + 2, 3)])
+    p4 = build_manhattan_route([(-6, 3), (0, 3)] + order4 + [(51, 3), (58, 3)])
 
     cycles = [p1, p2, p3, p4]
     num_cycles = len(cycles)
@@ -1592,77 +1600,65 @@ def generate_06_contribution_arcade(stats):
             dirs.append(deg)
         cycle_dirs.append(dirs)
 
-    # Keyframes s0 (Head with directional rotation)
-    kf0 = ["    @keyframes s0 {"]
-    for k, p in enumerate(cycles):
-        S_k = (k / num_cycles) * 100.0
-        E_k = ((k + 1) / num_cycles) * 100.0
-        N_k = len(p)
-        P_k = 10
-        T_k = N_k + P_k
-        dirs = cycle_dirs[k]
-
-        for t in range(N_k):
-            cx, cy = get_center_xy(p[t][0], p[t][1])
-            deg = dirs[t]
-            pct = round(S_k + (t / T_k) * (100.0 / num_cycles), 2)
-            kf0.append(f"      {pct}% {{ transform: translate({cx}px, {cy}px) rotate({deg}deg); opacity: 1; }}")
-
-        exit_pct = round(S_k + (N_k / T_k) * (100.0 / num_cycles), 2)
-        next_k = (k + 1) % num_cycles
-        next_start_cx, next_start_cy = get_center_xy(cycles[next_k][0][0], cycles[next_k][0][1])
-        next_start_deg = cycle_dirs[next_k][0]
-
-        kf0.append(f"      {exit_pct + 0.3}%, {round(E_k - 0.6, 2)}% {{ opacity: 0; }}")
-        kf0.append(f"      {round(E_k - 0.5, 2)}%, {round(E_k - 0.1, 2)}% {{ transform: translate({next_start_cx}px, {next_start_cy}px) rotate({next_start_deg}deg); opacity: 0; }}")
-        if k < num_cycles - 1:
-            kf0.append(f"      {round(E_k, 2)}% {{ transform: translate({next_start_cx}px, {next_start_cy}px) rotate({next_start_deg}deg); opacity: 1; }}")
-
-    p0_cx, p0_cy = get_center_xy(cycles[0][0][0], cycles[0][0][1])
-    deg0 = cycle_dirs[0][0]
-    kf0.append(f"      100% {{ transform: translate({p0_cx}px, {p0_cy}px) rotate({deg0}deg); opacity: 1; }}")
-    kf0.append("    }")
-    kf0.append(f"    .s0 {{ animation: s0 {total_duration}s linear infinite; will-change: transform, opacity; }}")
-
-    segment_css = ["\n".join(kf0)]
-
-    # Keyframes s1..s4 (Body segments trailing with clean entry opacity)
-    for seg in range(1, 5):
+    # Keyframes s0..s4 (Clean slither, complete exit, stationary backstage hold, and instant off-screen reset)
+    segment_css = []
+    for seg in range(5):
         kf = [f"    @keyframes s{seg} {{"]
         for k, p in enumerate(cycles):
             S_k = (k / num_cycles) * 100.0
             E_k = ((k + 1) / num_cycles) * 100.0
             N_k = len(p)
-            P_k = 10
+            P_k = 6
             T_k = N_k + P_k
+            dirs = cycle_dirs[k]
+            
+            exit_cx, exit_cy = get_center_xy(p[-1][0], p[-1][1])
+            exit_deg = dirs[-1]
 
-            for t in range(N_k):
+            for t in range(N_k + 5):
                 pos_idx = t - seg
-                pct = round(S_k + (t / T_k) * (100.0 / num_cycles), 2)
+                pct = round(S_k + (t / T_k) * (100.0 / num_cycles), 3)
                 if pos_idx < 0:
                     c, r = p[0]
                     cx, cy = get_center_xy(c, r)
-                    kf.append(f"      {pct}% {{ transform: translate({cx}px, {cy}px); opacity: 0; }}")
+                    if seg == 0:
+                        kf.append(f"      {pct}% {{ transform: translate({cx}px, {cy}px) rotate({dirs[0]}deg); opacity: 0; }}")
+                    else:
+                        kf.append(f"      {pct}% {{ transform: translate({cx}px, {cy}px); opacity: 0; }}")
                 elif pos_idx >= N_k:
                     c, r = p[-1]
                     cx, cy = get_center_xy(c, r)
-                    kf.append(f"      {pct}% {{ transform: translate({cx}px, {cy}px); opacity: 0; }}")
+                    if seg == 0:
+                        kf.append(f"      {pct}% {{ transform: translate({cx}px, {cy}px) rotate({exit_deg}deg); opacity: 0; }}")
+                    else:
+                        kf.append(f"      {pct}% {{ transform: translate({cx}px, {cy}px); opacity: 0; }}")
                 else:
                     c, r = p[pos_idx]
                     cx, cy = get_center_xy(c, r)
-                    kf.append(f"      {pct}% {{ transform: translate({cx}px, {cy}px); opacity: 1; }}")
+                    if seg == 0:
+                        kf.append(f"      {pct}% {{ transform: translate({cx}px, {cy}px) rotate({dirs[pos_idx]}deg); opacity: 1; }}")
+                    else:
+                        kf.append(f"      {pct}% {{ transform: translate({cx}px, {cy}px); opacity: 1; }}")
 
-            exit_pct = round(S_k + (N_k / T_k) * (100.0 / num_cycles), 2)
+            # Hold stationary at exit until phase boundary (NO diagonal travel across the screen!)
+            p_hold_end = round(E_k - 0.02, 3)
             next_k = (k + 1) % num_cycles
             next_start_cx, next_start_cy = get_center_xy(cycles[next_k][0][0], cycles[next_k][0][1])
+            next_start_deg = cycle_dirs[next_k][0]
 
-            kf.append(f"      {exit_pct + 0.3}%, {round(E_k - 0.6, 2)}% {{ opacity: 0; }}")
-            kf.append(f"      {round(E_k - 0.5, 2)}%, {round(E_k - 0.1, 2)}% {{ transform: translate({next_start_cx}px, {next_start_cy}px); opacity: 0; }}")
-            if k < num_cycles - 1:
-                kf.append(f"      {round(E_k, 2)}% {{ transform: translate({next_start_cx}px, {next_start_cy}px); opacity: 0; }}")
+            # Hold stationary at exit until phase boundary (NO diagonal travel across the screen!)
+            p_hold_end = round(E_k - 0.01, 3)
+            if seg == 0:
+                kf.append(f"      {p_hold_end}% {{ transform: translate({exit_cx}px, {exit_cy}px) rotate({exit_deg}deg); opacity: 0; }}")
+            else:
+                kf.append(f"      {p_hold_end}% {{ transform: translate({exit_cx}px, {exit_cy}px); opacity: 0; }}")
 
-        p0_start_cx, p0_start_cy = get_center_xy(cycles[0][0][0], cycles[0][0][1])
-        kf.append(f"      100% {{ transform: translate({p0_start_cx}px, {p0_start_cy}px); opacity: 0; }}")
+        p0_cx, p0_cy = get_center_xy(cycles[0][0][0], cycles[0][0][1])
+        if seg == 0:
+            deg0 = cycle_dirs[0][0]
+            kf.append(f"      100% {{ transform: translate({p0_cx}px, {p0_cy}px) rotate({deg0}deg); opacity: 1; }}")
+        else:
+            kf.append(f"      100% {{ transform: translate({p0_cx}px, {p0_cy}px); opacity: 0; }}")
         kf.append("    }")
         kf.append(f"    .s{seg} {{ animation: s{seg} {total_duration}s linear infinite; will-change: transform, opacity; }}")
         segment_css.append("\n".join(kf))
@@ -1680,24 +1676,25 @@ def generate_06_contribution_arcade(stats):
             S_k = (k / num_cycles) * 100.0
             E_k = ((k + 1) / num_cycles) * 100.0
             N_k = len(p)
-            P_k = 10
+            P_k = 6
             T_k = N_k + P_k
 
             if ac in p:
                 step_idx = p.index(ac)
-                pct_eat = round(S_k + (step_idx / T_k) * (100.0 / num_cycles), 2)
-                p_before = max(round(S_k + 0.1, 2), round(pct_eat - 0.3, 2))
-                p_chomped = round(pct_eat, 2)
-                p_gone = round(pct_eat + 0.3, 2)
-                p_respawn_pre = round(E_k - 0.4, 2)
-                p_respawn = round(E_k, 2)
+                pct_eat = round(S_k + (step_idx / T_k) * (100.0 / num_cycles), 3)
+                p_before = max(round(S_k + 0.05, 3), round(pct_eat - 0.2, 3))
+                p_chomped = round(pct_eat, 3)
+                p_gone = round(pct_eat + 0.25, 3)
+                p_respawn_pre = round(E_k - 0.1, 3)
+                p_respawn = round(E_k, 3)
 
-                keyframes.append((round(S_k, 2), "opacity: 1; transform: scale(1); filter: none;"))
-                if p_before > S_k:
+                keyframes.append((round(S_k, 3), "opacity: 1; transform: scale(1); filter: none;"))
+                if p_before > S_k and p_before < p_chomped:
                     keyframes.append((p_before, "opacity: 1; transform: scale(1); filter: none;"))
                 keyframes.append((p_chomped, "opacity: 1; transform: scale(1.4); filter: drop-shadow(0 0 8px #00e5ff); fill: #38bdf8;"))
                 keyframes.append((p_gone, "opacity: 0; transform: scale(0);"))
-                keyframes.append((p_respawn_pre, "opacity: 0; transform: scale(0);"))
+                if p_respawn_pre > p_gone:
+                    keyframes.append((p_respawn_pre, "opacity: 0; transform: scale(0);"))
                 keyframes.append((p_respawn, "opacity: 1; transform: scale(1); filter: none;"))
 
         keyframes.sort(key=lambda x: x[0])
@@ -1713,24 +1710,21 @@ def generate_06_contribution_arcade(stats):
 
     pellets_style = "\n".join(pellet_css)
 
-    # Matrix Cells (Clean Square Boxes - Zero Dots!)
+    # Matrix Cells (Clean Square Boxes - Zero Dots! 100% Real Heatmap)
     matrix_cells_svg = []
-    idx = 0
-    active_count = 0
     for c in range(cols):
         for r in range(rows):
+            cell = grid_matrix[c][r]
+            if not cell["has_day"]:
+                continue
+
             x = round(start_x + c * step_x, 1)
             y = round(start_y + r * step_y, 1)
-
-            count = 0
-            if idx < len(sub_daily):
-                count = sub_daily[idx].get("count", 0)
-            idx += 1
+            count = cell["count"]
 
             base_cell = f'<rect x="{x}" y="{y}" width="{cell_w}" height="{cell_h}" rx="2.5" fill="#0a1322" stroke="#152742" stroke-width="0.8" />'
 
             if count > 0:
-                active_count += 1
                 pellet_cls = f"pellet-{c}-{r}" if (c, r) in active_pellets else ""
                 if count >= 10:
                     box_fill = "#38bdf8"
