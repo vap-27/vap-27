@@ -164,7 +164,7 @@
     </g>
 
     <text class="hud-title" x="62" y="44" font-size="9" font-weight="800" fill="#34d399" letter-spacing="0.5">COSMIC FORGE</text>
-    <text class="hud-title" x="62" y="62" font-size="13" font-weight="800" fill="#ffffff">61 COMMITS</text>
+    <text class="hud-title" x="62" y="62" font-size="13" font-weight="800" fill="#ffffff">62 COMMITS</text>
     <text class="hud-title" x="62" y="77" font-size="7.5" font-weight="600" fill="#64748b">ENERGY GENERATED</text>
     <rect x="62" y="87" width="7" height="7" rx="1.5" fill="#059669" />
     <text class="hud-title" x="74" y="93.5" font-size="7" font-weight="700" fill="#34d399">SIGNAL: LIVE</text>
@@ -209,7 +209,7 @@
     <!-- Readout & Stats to the Right of Dial -->
     <g transform="translate(562, 142)">
       <!-- 7D Total Number -->
-      <text class="hud-title" x="0" y="24" font-size="24" font-weight="900" fill="#ffffff" letter-spacing="1">18</text>
+      <text class="hud-title" x="0" y="24" font-size="24" font-weight="900" fill="#ffffff" letter-spacing="1">19</text>
       <text class="hud-title" x="38" y="16" font-size="8.5" font-weight="800" fill="#00e5ff" letter-spacing="1">COMMITS</text>
       <text class="hud-title" x="38" y="26" font-size="6.5" font-weight="700" fill="#64748b" letter-spacing="0.5">7-DAY ROLLING VELOCITY</text>
 
@@ -379,12 +379,12 @@
       <text class="hud-title" x="759.0" y="249" font-size="7.5" font-weight="800" fill="#00e5ff">TOD</text>
       <text class="hud-title" x="759.0" y="259" font-size="6.5" font-weight="600" fill="#64748b">09/17</text>
       
-      <text class="hud-title" x="759.0" y="278" font-size="14" font-weight="800" fill="#ffffff">6</text>
+      <text class="hud-title" x="759.0" y="278" font-size="14" font-weight="800" fill="#ffffff">7</text>
       <text class="hud-title" x="759.0" y="285" font-size="5.5" font-weight="600" fill="#64748b">COMMITS</text>
 
       <!-- Vertical Activity Level Bar -->
       <rect x="759.0" y="291" width="30" height="15" rx="2" fill="#050b14" stroke="#0e1e35" stroke-width="0.6" />
-      <rect x="761.0" y="291.0" width="26" height="15.0" rx="1.5" fill="#00e5ff" />
+      <rect x="761.0" y="288.5" width="26" height="17.5" rx="1.5" fill="#00e5ff" />
 
       <!-- Mini Top Repo Tag -->
       <rect x="757.0" y="311" width="34" height="20" rx="3" fill="#040912" stroke="#0f1d33" stroke-width="0.6" />
