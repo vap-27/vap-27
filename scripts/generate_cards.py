@@ -1014,6 +1014,54 @@ def generate_05_achievements_clock(stats):
     seven_days = stats.get("seven_days", [])
     seven_day_total = stats.get("seven_day_total", 0)
 
+    # Calculate real-world analog & digital clock parameters
+    now = datetime.now(timezone.utc)
+    hour = now.hour % 12
+    minute = now.minute
+    second = now.second
+    time_str = now.strftime("%H:%M:%S UTC")
+
+    minute_angle = round((minute + second / 60.0) * 6.0, 1)
+    hour_angle = round((hour + minute / 60.0 + second / 3600.0) * 30.0, 1)
+
+    clock_radius = 42
+    clock_cx = 524
+    clock_cy = 168
+
+    clock_ticks = []
+    for ti in range(60):
+        angle_rad = math.radians(ti * 6 - 90)
+        cos_a = math.cos(angle_rad)
+        sin_a = math.sin(angle_rad)
+        if ti % 5 == 0:
+            r_in = clock_radius - 8
+            r_out = clock_radius - 2
+            st_col = "#00e5ff" if ti % 15 == 0 else "#38bdf8"
+            st_w = "1.8" if ti % 15 == 0 else "1.2"
+        else:
+            r_in = clock_radius - 5
+            r_out = clock_radius - 2
+            st_col = "#1e3a5f"
+            st_w = "0.7"
+        tx1 = round(cos_a * r_in, 1)
+        ty1 = round(sin_a * r_in, 1)
+        tx2 = round(cos_a * r_out, 1)
+        ty2 = round(sin_a * r_out, 1)
+        clock_ticks.append(f'<line x1="{tx1}" y1="{ty1}" x2="{tx2}" y2="{ty2}" stroke="{st_col}" stroke-width="{st_w}" />')
+
+    clock_numerals = [
+        ("12", 0, -clock_radius + 15),
+        ("3", clock_radius - 15, 2.5),
+        ("6", 0, clock_radius - 11),
+        ("9", -clock_radius + 15, 2.5)
+    ]
+    numerals_svg = []
+    for num, nx, ny in clock_numerals:
+        numerals_svg.append(f'<text class="hud-title" x="{nx}" y="{ny}" font-size="7.5" font-weight="800" fill="#94a3b8" text-anchor="middle" dominant-baseline="middle">{num}</text>')
+
+    clock_ticks_markup = "\n      ".join(clock_ticks)
+    clock_numerals_markup = "\n      ".join(numerals_svg)
+
     # 7 Digital Capsules inside the 340px Clock Console
     capsules_svg = []
     capsule_w = 42
@@ -1108,14 +1156,7 @@ def generate_05_achievements_clock(stats):
       0% {{ transform: rotate(0deg); }}
       100% {{ transform: rotate(360deg); }}
     }}
-    @keyframes clock-dial-spin {{
-      0% {{ transform: rotate(0deg); }}
-      100% {{ transform: rotate(360deg); }}
-    }}
-    @keyframes sweep-hand {{
-      0% {{ transform: rotate(0deg); }}
-      100% {{ transform: rotate(360deg); }}
-    }}
+
     @keyframes laser-timeline-travel {{
       0% {{ transform: translateX(0px); opacity: 0; }}
       5% {{ opacity: 0.9; }}
@@ -1144,16 +1185,7 @@ def generate_05_achievements_clock(stats):
       animation: gyro-rotate 16s linear infinite;
       will-change: transform;
     }}
-    .clock-outer-ring {{
-      transform-origin: 512px 168px;
-      animation: clock-dial-spin 20s linear infinite;
-      will-change: transform;
-    }}
-    .clock-radar-hand {{
-      transform-origin: 512px 168px;
-      animation: sweep-hand 4s linear infinite;
-      will-change: transform;
-    }}
+
     .timeline-laser-sweep {{
       animation: laser-timeline-travel 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
       will-change: transform, opacity;
@@ -1277,34 +1309,68 @@ def generate_05_achievements_clock(stats):
 
   <!-- Top Half: Holographic Circular Dial + Velocity Readout -->
   <g>
-    <!-- Circular Digital Radar Dial -->
-    <g transform="translate(512, 172)">
-      <circle cx="0" cy="0" r="30" fill="#071324" stroke="#112b4e" stroke-width="1.2" />
-      <circle class="clock-outer-ring" cx="0" cy="0" r="25" fill="none" stroke="#00e5ff" stroke-width="1.2" stroke-dasharray="5 7 2 7" opacity="0.85" />
-      <circle cx="0" cy="0" r="18" fill="none" stroke="#1e3a5f" stroke-width="0.8" stroke-dasharray="2 3" />
-      <line x1="-30" y1="0" x2="30" y2="0" stroke="#112b4e" stroke-width="0.8" />
-      <line x1="0" y1="-30" x2="0" y2="30" stroke="#112b4e" stroke-width="0.8" />
-      
-      <!-- Rotating Holographic Radar Sweep Hand -->
-      <g class="clock-radar-hand">
-        <line x1="0" y1="0" x2="0" y2="-26" stroke="#00e5ff" stroke-width="1.8" stroke-linecap="round" />
-        <polygon points="0,-26 -5,-10 5,-10" fill="#00e5ff" opacity="0.25" />
+    <!-- Real Physical Cyber Chronometer (Centered firmly at cx={clock_cx}, cy={clock_cy} - ZERO FLYING PIECES) -->
+    <g transform="translate({clock_cx}, {clock_cy})">
+      <!-- Stationary Outer Watch Bezel & Screws -->
+      <circle cx="0" cy="0" r="{clock_radius + 4}" fill="#040914" stroke="#162c4e" stroke-width="1.8" />
+      <circle cx="0" cy="0" r="{clock_radius}" fill="#08101e" stroke="#1e3a5f" stroke-width="1.2" />
+      <circle cx="0" cy="0" r="{clock_radius - 1}" fill="none" stroke="#0a1d36" stroke-width="0.8" stroke-dasharray="1 3" />
+      <circle cx="0" cy="0" r="{clock_radius - 10}" fill="#050c18" stroke="#11243e" stroke-width="0.8" />
+
+      <!-- Dial Face Ticks & Hour Numerals (12, 3, 6, 9) -->
+      {clock_ticks_markup}
+      {clock_numerals_markup}
+
+      <!-- Center Subtle Crosshairs -->
+      <line x1="-12" y1="0" x2="12" y2="0" stroke="#162d4a" stroke-width="0.8" />
+      <line x1="0" y1="-12" x2="0" y2="12" stroke="#162d4a" stroke-width="0.8" />
+      <circle cx="0" cy="0" r="14" fill="none" stroke="#102540" stroke-width="0.6" stroke-dasharray="2 3" />
+
+      <!-- Real Hour Hand (Real Time Angle: {hour_angle} deg) -->
+      <g transform="rotate({hour_angle})">
+        <polygon points="-2.5,4 0,-20 2.5,4" fill="#38bdf8" />
+        <polygon points="-1.2,2 0,-18 1.2,2" fill="#e0f2fe" />
+        <line x1="0" y1="4" x2="0" y2="-21" stroke="#0284c7" stroke-width="0.6" />
       </g>
-      
-      <!-- Dial Center Hub -->
-      <circle cx="0" cy="0" r="4" fill="#00e5ff" />
-      <circle cx="0" cy="0" r="1.8" fill="#ffffff" />
+
+      <!-- Real Minute Hand (Real Time Angle: {minute_angle} deg) -->
+      <g transform="rotate({minute_angle})">
+        <polygon points="-1.8,5 0,-30 1.8,5" fill="#00e5ff" />
+        <polygon points="-0.8,3 0,-28 0.8,3" fill="#ffffff" />
+        <line x1="0" y1="5" x2="0" y2="-31" stroke="#0284c7" stroke-width="0.6" />
+      </g>
+
+      <!-- Real Second Needle (Smooth 60s Quartz Sweep Locked Firmly to (0,0) Pivot via native SVG animateTransform) -->
+      <g>
+        <animateTransform
+          attributeName="transform"
+          type="rotate"
+          from="0 0 0"
+          to="360 0 0"
+          dur="60s"
+          repeatCount="indefinite" />
+        <line x1="0" y1="10" x2="0" y2="-36" stroke="#00e5ff" stroke-width="1.2" stroke-linecap="round" />
+        <circle cx="0" cy="6" r="2.2" fill="#0284c7" stroke="#00e5ff" stroke-width="0.8" />
+        <polygon points="-1.2,-28 0,-37 1.2,-28" fill="#00e5ff" />
+      </g>
+
+      <!-- Physical Center Pivot Spindle Cap -->
+      <circle cx="0" cy="0" r="4.2" fill="#0f172a" stroke="#00e5ff" stroke-width="1.2" />
+      <circle cx="0" cy="0" r="2.2" fill="#38bdf8" />
+      <circle cx="0" cy="0" r="1.0" fill="#ffffff" />
     </g>
 
-    <!-- Readout & Stats to the Right of Dial -->
-    <g transform="translate(562, 142)">
-      <!-- 7D Total Number -->
-      <text class="hud-title" x="0" y="24" font-size="24" font-weight="900" fill="#ffffff" letter-spacing="1">{seven_day_total}</text>
-      <text class="hud-title" x="38" y="16" font-size="8.5" font-weight="800" fill="#00e5ff" letter-spacing="1">COMMITS</text>
-      <text class="hud-title" x="38" y="26" font-size="6.5" font-weight="700" fill="#64748b" letter-spacing="0.5">7-DAY ROLLING VELOCITY</text>
+    <!-- Digital Readout to the Right of Dial -->
+    <g transform="translate(580, 140)">
+      <!-- Real-time Digital Chrono Timestamp -->
+      <text class="hud-title" x="0" y="14" font-size="12" font-weight="900" fill="#00e5ff" letter-spacing="1.5">{time_str}</text>
+      
+      <!-- 7D Total Number & Label -->
+      <text class="hud-title" x="0" y="34" font-size="18" font-weight="900" fill="#ffffff" letter-spacing="1">{seven_day_total} <tspan font-size="8.5" font-weight="800" fill="#38bdf8">COMMITS</tspan></text>
+      <text class="hud-title" x="0" y="44" font-size="6.5" font-weight="700" fill="#64748b" letter-spacing="0.5">7-DAY ROLLING VELOCITY</text>
 
       <!-- Dynamic Animated Equalizer Bars -->
-      <g transform="translate(164, 8)">
+      <g transform="translate(162, 2)">
         <rect class="eq-b1" x="0" y="0" width="3" height="18" rx="1.5" fill="#00e5ff" />
         <rect class="eq-b2" x="5" y="0" width="3" height="18" rx="1.5" fill="#38bdf8" />
         <rect class="eq-b3" x="10" y="0" width="3" height="18" rx="1.5" fill="#0284c7" />
@@ -1312,13 +1378,13 @@ def generate_05_achievements_clock(stats):
         <rect class="eq-b2" x="20" y="0" width="3" height="18" rx="1.5" fill="#38bdf8" />
       </g>
 
-      <!-- Status Pill Box -->
-      <rect x="0" y="38" width="228" height="22" rx="4" fill="#09182d" stroke="#16375c" stroke-width="0.8" />
-      <text class="hud-title" x="8" y="52" font-size="6.5" font-weight="700" fill="#38bdf8">RADAR: ACTIVE</text>
-      <text class="hud-title" x="76" y="52" font-size="6.5" font-weight="700" fill="#64748b">|</text>
-      <text class="hud-title" x="86" y="52" font-size="6.5" font-weight="700" fill="#93c5fd">ACCURACY: 100%</text>
-      <text class="hud-title" x="162" y="52" font-size="6.5" font-weight="700" fill="#64748b">|</text>
-      <text class="hud-title" x="172" y="52" font-size="6.5" font-weight="700" fill="#34d399">FREQ: 60FPS</text>
+      <!-- Telemetry Status Pill Box -->
+      <rect x="0" y="52" width="214" height="20" rx="4" fill="#09182d" stroke="#16375c" stroke-width="0.8" />
+      <text class="hud-title" x="8" y="65" font-size="6.5" font-weight="700" fill="#38bdf8">CAL: REALTIME</text>
+      <text class="hud-title" x="72" y="65" font-size="6.5" font-weight="700" fill="#64748b">|</text>
+      <text class="hud-title" x="82" y="65" font-size="6.5" font-weight="700" fill="#93c5fd">PHYSICS: 100%</text>
+      <text class="hud-title" x="156" y="65" font-size="6.5" font-weight="700" fill="#64748b">|</text>
+      <text class="hud-title" x="166" y="65" font-size="6.5" font-weight="700" fill="#34d399">60FPS</text>
     </g>
   </g>
 
