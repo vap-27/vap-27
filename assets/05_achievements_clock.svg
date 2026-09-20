@@ -239,17 +239,14 @@
     <!-- The 7 Day Spoke Rays & Activity Beams -->
     <g>
       <line x1="626.0" y1="182.0" x2="626.0" y2="146.0" stroke="#0e1b2e" stroke-width="2.5" stroke-linecap="round" />
-      <!-- Spoke SUN (TODAY HERO BEAM) -->
-      <line x1="626.0" y1="182.0" x2="626.0" y2="146.0" stroke="#00e5ff" stroke-width="8" opacity="0.45" filter="url(#glow-soft)" stroke-linecap="round" />
-      <line x1="626.0" y1="182.0" x2="626.0" y2="146.0" stroke="#38bdf8" stroke-width="4.2" stroke-linecap="round" />
-      <line x1="626.0" y1="182.0" x2="626.0" y2="146.0" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" />
-      <circle class="today-ping-ring" cx="626.0" cy="146.0" r="3" fill="none" stroke="#00e5ff" />
-      <circle cx="626.0" cy="146.0" r="4.2" fill="#00e5ff" stroke="#ffffff" stroke-width="1.4" />
+      <circle cx="626.0" cy="176.0" r="1.6" fill="#1b314f" />
       <line x1="657.3" y1="197.1" x2="685.4" y2="174.6" stroke="#0e1b2e" stroke-width="2.5" stroke-linecap="round" />
-      <!-- Spoke MON (4 commits) -->
-      <line x1="657.3" y1="197.1" x2="667.1" y2="189.2" stroke="#0284c7" stroke-width="3.2" stroke-linecap="round" />
-      <line x1="657.3" y1="197.1" x2="667.1" y2="189.2" stroke="#38bdf8" stroke-width="1.6" stroke-linecap="round" />
-      <circle cx="667.1" cy="189.2" r="2.8" fill="#38bdf8" stroke="#0284c7" stroke-width="1.0" />
+      <!-- Spoke MON (TODAY HERO BEAM) -->
+      <line x1="657.3" y1="197.1" x2="685.4" y2="174.6" stroke="#00e5ff" stroke-width="8" opacity="0.45" filter="url(#glow-soft)" stroke-linecap="round" />
+      <line x1="657.3" y1="197.1" x2="685.4" y2="174.6" stroke="#38bdf8" stroke-width="4.2" stroke-linecap="round" />
+      <line x1="657.3" y1="197.1" x2="685.4" y2="174.6" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" />
+      <circle class="today-ping-ring" cx="685.4" cy="174.6" r="3" fill="none" stroke="#00e5ff" />
+      <circle cx="685.4" cy="174.6" r="4.2" fill="#00e5ff" stroke="#ffffff" stroke-width="1.4" />
       <line x1="665.0" y1="230.9" x2="700.1" y2="238.9" stroke="#0e1b2e" stroke-width="2.5" stroke-linecap="round" />
       <!-- Spoke TUE (8 commits) -->
       <line x1="665.0" y1="230.9" x2="688.4" y2="236.2" stroke="#0284c7" stroke-width="3.2" stroke-linecap="round" />
@@ -276,7 +273,7 @@
 
       <!-- Center Core Typography -->
       <text class="hud-title" x="626" y="208" font-size="6" font-weight="800" fill="#64748b" letter-spacing="1.5" text-anchor="middle">CYCLE 7D</text>
-      <text class="hud-title" x="626" y="226" font-size="17" font-weight="900" fill="#ffffff" letter-spacing="0.5" text-anchor="middle">31</text>
+      <text class="hud-title" x="626" y="226" font-size="17" font-weight="900" fill="#ffffff" letter-spacing="0.5" text-anchor="middle">27</text>
       <text class="hud-title" x="626" y="237" font-size="6" font-weight="800" fill="#38bdf8" letter-spacing="1.5" text-anchor="middle">COMMITS</text>
 
       <!-- Dynamic Animated Equalizer Bars inside Core -->
@@ -290,12 +287,12 @@
 
     <!-- Outer 7-Day Labels & Commit Counts -->
     <g>
-      <!-- Label SUN (TODAY) -->
-      <text class="hud-title" x="626" y="130" font-size="8.5" font-weight="900" fill="#ffffff" text-anchor="middle" filter="url(#glow-soft)">SUN</text>
-      <text class="hud-title" x="626" y="140" font-size="8.5" font-weight="800" fill="#00e5ff" text-anchor="middle">0 PTS</text>
-      <!-- Label MON -->
-      <text class="hud-title" x="698.8" y="163.1" font-size="8.0" font-weight="700" fill="#94a3b8" text-anchor="start">MON</text>
-      <text class="hud-title" x="698.8" y="173.1" font-size="8.0" font-weight="700" fill="#38bdf8" text-anchor="start">4</text>
+      <!-- Label SUN (Idle) -->
+      <text class="hud-title" x="626" y="130" font-size="8.0" font-weight="600" fill="#475569" text-anchor="middle">SUN</text>
+      <text class="hud-title" x="626" y="140" font-size="7.5" font-weight="600" fill="#334155" text-anchor="middle">0</text>
+      <!-- Label MON (TODAY) -->
+      <text class="hud-title" x="698.8" y="163.1" font-size="8.5" font-weight="900" fill="#ffffff" text-anchor="start" filter="url(#glow-soft)">MON</text>
+      <text class="hud-title" x="698.8" y="173.1" font-size="8.5" font-weight="800" fill="#00e5ff" text-anchor="start">0 PTS</text>
       <!-- Label TUE -->
       <text class="hud-title" x="715.8" y="237.6" font-size="8.0" font-weight="700" fill="#94a3b8" text-anchor="start">TUE</text>
       <text class="hud-title" x="715.8" y="247.6" font-size="8.0" font-weight="700" fill="#38bdf8" text-anchor="start">8</text>
