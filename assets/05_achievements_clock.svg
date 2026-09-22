@@ -243,14 +243,14 @@
       <line x1="657.3" y1="197.1" x2="685.4" y2="174.6" stroke="#0e1b2e" stroke-width="2.5" stroke-linecap="round" />
       <circle cx="662.0" cy="193.3" r="1.6" fill="#1b314f" />
       <line x1="665.0" y1="230.9" x2="700.1" y2="238.9" stroke="#0e1b2e" stroke-width="2.5" stroke-linecap="round" />
-      <!-- Spoke TUE (TODAY HERO BEAM) -->
-      <line x1="665.0" y1="230.9" x2="700.1" y2="238.9" stroke="#00e5ff" stroke-width="8" opacity="0.45" filter="url(#glow-soft)" stroke-linecap="round" />
-      <line x1="665.0" y1="230.9" x2="700.1" y2="238.9" stroke="#38bdf8" stroke-width="4.2" stroke-linecap="round" />
-      <line x1="665.0" y1="230.9" x2="700.1" y2="238.9" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" />
-      <circle class="today-ping-ring" cx="700.1" cy="238.9" r="3" fill="none" stroke="#00e5ff" />
-      <circle cx="700.1" cy="238.9" r="4.2" fill="#00e5ff" stroke="#ffffff" stroke-width="1.4" />
+      <circle cx="670.8" cy="232.2" r="1.6" fill="#1b314f" />
       <line x1="643.4" y1="258.0" x2="659.0" y2="290.5" stroke="#0e1b2e" stroke-width="2.5" stroke-linecap="round" />
-      <circle cx="646.0" cy="263.4" r="1.6" fill="#1b314f" />
+      <!-- Spoke WED (TODAY HERO BEAM) -->
+      <line x1="643.4" y1="258.0" x2="659.0" y2="290.5" stroke="#00e5ff" stroke-width="8" opacity="0.45" filter="url(#glow-soft)" stroke-linecap="round" />
+      <line x1="643.4" y1="258.0" x2="659.0" y2="290.5" stroke="#38bdf8" stroke-width="4.2" stroke-linecap="round" />
+      <line x1="643.4" y1="258.0" x2="659.0" y2="290.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" />
+      <circle class="today-ping-ring" cx="659.0" cy="290.5" r="3" fill="none" stroke="#00e5ff" />
+      <circle cx="659.0" cy="290.5" r="4.2" fill="#00e5ff" stroke="#ffffff" stroke-width="1.4" />
       <line x1="608.6" y1="258.0" x2="593.0" y2="290.5" stroke="#0e1b2e" stroke-width="2.5" stroke-linecap="round" />
       <!-- Spoke THU (19 commits) -->
       <line x1="608.6" y1="258.0" x2="593.0" y2="290.5" stroke="#0284c7" stroke-width="3.2" stroke-linecap="round" />
@@ -290,12 +290,12 @@
       <!-- Label MON (Idle) -->
       <text class="hud-title" x="698.8" y="163.1" font-size="8.0" font-weight="600" fill="#475569" text-anchor="start">MON</text>
       <text class="hud-title" x="698.8" y="173.1" font-size="7.5" font-weight="600" fill="#334155" text-anchor="start">0</text>
-      <!-- Label TUE (TODAY) -->
-      <text class="hud-title" x="715.8" y="237.6" font-size="8.5" font-weight="900" fill="#ffffff" text-anchor="start" filter="url(#glow-soft)">TUE</text>
-      <text class="hud-title" x="715.8" y="247.6" font-size="8.5" font-weight="800" fill="#00e5ff" text-anchor="start">0 PTS</text>
-      <!-- Label WED (Idle) -->
-      <text class="hud-title" x="668.2" y="297.3" font-size="8.0" font-weight="600" fill="#475569" text-anchor="start">WED</text>
-      <text class="hud-title" x="668.2" y="307.3" font-size="7.5" font-weight="600" fill="#334155" text-anchor="start">0</text>
+      <!-- Label TUE (Idle) -->
+      <text class="hud-title" x="715.8" y="237.6" font-size="8.0" font-weight="600" fill="#475569" text-anchor="start">TUE</text>
+      <text class="hud-title" x="715.8" y="247.6" font-size="7.5" font-weight="600" fill="#334155" text-anchor="start">0</text>
+      <!-- Label WED (TODAY) -->
+      <text class="hud-title" x="668.2" y="297.3" font-size="8.5" font-weight="900" fill="#ffffff" text-anchor="start" filter="url(#glow-soft)">WED</text>
+      <text class="hud-title" x="668.2" y="307.3" font-size="8.5" font-weight="800" fill="#00e5ff" text-anchor="start">0 PTS</text>
       <!-- Label THU -->
       <text class="hud-title" x="583.8" y="297.3" font-size="8.0" font-weight="700" fill="#94a3b8" text-anchor="end">THU</text>
       <text class="hud-title" x="583.8" y="307.3" font-size="8.0" font-weight="700" fill="#38bdf8" text-anchor="end">19</text>
